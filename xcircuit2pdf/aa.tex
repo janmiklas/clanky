@@ -1,0 +1,40 @@
+\documentclass{article}
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+
+%%% MOJE
+%\DeclareGraphicsExtensions{.ps, .eps}
+%\usepackage[slovak]{babel}
+\usepackage[utf8]{inputenc} 
+
+\newcommand{\dif}{\, \mathrm{d}}	% diferencia (na derivacie)
+\newcommand{\difp}{\partial}		% parc. diferencia 
+\newcommand{\dxdt}[2]{\frac{\mathrm{d} #1}{\mathrm{d} #2}}
+\newcommand{\dxdtp}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\un}[1]{\, \mathrm{#1}}	% jednotky velicin, v math mode
+\newcommand{\E}[1]{\cdot 10^{#1}}
+\newcommand{\degree}{^\circ}
+\newcommand{\diameter}{\emptyset}
+\newcommand{\cpx}{\widehat}		% komplexne fazory
+\newcommand{\Ohm}{\Omega}
+
+\newcommand{\myfigtex}[3]
+{
+    \begin{figure}[!ht]
+        \centering
+        \input{#1}
+        \caption{#2}
+        %\label{fig:#3}
+        #3
+    \end{figure}
+}
+
+\pagestyle{empty}
+\begin{document}
+
+%\input{obr.tex}
+\myfigtex{obr}{}{}
+
+
+\end{document}

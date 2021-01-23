@@ -1,0 +1,322 @@
+%--------------------------------------------------------------------------------
+%
+% Text příspěvku do sborníku EEICT
+%
+% Vytvořil:  Martin Drahanský
+% Datum:     26.02.2007
+% E-mail:    drahan@fit.vutbr.cz
+%
+%--------------------------------------------------------------------------------
+%
+% Přeložení: pdflatex prispevek.tex
+%
+% Optimální způsob použití = přepište jen vlastní text
+%
+\documentclass{eeict}
+\inputencoding{utf8}
+%\usepackage[bf]{caption2}
+\usepackage[bf, justification=centering, margin=1cm]{caption}
+%\usepackage[bf, margin=1cm]{caption}
+%--------------------------------------------------------------------------------
+
+%%% MOJE
+\graphicspath{{obr/}{obr/plots/}{spice/}}
+\DeclareGraphicsExtensions{.ps, .eps}
+%\usepackage[slovak]{babel}
+%\usepackage[utf8]{inputenc} 
+%\usepackage[breaklinks]{hyperref}
+\usepackage{amsmath}
+\usepackage{listings}
+%\usepackage{caption}
+
+\newcommand{\dif}{\, \mathrm{d}}	% diferencia (na derivacie)
+\newcommand{\difp}{\partial}		% parc. diferencia 
+\newcommand{\dxdt}[2]{\frac{\mathrm{d} #1}{\mathrm{d} #2}}
+\newcommand{\dxdtp}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\un}[1]{\, \mathrm{#1}}	% jednotky velicin, v math mode
+\newcommand{\E}[1]{\cdot 10^{#1}}
+\newcommand{\degree}{^\circ}
+\newcommand{\diameter}{\emptyset}
+\newcommand{\cpx}{\widehat}		% komplexne fazory
+\newcommand{\Ohm}{\Omega}
+
+\lstnewenvironment{mycode1}
+{
+	%\begin{lstlisting}[language=Python, morekeywords=inner, morekeywords=solve]
+	\lstset{
+		%language=Python,
+		%morekeywords=Expression
+		language=Python,
+		%basicstyle=\ttfamily\footnotesize,
+		basicstyle=\ttfamily\footnotesize,
+		keywordstyle = \bfseries,
+		breaklines=true,
+		showstringspaces=false,
+		%numbers = left,
+		frame=single,
+		%otherkeywords={Test, Trial, Function, Expression, solve, dot, inner, grad}
+		morekeywords={Mesh, RectangleMesh, IntervalMesh, Point, FunctionSpace, TestFunction, TrialFunction, Function, Expression, solve, dot, inner, grad}
+	}
+}
+{
+	%\end{lstlisting}
+}
+
+\newcommand{\myfig}[3]
+{
+    \begin{figure}[!ht]
+    %\begin{figure}[ht]
+    %\begin{figure}[htpb]
+	\centering
+	\includegraphics{#1}
+	\caption{#2}
+	%\label{fig:#3}
+	#3
+    \end{figure}
+}
+\newcommand{\myfigsc}[3]
+{
+    \begin{figure}[!ht]
+	\centering
+	\includegraphics[width=4in]{#1}
+	\caption{#2}
+	%\label{fig:#3}
+	#3
+    \end{figure}
+}
+\newcommand{\myfigdual}[4]
+{
+    \begin{figure}[!ht]
+	\centering
+	\includegraphics[width=.49\textwidth]{#1}
+	\includegraphics[width=.49\textwidth]{#2}
+	\caption{#3}
+	%\label{fig:#3}
+	#4
+    \end{figure}
+}
+%--------------------------------------------------------------------------------
+
+
+\title{{Estimating the Power BJT Excess Charge Recombination Time Constant}}
+\author{Ján Mikláš}
+\programme{Doctoral Degree Programme (1), FEEC BUT}
+\emails{jan.miklas@vutbr.cz}
+
+\supervisor{Petr Procházka}
+\emailv{prochazkap@feec.vutbr.cz}
+
+\abstract{
+The paper demonstrates an experimental way of estimating the excess minority carriers charge stored within the the power bipolar transistor in the saturation mode, i.e. with both junctions forward-biased, as a reference to future IGBT switching action analysis.
+The method is based on analyzing the transient turn-off base current waveforms at different conditions right before this event. The base current is known to supply the minority carriers within the device.
+Estimating the recombination time constant serves as a basal precondition for further identification of the excess charge storage depending on various operating conditions and retrospectively an accurate identification of power BJT and IGBT various partial stage of switching action.
+}
+\keywords{power BJT, IGBT, saturation, excess charge storage, switching process measurement}
+
+\begin{document}
+% -- Hlavička práce --
+
+\maketitle
+
+%-------------------------------------------------------------------------------
+%\selectlanguage{czech}
+\selectlanguage{english}
+
+\section{Introduction}
+Knowing the excess minority carriers concentration within power BJT collector N-drift and base region, i.e. the amount of stored charge, during on-state (Fig \ref{fig:rezimy}) or simply the depth-of-saturation is not so crucial any more, nor in the case of intrinsic BJT of still widely used IGBTs.
+\myfig{BJT_koncentracie_vsetky_rezimy}{Simplified one-dimensional structure of power BJT. The geometry is illustrative i.e. not proportional to the real device dimensions. Also the concentrations within base and collector don't share the same scale (concentration gradient is kept constant to highlight its proportionality to shared collector current - pure diffusion current in saturation)}{\label{fig:rezimy}}
+However, the excess charge storage does not define only the static saturation characteristic, but also has significant impact on the switching speed and switching waveforms shape. Therefore, it is useful to have some quantitative information about this charge for switching action analysis and modeling as well as for ability to implement the advanced IGBT driving techniques \cite{lit1}, \cite{lit2}.
+It is, however, not possible to measure the stored charge straightway, neither from device saturation characteristic nor the switching waveforms, especially in IGBT case, as it does not provide access to the intrinsic BJT terminals.
+Access to BJT base current is crucial for the targeted task as it is known that excess minority carriers are supplied by the base current. Likewise, the charge can be deflated by the negative base current, as is the case of switching-off action of the transistor. The time integral of negative base current during turn-off event provides an information about the charge deflated by the base current - i.e. the steady-state excess charge right before the event.
+
+Therefore, the use of an ``archaic'' power BJT for the reference purpose is highly beneficial as it provides the direct access to the base current by means of both measurement accuracy and controllability of waveform shape and parameters. 
+Those observations common among the power BJT and intrinsic BJT within IGBT may be further applied to IGBT analysis.
+
+Prior to other experimental charge storage analyses one need to eliminate the impact of charge recombination within transistor, because this charge is not reflected in the base current waveform. That means to use such conditions (current levels and switching time) that the recombined charge portion is provably negligible compared to that deflated by the negative base current or alternatively to quantify and account the recombination effect.
+
+This is why it is very convenient to estimate the recombination time constant first. Next sections describe an experimental method of such estimation.
+
+
+
+
+\section{Theory} \label{sec:theory}
+
+From general semiconductor device physics, the amount of stored charge $Q$ supplied by the current $I$ and kept down by recombination with characteristic time constant $\tau$ \cite{pierret} is described by the \textit{charge control equation} \cite{pierret} \cite{sze}:
+\begin{equation}
+    \dxdt{Q}{t} = I - \frac{Q}{\tau}
+    \label{eq:charge_control_general}
+\end{equation}
+
+Knowing the initial conditions (zero charge at zero time), the solution is:
+\begin{equation}
+    Q = \tau \,I \left( 1-e^{-t/\tau} \right)
+    \label{eq:charge_control_general_riesenie}
+\end{equation}
+
+\myfig{Q_exp}{The stored ``saturation'' charge evolution with time, supplied by a constant base current and recombined with recombination time constant $\tau$.}{\label{fig:Q_exp}}
+
+Here, the term $\tau I$ can be denoted as saturation (steady state) charge $Q_{sat}$. A few findings can be implied from the solution (\ref{eq:charge_control_general_riesenie}) - also depicted in Fig. \ref{fig:Q_exp}:
+\begin{itemize}
+    \item The amount of steady state stored charge $Q_{sat}$ is proportional to supply current. This is also apparent from the charge control equation (\ref{eq:charge_control_general}) considering $\dxdt{Q}{t}=0$ in steady state.
+    \item In ideal case, time constant of exponential growth of charge is independent on supply current. In reality, especially in the case of power semiconductor devices, the time constant is dependent on level of injection \cite{baliga}, which is dependent on PN junction bias (and hence the current level).
+\end{itemize}
+
+\section{Methodology}
+\subsection{Assumptions and Experimental Limitations}
+
+The excess charge stored within lightly doped N-drift region in collector is essential for transistor saturation and forms the main portion of total stored charge supplied by the base current. A principally small base width and higher base doping (compared to collector) and hence the majority carriers concentration allows neglecting the base charge contribution to the total excess charge.
+
+The base current is known to consist of multiple components, while only the hole current flowing into the collector $I_{pC}$ supplies the minority excess charge there. Again, $I_{pC}$ is the main portion of total base current, approximately $\beta$-times higher than hole current supplying the base charge and it is particularly proportional to the base current $I_B$ magnitude.
+
+The equation (\ref{eq:charge_control_general}) can now be applied to charge storage within collector as follows:
+\begin{equation}
+    \dxdt{Q}{t} = i_B(t) - \frac{Q(t)}{\tau}
+    \label{eq:charge_control_Ib}
+\end{equation}
+which yields the solution of exponentially rising charge $Q(t)$ in case of constant $i_B(t) = I_{B+}$ as illustrated on Fig. \ref{fig:Q_exp} and steady-state charge theoretically equal to:
+\begin{equation}
+    Q_{sat} = I_{pC} \cdot \tau \approx I_{B+} \cdot \tau
+    \label{eq:Qsat_Ib*tau}
+\end{equation}
+
+There are two obstacles in the intention to measure this exponential charge collection:
+\begin{itemize}
+    \item Its growth i.e. the instant value is not possible to be measured directly. One can only obtain the projection of the previous steady-state charge by time integration of the negative (charge deflating) transient turn-off base current $i_{B-}(t)$.
+    \item Even the obtained steady-state charge projection $Q_{sat,m}$ (``m'' stands for ``measured'') is not necessarily credible quantity as it is always the difference between the actual stored charge $Q_{sat}$ and the portion of charge that already got recombined. This can be expressed from ``discharging'' analogy to (\ref{eq:charge_control_Ib}) after integration as:
+	\begin{equation}
+	    Q_{sat,m} = \int i_{B-}(t) \dif t = Q_{sat} - \frac{1}{\tau} \int Q(t)\dif t
+	    \label{eq:rekomb_efekt}
+	\end{equation}
+	This relation puts the practical presumption for the reasonable measurement: the magnitude of $i_B$, i.e. $I_{B-}$ must be significantly greater than $Q_{sat} / \tau$.
+\end{itemize}
+
+The charge control equation (\ref{eq:charge_control_Ib}) is valid for collector charge in saturation mode only.
+The measurements were performed with open collector to satisfy this condition even at low $I_{B+}$ levels (e.g. $200 \un{mA}$). The consequences are as follows:
+\begin{itemize}
+    \item saturation guaranteed even at low $I_{B+}$ levels. Collector potential during on-state is always at the base potential plus approximately junction built-in voltage as the base-collector junction is forward biased or in equilibrium, never reverse biased. So, the active mode is excluded.
+    \item Zero collector current $I_C = 0$. Side-effect of this condition is theoretically constant excess charge profile within collector (and base), the gradient pictured on Fig. \ref{fig:rezimy} is zero, which maximizes the amount of stored charge at given $I_{B+}$ thus increasing the measurement accuracy.
+    \item Any ``side'' outflow of charge via collector terminal is excluded.
+\end{itemize}
+
+
+
+\subsection{Test summary} \label{sec:summary}
+Based on above analysis, the following test procedure was proposed (all measurements are based on steady-state stored charge $Q_{sat}$ projection into a charge-deflating negative base current waveform ($Q_{sat,m} = \int i_{B-} \dif t$) at varying conditions:
+\begin{itemize}
+    \item \textbf{Determining suitable $I_{B+}$} by varying $I_{B+}$ at constant $I_{B-}$.\\
+	\textbf{Linear dependency $Q_{sat} = f(I_{B+})$} is expected, according to (\ref{eq:Qsat_Ib*tau}): $Q_{sat} \approx I_{B+} \cdot \tau$.\\
+	However, the charge-deflation time increases for increased $Q_{sat}$ at constant $I_{B-}$, so the recombined charge portion becomes non-negligible and the resulting characteristic $Q_{sat, m} = f(I_{B+})$ should flatten at higher $I_{B+}$ values, according to (\ref{eq:rekomb_efekt}).
+    
+    \item \textbf{Determining suitable $I_{B-}$} by varying $I_{B-}$ at constant $I_{B+}$.\\
+	Constant $I_{B+}$ yields a \textbf{constant $Q_{sat}$} according to (\ref{eq:Qsat_Ib*tau}): $Q_{sat} \approx I_{B+} \cdot \tau$.\\
+	However, the charge-deflation time for constant $Q_{sat}$ increases with decreasing $I_{B-}$, so the recombination effect begins to apply and the resulting characteristic $Q_{sat, m} = f(I_{B+})$ should tend to zero at low $I_{B-}$ levels.
+    \item \textbf{Determining $\tau$ itself} by varying the total ``charging'' on-time $T_{on}$at constant $I_{B+}$.\\
+	This is by all means the key measurement and also the key idea of test. Despite impossibility to measure the transient alternation of the successively growing charge, it is possible to compose such waveform by collecting individual steady-states and quasi-steady-states matching the desired time instant of transient waveform. Gradual shortening of charging time $T_{on}$ approaches the margin of steady state / saturated charge and enters the quasi-steady-state region i.e. the not-fully ``charged'' stages.
+	Triggering the turn-off event at any charging process stage gives the projection of charge status at instant right before the event, i.e. the status at time $T_{on}$ after beginning of charging process. This allows the reconstruction of transient waveform by multiple steady-state measurements.\\
+	\textbf{Exponential growth} with time constant $\tau$ is expected according to (\ref{eq:charge_control_Ib}), (\ref{eq:charge_control_general_riesenie}) and Fig. \ref{fig:Q_exp}.
+	Important requirement here is to ensure the equality among $Q_{sat}$ and $Q_{sat,m}$ as proposed by above test steps.
+
+\end{itemize}
+
+\subsection{Test Bench}
+All testing was performed on test bench built for fast switching measurement of power semiconductor devices with minimized parasitic influences as described in \cite{prochazka} in detail.
+
+The device under test - power BJT BUV48A - was driven by discrete base driver through a variable base resistor to provide a constant $I_{B+}$ during whole ``charging'' on-state period $T_{on}$ as defined on Fig. \ref{fig:vsTon}. Separated current path and base resistors were ensured for $I_{B+}$ and $I_{B-}$ via diodes.
+
+As explained before, the collector was left open-circuited.
+
+
+\section{Measurement Results} \label{sec:results}
+
+All of the measured waveforms show a very long base current tail i.e. a slow decay of negative base current after the constant $I_{B-}$ phase. The long current tail is caused by open collector test condition, zero collector current, constant collector excess charge profile and subsequent slow flattening of base-emitter junction voltage - slowing down the charge deflation by decreasing the negative base current magnitude.
+This is definitely not a real operating state, but there is no restriction of utilizing it for test purpose. 
+
+
+\subsection{Determining suitable $I_{B+}$} \label{sec:mer_vsIbpos}
+
+The measured characteristic $Q_{sat} = f(I_{B+})$ on the right-hand side of Fig. \ref{fig:vsIbpos} validates the expectations introduced in section \ref{sec:summary}.
+
+\myfigdual{priebeh_vsIbpos}{QvsIbpos}{Deflated charge as a function of base drive current $I_{B+}$.}{\label{fig:vsIbpos}}
+
+The transient waveforms plotted on the left side of Fig. \ref{fig:vsIbpos} show the increasing charge-deflation time with increasing charge. The total deflation time increase is not crucial by means of recombination charge amount, because most of the current tail runs after the deflation of major portion of total charge. Essential is the time increase of constant $I_{B-}$ phase, as it begins at full charge volume, i.e. at high recombination rate given by $Q/\tau$.
+
+The linear region  independent on negative $I_{B-}$ is valid only at current levels of $I_{B+} < 0.2\un{A}$. This is again not a real operating state, where a large $I_C$ decreases the steady state charge. 
+
+
+\subsection{Determining suitable $I_{B-}$} \label{sec:mer_vsIbneg}
+
+The measured characteristic $Q_{sat} = f(I_{B-})$ on the right-hand side of Fig. \ref{fig:vsIbneg} validates the expectations introduced in section \ref{sec:summary}.
+
+\myfigdual{priebeh_vsIbneg}{QvsIbneg}{Deflated charge as a function of negative base drive current $I_{B-}$.}{\label{fig:vsIbneg}}
+
+The waveforms on the left-side picture explain the increasing deflation (and high-level recombination) time with decreasing $I_{B-}$.
+
+The recommended $I_{B-}$ value for further testing at negligible recombination effect can be read from Fig. \ref{fig:vsIbneg} to be $I_{B-} > 0.5\un{A}$, depending on particular test conditions.
+
+To be noted, the magnitude of $I_{B-}$ on Fig. \ref{fig:vsIbneg} does not reflect the amount of total stored charge, i.e. it is not proportional to recombination rate at given time instant. The total charge is defined by $I_{B+}$ at the beginning of deflation process and continuously decreases with time progress with deflation rate (``speed'') defined by $I_{B-}$ level.
+
+
+\subsection{Determining $\tau$} \label{sec:mer_vsTon}
+
+The measured characteristic $Q_{sat} = f(T_{on})$ on the right-hand side of Fig. \ref{fig:vsIbneg} reflects the transient growth of stored charge within base and collector as introduced in section \ref{sec:summary}.
+%\myfigdual{priebeh_vsTon2}{QvsTon2}{<+caption+>}{\label{fig:vsTon}}
+\myfigdual{priebeh_vsTon}{QvsTon}{Deflated charge as a function of charge supply time $T_{on}$.}{\label{fig:vsTon}}
+
+The time constant can be estimated from provided graph as time instant at which the charge reaches $63\un{\%}$ of steady state value:
+\begin{equation}
+    \tau \approx 11 \un{\mu s}
+    \label{eq:tau_result1}
+\end{equation}
+
+It can be approximately verified by simple computation based on steady state relation (\ref{eq:Qsat_Ib*tau}) after substituting $Q_{sat}=2\un{\mu C}$ and $I_{B+}=0.2\un{A}$ conditions from right-hand side graph on Fig. \ref{fig:vsIbneg}:
+\begin{equation}
+    \tau = \frac{Q_{sat}}{I_{B+}} \approx \frac{2}{0.2} \un{\mu s}
+    \label{eq:tau_result2}
+\end{equation}
+
+
+\section{Conclusion and Future Work}
+
+The estimation method introduced in section \ref{sec:summary} was experimentally verified as summarized in section \ref{sec:results}.
+All of the test results match the theoretical expectations.
+
+The estimation of recombination time constant enables further application of similar experimental method heading towards quantification of particular charge stored within base and collector of power BJT and identification of operating modes boundaries. Knowing the excess charge will allow the identification of particular operating stages boundaries during transistor switching process and further generalisation of gained observation to the IGBT switching modeling and analysis.
+
+
+%\myfigsc{}{}{priebehy_okotovane}
+%\myfigdual{priebeh_vsTon}{QvsTon}{<+caption+>}{\label{fig:vsTon}}
+%\myfigsc{QvsTon}{<+caption+>}{\label{fig:QvsTon}}
+%\myfigsc{TvsTon}{<+caption+>}{\label{fig:tvsTon}}
+
+
+\section*{Acknowledgement}
+This research work has been carried out in the Centre for Research and
+Utilization of Renewable Energy (CVVOZE).  Authors gratefully acknowledge
+financial support from the Ministry of Education, Youth and Sports under
+institutional support and BUT specific research programme (project No.
+FEKT-S-20-6379).
+
+The research was carried out under the project 737417-2 R3-PowerUP
+300mm Pilot Line for Smart Power and Power Discretes financed by
+H2020-ECSEL-2016-2-IA-two-stage and under the project LQ1601 CEITEC
+2020 financed by MEYS in the National Sustainability Programme.
+
+\begin{thebibliography}{9}
+    \bibitem{lit1} Lobsiger, Y.. Kolar, J. W.: "Closed-Loop $\dxdt{i}{t}$ and $\dxdt{v}{t}$ IGBT Gate Driver". In: IEEE Transactions on Power Electronics, vol. 30, no. 6, pp. 3402-3417, June 2015, doi: 10.1109/TPEL.2014.2332811
+	\bibitem{lit2} Xu, H., Chang, Y., Luo, H., Li, W., He, X.: "Turn-off performance optimization of press-pack IGBT with advanced active gate driver technique". In:  2017 19th European Conference on Power Electronics and Applications (EPE'17 ECCE Europe), Warsaw, 2017, pp. P.1-P.6, doi: 10.23919/EPE17ECCEEurope.2017.8098977
+	\bibitem{pierret}{Pierret, R. F.: \textit{Semiconductor Device Fundamentals}, Addison-Wesley Publishing Comany, 1996, ISBN 0-201-54393-1}
+	\bibitem{sze} Sze, S. M., Lee, M. K.: \textit{Semiconductor Devices: Physics and Technology}, 3rd ed., New York: John Wiley \& Sons, Inc. 2012
+	\bibitem{baliga} B. J. Baliga: \textit{Fundamentals of Power Semiconductor Devices}, New York: Springer, 2008, ISBN 978-0-387-47313-0
+	\bibitem{prochazka}Prochazka, P., Miklas, J., Pazdera, I., Patocka, M., Knobloch, J., Cipin, R.: ``Measurement of Power Transistors Dynamic Parameters''. In: {Mechatronics 2017}, p.571-577, ISBN 978-3-319-65959-6
+	%\bibitem{diplomovka}Miklas, J.: \textit{Power Switching Transistors}, Brno, Brno University of Technology, Faculty of Electrical Engineering and Communication, 2016, 87 p, Head of Diploma Thesis doc. Dr. Ing. Miroslav Patocka
+%  \bibitem{rybicka} Rybička, J.: \LaTeX pro začátečníky, Brno, Konvoj 1999,
+%            ISBN 80-85615-77-0
+%  \bibitem{orsag} Orság, F.: Vision für die Zukunft. Biometrie, Kreutztal,
+%            DE, b-Quadrat, 2004, s. 131-145, ISBN 3-933609-02-X
+%  \bibitem{drahansky} Drahanský, M., Orság, F.: Biometric Security Systems:
+%    Robustness of the Finger-print and Speech Technologies. In: BT 2004 - 
+%    International Workshop on Biometric Technologies, Calgary, CA, 2004,
+%    s. 99-103
+\end{thebibliography}
+
+\end{document}

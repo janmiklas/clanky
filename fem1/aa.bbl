@@ -1,0 +1,13 @@
+\begin{thebibliography}{1}
+
+\bibitem{fenicsproject}
+{FEniCS Project}.
+\newblock \url{https://fenicsproject.org}.
+
+\bibitem{fenicsbook}
+Anders Logg, Kent-Andre Mardal, Garth~N. Wells, et~al.
+\newblock {\em Automated Solution of Differential Equations by the Finite
+  Element Method}.
+\newblock Springer, 2012.
+
+\end{thebibliography}

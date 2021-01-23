@@ -1,0 +1,23 @@
+Utorok:
+definovat poriadne temu. bude to nieco so saturacnym rezimom tranzistora, a jeho determinovani cez meranie naboja z bazoveho prudu. Suvislost tohto merania so statickymi charakteristikami (to som pracne zmeral) a so spinacimi priebehmi. Vlastne taky trojuholnik tychto troch suvislosti. A teraz to povedat v jednom nadpise.
+rozkreslit (staticke) rozlozenia nabojov v tranzistire teoreticky podla kniziek (Baliga, Sze, Neamen, mozno Lutz). potom rozkreslit ktory tvar sa ktorym smerom hybe pri zmenach. To asi ani nestihnem dnes
+
+Streda:
+dokoncit tie zmeny tvarov, a utvrdiť sa v knižkách. 
+K rozloženiu nábojov dokresliť aj napätia (to nebude problém - na závernom PN prechode bude úbytok napätia, na zaplnenej oblasti nebude (čiže cca konštantný priebeh).
+K tomu dokresliť zložky prúdov. elektónový aj dierový, a obomi smermi. To bude najtvrdší oriešok (aby to zároveň bolo zrozumiteľné).
+Navyše popísať, ktorá z tých 4 zložiek míňa a dopĺňa ktorý náboj. Toto tiež bude oriešok, ale záslužný, lebo v tom býva zmatok (u laikov úplný, hovorím z vlastnej skúsenosti).
+Viac určite nestihnem. 
+Zatiaľ do zošita
+O tretej mám študenta na konzultáciu ešte, asi na hodinku. Ale cením si to.
+
+Štvrtok:
+za hodinu pripraviť domáci úkol (to bude finta jak oddialiť písomku :D). Budem striedať písomku a domáci úkol možno. Pripraviť sa na výuku za druhú hodinu. Hodinu a pol.
+K článku:
+v statickom stave si vyjasniť, že asi je bázovy priebeh nosičov náboja v saturácii (Vbc < 0) priamo súvislý s kolektorovým. tam navyše prebieha conductivity modulation a napätie úplne dole skoro k nule, čo sa práve chce.
+V dynamických zmenách to nebude 1:1 určené bázou nezávisle od času, a do toho sa mi moc nechce, to za týždeň nedám. len to nejak skomentovať.
+
+Piatok pojdem domov strácať čas. 
+Ráno by som chcel nakresliť tieto priebehy na počítači, aspoň 4 - 6 obrázkov.
+
+Ďalší týždeň a víkend čaká divoká úloha ukázať tieto stavy nepriamo z meraní prúdov (a trošku napätí). Cez víkend začať spracovanie dát. toto by sa bez pythonu nedalo stihnúť. Ale mám to na počítači doma

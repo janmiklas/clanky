@@ -1,0 +1,212 @@
+\documentclass[a4paper, twoside, 12pt]{book}
+%\usepackage[margin=3cm]{geometry}
+%\usepackage[pdftex]{graphicx}
+\usepackage{graphicx}
+\graphicspath{{obr/}{obr/plots/}{spice/}}
+\DeclareGraphicsExtensions{.ps, .eps}
+\usepackage[slovak]{babel}
+\usepackage[utf8]{inputenc} 
+%\usepackage[T1]{fontenc}
+
+\usepackage{amsmath}
+
+%\usepackage{listings}
+%\lstset{basicstyle=\ttfamily\footnotesize, breaklines=true}
+
+%\usepackage[hidelinks]{hyperref}
+\usepackage[breaklinks]{hyperref}
+
+\usepackage{color} % kvoli epslatex obrazkom z octave
+
+\usepackage{lettrine}
+
+\usepackage{microtype}
+%\usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true,factor=1100,stretch=10,shrink=10]{microtype}
+% activate={true,nocompatibility} - activate protrusion and expansion
+% final - enable microtype; use ``draft'' to disable
+% tracking=true, kerning=true, spacing=true - activate these techniques
+% factor=1100 - add 10% to the protrusion amount (default is 1000)
+% stretch=10, shrink=10 - reduce stretchability/shrinkability (default is 20/20)
+
+%\usepackage[section]{placeins}
+%\usepackage{placeins}
+
+%\usepackage{mathptmx}
+%\usepackage{mathpt}
+%\usepackage{boisik}
+%\usepackage{baskervald}
+%\usepackage{fourier}
+%\usepackage{baskervald}
+%\usepackage[charter]{mathdesign}
+%\usepackage{Baskervaldx}	% funguje aj smallcaps: \textsc 
+%\usepackage[lining]{ebgaramond}	% lining - cisla nie oldstyle
+%\usepackage{concmath}
+%\usepackage[T1]{fontenc}
+%\usepackage{concrete}
+%\usepackage{beton}
+%\usepackage[T1]{fontenc}
+%\usepackage[charter]{mathdesign}
+
+%\usepackage[lf]{Baskervaldx} % lining figures
+%\usepackage[bigdelims,vvarbb]{newtxmath} % math italic letters from Nimbus Roman
+%\usepackage[cal=boondoxo]{mathalfa} % mathcal from STIX, unslanted a bit
+%\renewcommand*\oldstylenums[1]{\textosf{#1}}
+
+%\usepackage[urw-garamond]{mathdesign}
+%\usepackage[T1]{fontenc}
+
+\pagestyle{headings}
+
+%% velkost fontu pod obrazkom mensia, vratane ``Obr. X:''
+%\renewcommand{\figurename}{sjls} % toto nefunguje pri pouzivani babel
+\addto\captionsslovak{\renewcommand{\figurename}{\small Obr.}}
+%\renewcommand{\thefigure}{\small \arabic{figure}}
+%\renewcommand{\thefigure}{\small \arabic{chapter}.\arabic{figure}}
+\renewcommand{\thefigure}{\small \thechapter.\arabic{figure}}
+
+
+\newcommand{\dif}{\, \mathrm{d}}	% diferencia (na derivacie)
+\newcommand{\difp}{\partial}		% parc. diferencia 
+\newcommand{\dxdt}[2]{\frac{\mathrm{d} #1}{\mathrm{d} #2}}
+\newcommand{\dxdtp}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\un}[1]{\, \mathrm{#1}}	% jednotky velicin, v math mode
+\newcommand{\E}[1]{\cdot 10^{#1}}
+\newcommand{\degree}{^\circ}
+\newcommand{\diameter}{\emptyset}
+\newcommand{\cpx}{\widehat}		% komplexne fazory
+\newcommand{\Ohm}{\Omega}
+
+
+\newcounter{myasscount}
+\renewcommand{\themyasscount}{\alph{myasscount}}
+%\setcounter{myasscount}{1}
+\newenvironment{myass}
+{
+
+	\refstepcounter{myasscount}
+	\par
+	\vspace{6pt}
+	%\indent	% netreba, ked predchadza \par
+	\begin{tabular}{p{.22\textwidth}  p{.68\textwidth} }
+	\textbf{Predpoklad (\themyasscount)}	&
+}
+{
+	\end{tabular}
+	\par 
+	\vspace{6pt}
+}
+
+\newcommand{\myfig}[3]
+{
+    \begin{figure}[!ht]
+	\centering
+	\includegraphics{#1}
+	\caption{#2}
+	%\label{fig:#3}
+	#3
+    \end{figure}
+}
+
+\newcommand{\myfigtex}[3]
+{
+    \begin{figure}[!ht]
+	\centering
+	\input{#1}
+	\caption{#2}
+	%\label{fig:#3}
+	#3
+    \end{figure}
+}
+
+\newcommand{\myfigschplot}[4]
+{
+    \begin{figure}[!ht]
+	\centering
+	\includegraphics{#1} 	% obrazok - simulacna schema
+	\input{#2} 	% obrazok - priebehy
+	\caption{#3}
+	%\label{fig:#4}
+	#4
+    \end{figure}
+}
+
+\newcommand{\myfigschplottex}[4]
+{
+    \begin{figure}[!ht]
+	\centering
+	\input{#1} 	% obrazok - schema
+	\input{#2} 	% obrazok - priebehy
+	\caption{#3}
+	%\label{fig:#4}
+	#4 		% label
+    \end{figure}
+}
+
+\newcommand{\myfigschplotplottex}[5]
+{
+    \begin{figure}[!ht]
+	\centering
+	\input{#1}\\	% obrazok - schema
+	\input{#2}\\ 	% obrazok - priebehy1
+	\hspace{0mm}\input{#3} 	% obrazok - priebehy2
+	\caption{#4}
+	%\label{fig:#5}
+	#5 		% label
+    \end{figure}
+}
+
+%\input{xcircuit_latex_labels.tex}
+
+
+\begin{document}
+
+
+%\maketitle
+
+%\input{./kapitoly/zaciatky}
+
+%\tableofcontents
+%\setcounter{page}{7}
+
+%\listoffigures
+
+
+%\input{./kapitoly/uvod}
+
+%\input{./kapitoly/zaver}
+
+%\input{./kapitoly/lit}
+
+
+%\input{./kapitoly/prilohy}
+\appendix
+
+%\input{./kapitoly/priloha_schemy.tex}
+
+%\input{./kapitoly/priloha_sim.tex}
+
+%\input{./kapitoly/priloha_vedenie.tex}
+
+\label{LastPage}
+
+
+
+%%%%%%%%
+% pokusy
+%%%%%%%%
+
+%\myfig{aaaa}{pokusny-myfig}{aaaa}
+
+
+\section{Abstrakt}
+V článku je uvedená základná analýza funkcie výkonového bipolárneho tranzistora (BJT), predovšetkým zapínacieho a vypínacieho deja, so zreteľom na súvislosť s jednoduchým fenomenologickým modelom týchto dejov \cite{lit:patocka-valsa}. Ideo prvý krok v úsilí nahradiť čisto fenomenologický model založený len na reprodukovaní merania modelom fyzikálne (analyticky) podloženým, pri zachovaní všetkých pedností pôvodného modelu, ktorými sú predovšetkým zrozumiteľnosť, názornosť a jednoduchosť využitia v ľubovoľnom obvodovom či inom simulátore. Všetky dôležité teoretické závery budú podložené následnými meraniami.
+
+\section{Štruktúra a funkcia výkonového BJT}
+Na Obr. \ref{fig:pBJT-1D} je zobrazená principiálna \uv{jednorozmerná} štruktúra výkonového BJT, približne zodpovedajúca prierezu pod emitorom reálneho tranzistora.
+\myfig{BJT_struktura_1D}{Jednorozmerná štruktúra výkonového BJT.}{\label{fig:pBJT-1D}}
+Na rozdiel od nevýkonového signálového BJT, ktorého obdobne zjednodušená štruktúra sa zvykne uvádzať k vysvetleniu tranzistorového javu, je vo kolektore výkonového tranzistora vyformovaná slabo dotovaná tzv. driftová oblasť (typu N; výkonové BJT sa vyrábajú v prevedení NPN). Táto je potrebná pre udržanie záverného napätia (vyprázdenou oblasťou PN prechodu). Na výstupné charakteristiky (Obr. \ref{pBJT-char}), a najmä na spínacie deje má podstatný vplyv, s tranzistorovým javom tvoriacim v charakteristikách aktívnu oblasť však priamo nesúvisí, preto pri jej analýze treba skôr vychádzať z analýzy vysokonapäťovej výkonovej diody s rovnakou driftovou oblasťou, tzv. PiN diody (P - intrinsic - N) \cite{lit:baliga}. 
+
+
+
+
+\end{document}

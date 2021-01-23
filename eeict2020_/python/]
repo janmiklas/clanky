@@ -1,0 +1,209 @@
+from dolfin import *
+import numpy
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.ticker import NullFormatter
+from time import sleep
+import ff as ff
+#import fff
+import matplotlib.tri as tri
+
+plt.style.use('classic')
+
+pop_plot = True
+## unit: 1cm
+
+
+def my_solve_pn_bcPsi(T, dt, bsc_psi, n_init, p_init, bcs_n, bcs_p,
+# i alebo T,  dt, initial n p, bcs n p psi, pop_plot
+# return: Psi_result, n_result, p_result, J, Jn, Jp, Jn_diff, Jn_drift, Jp_diff, Jp_drift
+# ked bere initial proste zo stavu skriptu: i alebo T, dt, bcs n p psi, pop_plot
+
+t = 0
+num_iter = T / dt + 0
+
+for i in range(num_iter):
+    print("cycle (i):")
+    print(i)
+    print("Time:")
+    print(t)
+    solve(a==L, Psi_result, bcs_psi)
+    solve(an==Ln, n_result, bcs_n)
+    solve(ap==Lp, p_result, bcs_p)
+
+    n_i1.assign(n_result)
+    p_i1.assign(p_result)
+    rho.n = n_result
+    rho.p = p_result
+    g_Jb.n = n_result
+    g_Jb.p = p_result
+    g_Jb.J = 0
+    g_Jc.n = n_result
+    g_Jc.p = p_result
+    g_Jc.J = 0
+
+
+plt.ion()
+#fig, axes = plt.subplots(3, 2, sharex='col')
+fig, axes = plt.subplots(3, 2)
+
+xcoord = mesh.coordinates()[:,0]
+#xx1 = xx1d = mesh.coordinater()[:,0][:nx+1]
+xx1 = xx1d = np.linspace(0, x_length, 1000)
+xx = xx1
+Yhore = y_length
+Ystred = y_length/2.
+Ydole = 0.
+yy_doping = project(N, V).vector().get_local()
+
+
+n_result.assign(n0)
+p_result.assign(p0)
+
+#################
+###ustaleny stav:
+#################
+for i in range(30):
+    print("cycle (i):")
+    print(i)
+    print("Time:")
+    print(t)
+    solve(a==L, Psi_result, bc_psi_E_nul)
+    #solve(an==Ln, n_result)
+    #solve(ap==Lp, p_result)
+    solve(an==Ln, n_result, [bc_n1, bc_n2])
+    solve(ap==Lp, p_result, [bc_p1, bc_p2])
+    #solve(an==Ln, n_result, [bc_n2])
+    #solvt(ap==Lp, p_result, [ bc_p1])
+
+    n_i1.assign(n_result)
+    p_i1.assign(p_result)
+    rho.n = n_result
+    rho.p = p_result
+    g_Jb.n = n_result
+    g_Jb.p = p_result
+    g_Jb.J = 0
+    g_Jc.n = n_result
+    g_Jc.p = p_result
+    g_Jc.J = 0
+
+
+Psi_builtin = ff.my_eval_on_line(Psi_result, V, LEN, Ystred)
+Jn_diff = q*D_n*grad(n_result)
+Jn_drift = -q*mob_n*n_result*grad(Psi_result)
+Jp_diff = -q*D_p*grad(p_result)
+Jp_drift = -q*mob_p*p_result*grad(Psi_result)
+Jn = Jn_drift+Jn_diff
+Jp = Jp_drift+Jp_diff
+J = Jn+Jp
+
+#J_vector.append(project(J[0], V)(XLEN, Ystred))
+
+if pop_plot:
+    ff.grafy1(axes, V, xx, Yhore, Ystred, Ydole, rho, N, n_result, p_result, Psi_result, J, Jn, Jp, Jn_drift, Jn_diff, Jp_drift, Jp_diff, t_vector, Psi_vector, J_vector)
+else:
+    ff.grafy_save(V, xx, Yhore, Ystred, Ydole, rho, N, n_result, p_result, Psi_result, J, Jn, Jp, Jn_drift, Jn_diff, Jp_drift, Jp_diff, t_vector, Psi_vector, J_vector, 'output/ustal_', filetype='eps')
+
+
+    
+
+
+time_i = [T1, T1+T2, T1+T2+T3]
+time_i = [40*dt, 400*dt, 800*dt]
+#time_i = [T1]
+bcs_psi_i = [[DirichletBC(V, 0.0, sub_domains, 2)], [DirichletBC(V, 0.0, sub_domains, 2)], [DirichletBC(V, 0.0, sub_domains, 2)]] # 2 je Emitor (3 Collector, 1 Base)
+Jb_i = [20e8, 10e8, 10e8]
+Jc_i = [50e8, 30e8, 10e8]
+Jb_i = [00e0, 0e+0, 0e+2]
+Jc_i = [00e0, 1e+2, -1e+2]
+
+
+num_steps = 10
+bias_step_pos = [-1e-6*XX for XX in range(num_steps)]
+bias_step_neg = [1e-5*XX for XX in range(2*num_steps)]
+bias_step_neg_reversed = bias_step_neg[::-1]
+bias_i = bias_step_neg + bias_step_neg_reversed + bias_step_pos
+bcs_psi_i = [[]*5 + [DirichletBC(V, 0.0, sub_domains, 2), DirichletBC(V, XX, sub_domains, 3)] for XX in bias_i]
+TIME_CYCLES = 500
+ITER_PLOT = TIME_CYCLES
+time_i = [TIME_CYCLES*dt*XX for XX in range(len(bias_i))]
+
+j=0
+for i in range(len(time_i)):
+    print('i:', i)
+    iter_plot = 0
+    while(t<=time_i[i]):
+        print("cycle (i):")
+        print(i)
+        print("Time:")
+        print(t)
+        solve(a==L, Psi_result, bcs_psi_i[i])
+        #solve(an==Ln, n_result)
+        #solve(ap==Lp, p_result)
+        solve(an==Ln, n_result, [bc_n1, bc_n2])
+        solve(ap==Lp, p_result, [bc_p1, bc_p2])
+        #solve(an==Ln, n_result, [bc_n2])
+        #solvt(ap==Lp, p_result, [ bc_p1])
+
+        n_i1.assign(n_result)
+        p_i1.assign(p_result)
+        rho.n = n_result
+        rho.p = p_result
+        '''
+        g_Jb.n = n_result
+        g_Jb.p = p_result
+        g_Jb.J = Jb_i[i]
+        g_Jc.n = n_result
+        g_Jc.p = p_result
+        g_Jc.J = Jc_i[i]
+        '''
+        t += dt
+        t_vector.append(t)
+
+        '''
+        Jn_diff = q*D_n*n_result.dx(0)
+        Jn_drift = -q*mob_n*n_result*Psi_result.dx(0)
+        Jp_diff = -q*D_p*p_result.dx(0)
+        Jp_drift = -q*mob_p*p_result*Psi_result.dx(0)
+        '''
+        Jn_diff = q*D_n*grad(n_result)
+        Jn_drift = -q*mob_n*n_result*grad(Psi_result)
+        Jp_diff = -q*D_p*grad(p_result)
+        Jp_drift = -q*mob_p*p_result*grad(Psi_result)
+        Jn = Jn_drift+Jn_diff
+        Jp = Jp_drift+Jp_diff
+        J = Jn+Jp
+
+        J_vector.append(project(J[0], V)(XLEN, Ystred))
+        print('aaaaaaaaa')
+        #Psi_BC_vector.append(project(Psi, V)(0, Ystred))
+        Psi_vector.append(project(Psi_result, V)(XLEN, Ystred))
+        
+        
+        iter_plot+=1
+        if iter_plot == ITER_PLOT:
+            j+=1
+            print('i, j:', i, j)
+            iter_plot = 0
+            ### GRAFY:
+            if pop_plot:
+                ff.grafy1(axes, V, xx, Yhore, Ystred, Ydole, rho, N, n_result, p_result, Psi_result, J, Jn, Jp, Jn_drift, Jn_diff, Jp_drift, Jp_diff, t_vector, Psi_vector, J_vector)
+            else:
+                ff.grafy_save(V, xx, Yhore, Ystred, Ydole, rho, N, n_result, p_result, Psi_result, J, Jn, Jp, Jn_drift, Jn_diff, Jp_drift, Jp_diff, t_vector, Psi_vector, J_vector, 'output/iter_'+str(j), filetype='eps')
+
+    J_vector_ustal.append(project(J[0], V)(XLEN, Ystred))
+    Psi_vector_ustal.append(project(Psi_result, V)(XLEN, Ystred))
+plt.ioff()
+if pop_plot:
+    plt.show()
+
+np.save('results/IV1.npy', dict(Psi=Psi_vector_ustal, J=J_vector_ustal))
+
+plt.ion()
+plt.plot(np.array(Psi_vector_ustal)+Psi_builtin, np.array(J_vector_ustal))
+plt.plot(np.array(Psi_vector_ustal)+Psi_builtin, np.array(J_vector_ustal), '.')
+plt.plot(np.array(Psi_vector_ustal)+0, np.array(J_vector_ustal))
+plt.grid()
+plt.savefig('IV.eps')
+plt.show()
+

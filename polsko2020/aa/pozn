@@ -1,0 +1,11 @@
+
+ze v datasheetoch nebyvaju presne data, ani presne definovane a opakovatelne podmienky, ani tam nebyvaju rozne data, ktore by sa dali vyuzit.
+
+ze pri analyzovani a snahe o najoptimalnejsie budenie IGBTcok pocas spinacich dejov (napriklad velmi rychle spinanie relativne pomalych IGBT) je v prvom rade nutne pocas celeho deja podrobne poznat, v ktorej faze deja a akom operacnom mode sa tranzistor nachadza. --- preto najskor o BJT. --- a tiez preto, ze sa chce overovat neskor model (FEM aj fenomenologicky), a k tomu treba co najviac zmeranych veci. velmi vyhodne napr. bazovy prud.
+* * * CIZE!!
+cielom (dame to asi za ciel clanku resp. vyskumu, na ktorom robi clanok) ma byt akoze identifikovanie Ib na zaklade merani Ic (a Uce)
+
+zo statickej charakteristiky vidno saturacnu a kvazi-saturacnu oblast (da sa odhadnut / urcit R_drift). ale cely spinaci dej sa asi neda pohybovat po krivke viditelnej v DC char, povedzme pri vybranom ib (uz aj to je neurcitelne pri spinani asi)
+
+QvsIbneg:
+- kedy sa zacnu diat veci - tj. stupat Vce, resp. gce: neni to ze ked uz ibneg zacne klesat. je to ked za odcerpa potrebny bazovy naboj - a ten je konstantny, nezavisly na Toff, Ibneg

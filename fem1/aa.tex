@@ -1,0 +1,412 @@
+% \documentclass[a4paper, twoside, 12pt, twocolumn]{article}
+\documentclass[a4paper, twoside, 12pt, onecolumn]{article}
+%\usepackage[margin=3cm]{geometry}
+%\usepackage[pdftex]{graphicx}
+\usepackage{graphicx}
+\graphicspath{{obr/}{obr/grafy/}}
+\DeclareGraphicsExtensions{.ps, .eps}
+\usepackage[slovak]{babel}
+\usepackage[utf8]{inputenc} 
+%\usepackage[T1]{fontenc}
+% kvoli bibtexu
+\usepackage{cite}
+
+\usepackage{amsmath}
+
+\usepackage{listings}
+\usepackage{courier}
+\lstset{
+	language=Python,
+	%basicstyle=\ttfamily\footnotesize,
+	basicstyle=\ttfamily\footnotesize,
+	keywordstyle = \bfseries,
+	breaklines=true,
+	showstringspaces=false,
+	%numbers = left,
+	frame=single,
+	%otherkeywords={Test, Trial, Function, Expression, solve, dot, inner, grad}
+}
+
+%\usepackage[hidelinks]{hyperref}
+\usepackage[breaklinks]{hyperref}
+
+\usepackage{color} % kvoli epslatex obrazkom z octave
+
+%\usepackage{lettriner}
+
+%\usepackage{microtype}
+%\usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true,factor=1100,stretch=10,shrink=10]{microtype}
+% activate={true,nocompatibility} - activate protrusion and expansion
+% final - enable microtype; use ``draft'' to disable
+% tracking=true, kerning=true, spacing=true - activate rthese techniques
+% factor=1100 - add 10% to the protrusion amount (default is 1000)
+% stretch=10, shrink=10 - reduce stretchability/shrinkability (default is 20/20)
+
+%\usepackage[section]{placeins}
+%\usepackage{placeins}
+
+%\usepackage{mathptmx}
+%\usepackage{mathpt}
+%\usepackage{boisik}
+%\usepackage{baskervald}
+%\usepackage{fourier}
+%\usepackage{baskervald}
+%\usepackage[charter]{mathdesign}
+%\usepackage{Baskervaldx}	% funguje aj smallcaps: \textsc 
+%\usepackage[lining]{ebgaramond}	% lining - cisla nie oldstyle
+%\usepackage{concmath}
+%\usepackage[T1]{fontenc}
+%\usepackage{concrete}
+%\usepackage{beton}
+%\usepackage[T1]{fontenc}
+%\usepackage[charter]{mathdesign}
+
+%\usepackage{euler}
+
+%\usepackage[lf]{Baskervaldx} % lining figures
+%\usepackage[bigdelims,vvarbb]{newtxmath} % math italic letters from Nimbus Roman
+%\usepackage[cal=boondoxo]{mathalfa} % mathcal from STIX, unslanted a bit
+%\renewcommand*\oldstylenums[1]{\textosf{#1}}
+
+%\usepackage[urw-garamond]{mathdesign}
+%\usepackage[T1]{fontenc}
+
+\pagestyle{headings}
+
+
+%% velkost fontu pod obrazkom mensia, vratane ``Obr. X:''
+%\renewcommand{\figurename}{sjls} % toto nefunguje pri pouzivani babel
+\addto\captionsslovak{\renewcommand{\figurename}{\small Obr.}}
+%\renewcommand{\thefigure}{\small \arabic{figure}}
+%\renewcommand{\thefigure}{\small \arabic{chapter}.\arabic{figure}}
+%\renewcommand{\thefigure}{\small \thechapter.\arabic{figure}}
+%\renewcommand{\thefigure}{\small \thesection.\arabic{figure}}
+
+
+\newcommand{\dif}{\, \mathrm{d}}	% diferencia (na derivacie)
+\newcommand{\difp}{\partial}		% parc. diferencia 
+\newcommand{\dxdt}[2]{\frac{\mathrm{d} #1}{\mathrm{d} #2}}
+\newcommand{\dxdtp}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\un}[1]{\, \mathrm{#1}}	% jednotky velicin, v math mode
+\newcommand{\E}[1]{\cdot 10^{#1}}
+\newcommand{\degree}{^\circ}
+\newcommand{\diameter}{\emptyset}
+\newcommand{\cpx}{\widehat}		% komplexne fazory
+\newcommand{\Ohm}{\Omega}
+
+
+\newcounter{myasscount}
+\renewcommand{\themyasscount}{\alph{myasscount}}
+%\setcounter{myasscount}{1}
+\newenvironment{myass}
+{
+
+	\refstepcounter{myasscount}
+	\par
+	\vspace{6pt}
+	%\indent	% netreba, ked predchadza \par
+	\begin{tabular}{p{.22\textwidth}  p{.68\textwidth} }
+	\textbf{Predpoklad (\themyasscount)}	&
+}
+{
+	\end{tabular}
+	\par 
+	\vspace{6pt}
+}
+
+\lstnewenvironment{mycode1}
+{
+	%\begin{lstlisting}[language=Python, morekeywords=inner, morekeywords=solve]
+	\lstset{
+		%language=Python,
+		%morekeywords=Expression
+		language=Python,
+		%basicstyle=\ttfamily\footnotesize,
+		basicstyle=\ttfamily\footnotesize,
+		keywordstyle = \bfseries,
+		breaklines=true,
+		showstringspaces=false,
+		%numbers = left,
+		frame=single,
+		%otherkeywords={Test, Trial, Function, Expression, solve, dot, inner, grad}
+		morekeywords={Mesh, RectangleMesh, IntervalMesh, Point, FunctionSpace, TestFunction, TrialFunction, Function, Expression, solve, dot, inner, grad}
+	}
+}
+{
+	%\end{lstlisting}
+}
+
+\newcommand{\myfig}[3]
+{
+    \begin{figure}[!ht]
+	\centering
+	\includegraphics{#1}
+	\caption{#2}
+	%\label{fig:#3}
+	#3
+    \end{figure}
+}
+
+\newcommand{\myfigscaled}[4]
+{
+    \begin{figure}[!ht]
+	\centering
+	\includegraphics[#2]{#1}
+	\caption{#3}
+	%\label{fig:#4}
+	#4
+    \end{figure}
+}
+
+\newcommand{\myfigtex}[3]
+{
+    \begin{figure}[!ht]
+	\centering
+	\input{#1}
+	\caption{#2}
+	%\label{fig:#3}
+	#3
+    \end{figure}
+}
+
+
+%\input{xcircuit_latex_labels.tex}
+
+
+\begin{document}
+
+
+%\maketitle
+
+%\input{./kapitoly/zaciatky}
+
+%\tableofcontents
+%\setcounter{page}{7}
+
+%\listoffigures
+
+
+%\input{./kapitoly/uvod}
+
+%\input{./kapitoly/zaver}
+
+%\input{./kapitoly/lit}
+
+
+
+
+%%%%%%%%
+% pokusy
+%%%%%%%%
+
+%\myfig{aaaa}{pokusny-myfig}{aaaa}
+
+
+\section*{Abstrakt}
+<+blablabla+>
+Modelom budú (sú) demonštrované základné javy vedenia prúdu cez PN prechod ako sú: driftový prúd, difúzny prúd, vytvorenie vyprázdnenej oblasti pri závernom pólovaní, injekcia minorítných nosičov do opačne dotovaných oblastí pri priepustnom pólovaní, volt-ampérová charateristika a jej zodpovedajúce priestorové rozloženie eletrónov a dier.
+
+\section{Úvod}
+
+
+\section{Rovnice polovodičov}
+Význam použitých symbolov:\\
+\begin{tabular}{l l l}
+	\hline
+	$\varepsilon$ & permitiivta prostredia (kremíku)\\
+	$\psi$ & elektrický potenciál \\
+	$\mathbf{E}$ & intenzita elektrického poľa\\
+	$q$ & náboj elektrónu\\
+	$p, n$ & koncentrácie dier a elektrónov\\
+	$N_D, N_A$ & koncentrácie donorov a akceptorov\footnotemark\\
+	$\mathbf{J_n}, \mathbf{J_p}$ & prúdy elektrónov a dier jednotkou plochy\\
+	$\mu_n, \mu_p$ & pohyblivosti nosičov\\
+	$D_n, D_p$ & difúzne konštanty (Fickov zákon)\\
+	$U_n, U_p$ & miera generácie a rekombinácie elektrónov a dier\\
+	\hline \\
+\end{tabular}
+\footnotetext{Pre jednoduchosť stačí uvažovať prípad, kde všetky prímesové atómy sú zionizované.}
+
+Poissonova rovnica\footnote{Jedna z Maxwellovych rovníc v diferenciálnom tvare \mbox{$\nabla \cdot \mathbf{D} = \rho$}, kde \mbox{$\mathbf{D} = \varepsilon E \implies \nabla \cdot (\varepsilon \nabla \psi) = - \rho$}}:
+\begin{equation}
+	\nabla \cdot (\varepsilon \nabla \psi) = -q (p -n + N_D - N_A)
+	\label{eq:poisson}
+\end{equation}
+
+Prúdy:
+\begin{equation}
+	\mathbf{J_n} = \overbrace{q n \mu_n \mathbf{E}}^\text{drift} + \overbrace{q D_n \nabla n}^\text{difúzia}
+	\label{eq:Jn}
+\end{equation}
+\begin{equation}
+	\mathbf{J_p} = q p \mu_p \mathbf{E} - q D_p \nabla p
+	\label{eq:Jp}
+\end{equation}
+
+Rovnice kontinuity (zachovanie resp. časová spojitosť náboja):
+\begin{equation}
+	\dxdtp{n}{t} = \nabla \cdot \mathbf{J_n} + U_n
+	\label{eq:continuity_n}
+\end{equation}
+\begin{equation}
+	\dxdtp{p}{t} = -\nabla \cdot \mathbf{J_p} - U_p
+	\label{eq:continuity_p}
+\end{equation}
+
+Je dobré pripomenúť vzťah $\mathbf{E} = - \nabla \psi$. Prvý sčítanec na pravej strane rovníc (\ref{eq:Jn}) a (\ref{eq:Jp}) predstavuje driftový prúd (daný pohyblivosťou nábojov a intenzitou elektrického poľa), druhý sčítanec predstavuje difúzny prúd podľa prvého Fickovho zákona, teda úmerný spádu koncentrácie nábojov a difúznej konštante.
+
+Rovnice (\ref{eq:poisson}) až (\ref{eq:continuity_p}) tvoria sústavu vzájomne previazaných nelineárnych rovníc s 5 neznámzmi ($\psi, \mathbf{J_n}, \mathbf{J_p}, n, p$). Dosadením (\ref{eq:Jn}) do (\ref{eq:continuity_n}) a (\ref{eq:Jp}) do (\ref{eq:continuity_p}) je možné riešiť 3 rovnice s neznýmymi ($\psi, n, p$). Tento postup bude využitý v stati \ref{ch:implementacia__matematicke_upravy}.
+
+
+\section{MKP, FEniCS a stratégia riešenia}
+K numerickému riešeniu rovníc polovodičov použijeme diskretizáciu metódou konečných prvkov (MKP) s využitím programových nástrojov akademicko - vedeckej výpočtovej platformy FEniCS \cite{fenicsproject}.
+
+<+Variacna forma+>
+<+Mixed formy vs decoupling+>
+<+Casova diskretizacia+>
+
+\section{Implementácia}<++>
+\subsection{Matematické úpravy}\label{ch:implementacia__matematicke_upravy}<++>
+Dosadením (\ref{eq:Jn}) do (\ref{eq:continuity_n}) a (\ref{eq:Jp}) do (\ref{eq:continuity_p}) a vyžitím vzťahu $\mathbf{E} = - \nabla \psi$ dostávame nasledovnú sústavu rovníc s 3 neznýmymi ($\psi, n, p$) - tj. Poissonovu rovnicu a rovnice kontinuity elektónov a dier:
+\begin{equation}
+	\nabla \cdot (\varepsilon \nabla \psi) = -q (p -n + N_D - N_A)
+	\label{eq:poisson2}
+\end{equation}
+\begin{equation}
+	\dxdtp{n}{t} = \nabla \cdot (-n \mu_n \nabla \psi + D_n \nabla n) + U_n
+	\label{eq:continuity_n2}
+\end{equation}
+\begin{equation}
+	\dxdtp{n}{t} = \nabla \cdot (-p \mu_p \nabla \psi - D_p \nabla p) + U_p
+	\label{eq:continuity_p2}
+\end{equation}
+<+stále sú vzájomne previazané+> To je dosť závažná nepríjemnosť.
+
+<+Poissonova rovnica - varacna forma atd\footnote{$\dif{x}$ predstavuje vektor takého rozmeru, ako je rozmer priestorových súradníc riešenej úlohy}+>
+
+Časová diskretizácia rovnice (\ref{eq:continuity_n2}):
+\begin{equation}
+	\frac{n_{i} - n_{i-1}}{dt} = \nabla (-\mu_n n_{i-1} \nabla \psi_i) + \nabla \cdot \left( D_n \nabla n_i \right) + U_n
+	\label{eq:continuity_n_diskr}
+\end{equation}
+
+\begin{equation}
+	n_i - \nabla \cdot (dt D_n \nabla n_i) = n_{i-1} - \nabla (dt \mu_n n_{i-1} \nabla \psi_i) + dt U_n			
+	\label{eq:continuity_n_diskr_ni}
+\end{equation}
+Z toho bilineárna a lineárna forma pre MKP $a(n, v) = L(v)$ (neznámu $n_i$ budeme ďalej označovať jednoducho $n$) získaná vynásobením oboch strán (\ref{eq:continuity_n_diskr_ni}) testovacou funkciou $v$ a následným integrovaním podľa $\dif{x}$:
+\begin{equation}
+	\begin{array}{l l}
+		\int_{\Omega} n v \dif x + \int_{\Omega} dt D_n \nabla n \nabla v \dif x
+		=\\
+		= \int_{\Omega} n_{i-1} v \dif x - \int_{\Omega}dt \mu_n n_{i-1} \nabla \psi_i \nabla v \dif x + \int_{\Omega} dt U_n v \dif x
+	\end{array}
+	\label{eq:continuity_n_a_L}
+\end{equation}
+
+(\ref{eq:continuity_p2})
+ 
+\subsection{Okrajové podmienky}<++>
+\subsection{Scaling}
+Pokiaľ majú výsledky - predovšetkým elektrických veličín ako potenciál či prúdové hustoty - kvantitatívne zodpovedať realistickým hodnotám, je nutné aplikovať realistické hodnoty materiálových i rozmerových konštánt. Tým však vzniknú obrovské rozdiely v rádoch jednotlivých veličín, čo má za následok jednak zbytočne vysokú výpočtovú cenu (resp. čas výpočtov), jednak možnú stratu numerickej riešiteľnosti. Preto sa rovnice násobia ešte pred výpočtom škálovacími konštantami \cite{selberherr} \cite{de_mari} a následne sa spätne \uv{zrozmerňujú} až výsledky.
+
+Účelom tohto článku je odvodenie a zostavenie výpočtového modelu s následným kvalitatívnym overením jeho funkčnosti. Pre jednoduchosť bude preto tento model bezrozmerný, tj. konštanty budú jednotkové.
+%\subsection{Výpočtové prevednie (program)}
+\subsection{Výpočtové prevednie (Python)}
+
+
+\begin{mycode1}
+# Mesh and function space
+nx = 100
+ny = 1
+mesh = RectangleMesh(Point(0.0, 0.0), Point(x_length, y_length) , nx, ny, 'crossed')
+V = FunctionSpace(mesh, "CG", 1)
+Vn=V
+Vp=V
+\end{mycode1}
+
+\begin{mycode1}
+####################
+## Poisson
+####################
+rho = Expression("q * (p - n + Nd - Na)", q=q, p=p0, n=n0, Nd=Nd, Na=Na, degree=1)
+Psi = TrialFunction(V)
+v_psi = TestFunction(V)
+a = -inner(grad(Psi), grad(v_psi)) * dx
+L = -rho/eps_Si*v_psi*dx
+
+Psi_result = Function(V)
+#solve(a==L, Psi_result, [bc_psi1, bc_psi2])
+\end{mycode1}
+
+\begin{mycode1}
+####################
+## n, p Continuity
+####################
+n_i1 = Function(Vn)
+n_i1.assign(n0)
+n = TrialFunction(Vn)
+vn = TestFunction(Vn)
+#an = n*vn*dx + dt*Dn*inner(grad(n), grad(vn))*dx
+an = n*vn*dx + dt*D_n*inner(grad(n), grad(vn))*dx
+Ln = n_i1*vn*dx + dt*mob_n*n_i1*inner(grad(Psi_result), grad(vn))*dx
+
+n_result = Function(Vn)
+#solve(an==Ln, n_result, [bc_n1, bc_n2])
+
+p_i1 = Function(Vp)
+p_i1.assign(p0)
+p = TrialFunction(Vp)
+vp = TestFunction(Vp)
+ap = p*vp*dx + dt*D_p*inner(grad(p), grad(vp))*dx
+Lp = p_i1*vp*dx - dt*mob_p*p_i1*inner(grad(Psi_result), grad(vp))*dx
+
+p_result = Function(Vp)
+#solve(ap==Lp, p_result, [bc_p1, bc_p2])
+\end{mycode1}
+
+\begin{mycode1}
+Psi_result = Function(V)
+n_result = Function(Vn)
+p_result = Function(Vp)
+#solve(a==L, Psi_result, [bc_psi1, bc_psi2])
+#solve(an==Ln, n_result, [bc_n1, bc_n2])
+#solve(ap==Lp, p_result, [bc_p1, bc_p2])
+\end{mycode1}
+
+\section{Príklad riešenia - PN prechod; rovnovážny stav, napäťové okrajové podmienky}<++>
+\myfig{tmp1.eps}{}{}
+\myfig{tmp2.eps}{}{}
+\myfig{tmp3.eps}{}{}
+\myfig{tmp4.eps}{}{}
+\subsection{Interpretácia výsledkov}<++>
+\subsubsection{Koncentrácie voľných nosičov}<++>
+\subsubsection{Driftový a difúzny prúd}<++>
+%\myfig{obr.jpg}{aa}{\label{fig:aa}}
+%\myfig{iter-1-J.eps}{}{}
+%\myfigscaled{iter-1-J.eps}{width=0.8\columnwidth}{Aaaa.}{\label{fig:aaaa}}
+
+
+%\begin{thebibliography}{9}
+%\bibitem{lit:shockley}<++>
+%\bibitem{lit:pierret}<++>
+%\bibitem{lit:gummel}<++>
+%\bibitem{lit:fenicsbook}<++>
+%\end{thebibliography}
+
+% bibtex:
+\nocite{fenicsbook}
+\nocite{brenner_scott}
+%\bibliographystyle{plain}
+\bibliographystyle{unsrt}
+\bibliography{../lit}
+
+%\input{./kapitoly/prilohy}
+\appendix
+\section{Zdrojový kód (Python)}<++>
+
+%\input{./kapitoly/priloha_schemy.tex}
+
+
+\label{LastPage}
+\end{document}
