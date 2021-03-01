@@ -1,0 +1,8 @@
+\BOOKMARK [1][-]{section.1}{\332vod}{}% 1
+\BOOKMARK [1][-]{section.2}{Rovnice polovodicov}{}% 2
+\BOOKMARK [1][-]{section.3}{MKP, FEniCS a strat\351gia rie\235enia}{}% 3
+\BOOKMARK [1][-]{section.4}{Implement\341cia}{}% 4
+\BOOKMARK [2][-]{subsection.4.1}{Matematick\351 \372pravy}{section.4}% 5
+\BOOKMARK [2][-]{subsection.4.2}{Okrajov\351 podmienky}{section.4}% 6
+\BOOKMARK [2][-]{subsection.4.3}{Scaling}{section.4}% 7
+\BOOKMARK [2][-]{subsection.4.4}{V\375poctov\351 prevednie \(Python\)}{section.4}% 8
