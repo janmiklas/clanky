@@ -1,0 +1,378 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+%%% MOJE
+\graphicspath{{obr/}{obr/plots/}{spice/}}
+\DeclareGraphicsExtensions{.ps, .eps}
+%\usepackage[slovak]{babel}
+\usepackage[utf8]{inputenc} 
+
+\newcommand{\dif}{\, \mathrm{d}}	% diferencia (na derivacie)
+\newcommand{\difp}{\partial}		% parc. diferencia 
+\newcommand{\dxdt}[2]{\frac{\mathrm{d} #1}{\mathrm{d} #2}}
+\newcommand{\dxdtp}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\un}[1]{\, \mathrm{#1}}	% jednotky velicin, v math mode
+\newcommand{\E}[1]{\cdot 10^{#1}}
+\newcommand{\degree}{^\circ}
+\newcommand{\diameter}{\emptyset}
+\newcommand{\cpx}{\widehat}		% komplexne fazory
+\newcommand{\Ohm}{\Omega}
+
+\newcommand{\myfig}[3]
+{
+    \begin{figure}[!ht]
+    %\begin{figure}[ht]
+    %\begin{figure}[htpb]
+	\centering
+	\includegraphics{#1}
+	\caption{#2}
+	%\label{fig:#3}
+	#3
+    \end{figure}
+}
+\newcommand{\myfigsc}[3]
+{
+    \begin{figure}[!ht]
+	\centering
+	\includegraphics[width=3.5in]{#1}
+	\caption{#2}
+	%\label{fig:#3}
+	#3
+    \end{figure}
+}
+
+\begin{document}
+
+\title{Identification of Power BJT Operating Stages Based on Experimental Excess Charge Estimation
+%{\footnotesize \textsuperscript{*}Note: Sub-titles are not captured in Xplore and should not be used}
+\thanks{}
+}
+
+\author{\IEEEauthorblockN{1\textsuperscript{st} Jan Miklas}
+\IEEEauthorblockA{\textit{Department of Power Electrical and Electronic Engineering} \\
+\textit{Faculty of Electrical Engineering and Communication}\\
+\textit{Brno University of Technology}\\
+Brno, Czech Republic \\
+jan.miklas@vutbr.cz}
+\and
+\IEEEauthorblockN{2\textsuperscript{nd} Petr Prochazka}
+\IEEEauthorblockA{\textit{Department of Power Electrical and Electronic Engineering} \\
+\textit{Faculty of Electrical Engineering and Communication}\\
+\textit{Brno University of Technology}\\
+Brno, Czech Republic \\
+prochazkap@feec.vutbr.cz}
+}
+
+\maketitle
+
+\begin{abstract}
+    The paper proposes and demonstrates an experimental way of estimating the amount of stored charge of excess minority carriers within power BJT base and collector. This consequently allows a detailed identification of transistor operating stage.\\
+    A brief device operation analysis is provided as a clear support of the measured characteristics.\\
+    The method is based on determining the steady-state stored charge at various operating conditions by integration of negative transient base current during turn-off event which deflates the stored charge.\\
+    An ultimate objective of these and future experiments is an accurate interpretation and modelling of various device stages during IGBT switching process. Most of the observed phenomenons are common among a power BJT and IGBT's intrinsic BJT. As IGBT doesn't provide access to the internal base current, it is advantageous to measure and interpret the relations between stored charge and switching waveforms of power BJT first and further generalize the observations to IGBT measurements.\\
+\end{abstract}
+
+\begin{IEEEkeywords}
+IGBT, power BJT, bipolar semiconductor devices saturation, minority carriers concentration, excess charge storage, transistor switching measurement, 
+\end{IEEEkeywords}
+
+,
+\section{Introduction}
+Devices utilizing bipolar current transport used as a fast power switches such as IGBTs are not going to be fully replaced by unipolar counterparts in the near future thanks to their high current density capability at optimum manufacturing price. Notorious downside of bipolar devices is charge storage  within forward-biased junctions, limiting the switching speed.
+
+High current density is allowed by two phenomenons unique for bipolar devices physics (i.e. including the minority carriers action) - the saturation and conductivity modulation in lightly doped region. Both are related to minority carriers charge storage and depend on the base and collector current levels. As a result, a good on-state performance device design can be achieved at the cost of degrading the switching performance and vice-versa. In addition, the charge storage undesired side-effects are clearly reflected in the switching waveforms \cite{chenming}.
+
+Minority carriers 
+
+Saturation mode is essential for steady on-state device operation as described by a static current - voltage characteristic. It is defined by excess minority carriers concentration within the base and collector during forward bias of both BJT junctions.
+Minority carriers concentration depends on recombination lifetime and injected current, so significant effort has been put on analysis of recombination mechanism and specifically the recombination lifetime from very beginning of semiconductor industry evolution, including legendary works by Shockley et al. \cite{shockley_reed}, \cite{shockley_electrons_and_holes}
+#\cite{elani
+#a neskor i zmeny pocas s prechodmi medzi roznymi rezimami
+#A significant effort has been put on 
+While there is only a little practical significance in determining the amount of excess charge stored in the collector for static saturation characteristic analysis of already-manufactured device, estimating the boundaries of individual operational modes is highly beneficial for accurate identification and analysis of particular stages during switching action.
+%Moreover, as stated before, 
+However, determining the amount and geometric profile of excess charge stored in the collector N-drift region is not trivially possible by means of static saturation characteristic measurement.
+On the other hand, the excess charge - continuously recombined with majority carriers - is supplied by the base current. Likewise, negative base current can be utilized to deflate the excess charge. That means both saturation and transient operation are linked together by same physical phenomenon. Thus, the transient measurement may serve as a link between transient and steady-state operation. As long as  the base current waveform is observable and the recombination impact on measured waveform is eliminated, a quantitative information about the steady-state minority carriers stored within transistor right before the switch-off event can be gained. 
+Unlike many of the accurate and more sophisticated measurement techniques, the proposed method allows this kind of evaluation by ordinary application engineer in any lab without special equipment, with direct interpretation of experimentally measured electrical waveforms for given device.
+
+Unfortunately IGBT doesn't provide access to the internal base current, but most of the phenomenons in question are common among a power BJT and intrinsic BJT within IGBT. It is thus beneficial to use an ``archaic'' power BJT as a qualitative testing reference with the advantage of direct control of base current parameters, waveform shape and its accurate measurement.
+
+The gained observations can be further almost-directly applied to the IGBT on-state and switching waveforms interpretation \cite{baliga}.
+
+Measurements presented in next sections were performed to experimentally validate the possibility to interpret the power BJT operational stages by estimating the amount of base and collector stored charge of excess minority carriers based on base current transient waveform measurements.
+In other words, to validate the following presumptions:
+\begin{itemize}
+    \item Recombination of minority carriers is at least one order of magnitude slower than times required for external deflation of the excess charge (i.e. the turn-off time),
+    \item Basic function of  power BJT is given primarily by the desired ``theoretical'' phenomenons prior to the undesired side-effects.
+\end{itemize}
+
+
+%\section{Structure and Function of Power BJT}
+\section{A Brief Theory} \label{sec:theory}
+
+\subsection{Structure of Power BJT} \label{sec:structure}
+
+\myfig{struktura}{Structure of power BJT. Dimensions and concentrations scale are illustrative i.e. not proportional to real scales.}{\label{fig:struktura}}
+The basic one-dimensional structure of power BJT is depicted on Fig. \ref{fig:struktura}. It approximates the cross-section of a real device right beneath the emitter contact. 
+Unlike a low voltage BJT, the structure involves a very lightly doped so-called drift region in the collector to support high collector voltage by the depletion region while reverse biased. The current flow through drift region creates additional voltage drop  unless being flooded with injected minority carriers exceeding the equilibrium concentration multiple times (conductivity modulation \cite{baliga}).
+The minority carriers concentration in equilibrium within doped semiconductor with intrinsic carrier concentration $n_i$ and doping concentration $N_D$ or $N_A$ is given by: 
+\begin{equation}
+    n_{p0} = \frac{n_i^2}{N_D}, \,\,\,p_{n0} = \frac{n_i^2}{N_a}
+    \label{eq:equilibrium}
+\end{equation}
+The higher doping, the lower minority carriers concentration; as depicted on Fig. \ref{fig:struktura}.
+
+\subsection{Operation of power BJT} \label{sec:rezimy1}
+
+\myfig{rezimy1}{Illustrative power BJT minority carrier and potential profiles for 3 basic operation modes.}{\label{fig:rezimy1}}
+Bipolar transistor operates in 3 basic modes, corresponding to 3 combinations of biasing 2 junctions within transistor, as summarized in Tab. \ref{tab:rezimy}.
+\begin{table}[h]
+    \centering
+    \begin{tabular}{c c c}
+	\hline
+	Mode 		& B-E bias	 & B-C bias\\
+	\hline
+	Cutoff		& R		& R \\
+	Active		& F 		& R \\
+	Saturation 	& F		& F \\
+    \end{tabular}
+    \caption{Three basic operation modes of BJT.}
+    \label{tab:rezimy}
+\end{table}
+This can be considered as operation mode definitions. Corresponding illustrative (not properly scaled) minority carrier concentrations and potentials within device structure are depicted on Fig. \ref{fig:rezimy1}. The minority carrier concentrations on the junction (depletion region) boundaries - let us denote it $p_n(0)$ and $n_p(0)$ - adhere the following principles:
+\begin{itemize}
+    \item reverse biased junction: 
+	\begin{equation}
+	    p_n(0) = 0 \mathrm{,}\,\, n_p(0) = 0
+	    \label{eq:reverse_bias}
+	\end{equation}
+    \item forward biased junction: \textit{``The Law of Junction''} \cite{pierret}: 
+	\begin{equation}
+	    p_p(0) n_p(0) = n_i^2 e^{q V_{PN}/kT}
+	    \label{eq:law_of_junction}
+	\end{equation}
+	\begin{equation}
+	    n_p(0) = n_{p0} \cdot e^{q V_{PN}/kT}
+	    \label{eq:law_of_junction_np}
+	\end{equation}
+	\begin{equation}
+	    p_n(0) = p_{n0} \cdot e^{q V_{PN}/kT}
+	    \label{eq:law_of_junction_pn}
+	\end{equation}
+\end{itemize}
+
+Shaded area represents the depletion region.
+
+Carriers concentration gradient  signifies the diffusion current while the potential (voltage) gradient signifies the drift current. Drift current (and thus the voltage gradient - i.e. also the capability to support voltage) is typical for depletion regions and lightly doped region without conductivity modulation. In fact, the drift current principally signifies the current flow through the resistance in general.
+
+\textbf{In active mode}, the B-E junction is forward biased which results in minority carriers injection from emitter into the base region (the ``Law of Junction'') and B-C junction is reverse biased resulting in zero electron concentration at the junction. The current flows through the collector despite the reverse bias, due to minority carriers diffusion at the depletion region boundary (carriers gradient within base) and drift through the depletion region (potential gradient within depletion region). The minority carriers in collector does not exceed the equilibrium concentration.
+
+Collector voltage (with respect to the emitter) can be varied by varying the depletion width. In other words, varying the resistivity of the current path.
+
+\textbf{In saturation mode}, both junctions are forward biased. N-drift region is flooded with minority carriers injected from the base, exceeding an equilibrium concentration, typically exceeding even the majority carriers equilibrium concentration. Consequently, the majority carriers concentration is increased as well to maintain charge neutrality \cite{baliga}. As a result, low doping causing additional voltage drop while proportional to the collector current is effectively increased and voltage drop disappears. This is called the \textit{conductivity modulation}.
+
+Thus, there is no significant drift current, the collector current is maintained by diffusion. As stated before, drift signifies the resistive material, while transistor in saturation exhibits the low-resistivity (on-state) performance. Carrier concentration gradient is equal in base and collector region as guaranteed by the same (diffusion) current $I_C$ and depicted on Fig. \ref{fig:rezimy1}.
+
+
+\subsection{Active and Saturation Mode at Various Drive and Load Conditions} \label{sec:rezimy2}
+
+\myfig{rezimy2}{Minority carrier concentration dependence on $I_B$ and $I_C$ variations. The geometry and concentration scales are illustrative, not proportional to real device values. Also the base and collector diagrams use the different scale to depict the same concentration gradient.}{\label{fig:rezimy2}}
+
+Figure \ref{fig:rezimy2} illustrates the minority carrier concentrations within base and N-drift region at variable drive ($I_B$) and load ($I_C$) conditions. It is important to understand the effect of each parameter as both constitute the amount of stored charge and alternations of measured charge must correspond to these parameters alternations if the used theory is correct. Operator ``++'' applied on any parameter on the figure designates the increasing trend of that parameter in the direction of an arrow.
+
+$I_B$ level determines the forward voltage across B-E junction. This in turn determines the injection level of minority carriers into the base as stands in the ``Law of Junction'' (\ref{eq:law_of_junction_np}).
+So increasing $I_B$ increases the minority electron concentration in the base at B-E junction. This rule applies on both active and saturation mode, as indicated on the picture.
+
+As for $I_C$, there is not a common rule for both modes.
+In the active mode with B-C junction reverse biased, the \textit{transistor effect} is valid so $I_C$ is proportional to $I_B$ through the current gain $\beta$.
+In saturation, however, both juctions are forward biased, transistor effect is not valid any more, significant amount of charge storage within collector is introduced and current transport is determined by diffusion. That means the value of $I_C$ is given by the gradient of carrier concentration (both electrons and holes to maintain the charge neutrality) is constant in base and collector region.
+The rule for explanation of $I_C$ variations impact on the stored charge thus is to alternate the concentration gradient (see the bottom picture on Fig. \ref{fig:rezimy2}). The higher current, the higher concentration gradient; while the ``left boundary'' concentration in the base is firmly determined by $I_B$. As a result, increasing $I_C$ causes the decrease of stored charge and vice versa, as opposed to possible intuitive expectation.
+
+Increasing $I_C$ at constant $I_B$ can lead to quasi-saturation region (see the bottom picture on the figure) and additional voltage drop across the unmodulated drift region.
+
+Increasing $I_B$ at constant $I_C$ is possible (see the second and third picture on the figure), this only magnifies the depth of saturation and reduces the value of current gain $\beta$.
+
+%%% toto moze byt uz v tom sumari
+In addition, retaining in saturation mode, $Q=f(I_C)$ should exhibit the linear dependence because all carrier profiles remain linear.
+
+$Q=f(I_B)$ is also expected to be linear. However, the amount of stored charge rapidly increases after transition from active to the saturation mode due to charge storage within collector. $Q=f(I_B)$ thus exhibits a double-slope linear dependency with apparent boundary between active and (quasi)saturation region.
+The boundary between quasi-saturation and saturation region is not apparent by means of stored charge volume; one would need to observe the collector voltage additionally.
+It is good to note that charge stored in collector is much higher than that stored in the base (depicted charge profiles are of different scale). As a result, any alternations i.e. storing and deflating the charge in active mode is a way much faster than alternations during saturation.
+
+
+\subsection{Charge Control Relation} \label{sec:charge_control}
+
+%Assuming $I_{pC}$ is the main
+Qualitative considerations in section \ref{sec:rezimy2} regarding the stored charge within base and collector can be supported by simple yet accurate enough \textit{charge control} relation \cite{gummel}, \cite{sze} as follows:
+\begin{equation}
+    \dxdt{Q}{t} = i_{B}(t) - \frac{Q(t)}{\tau}
+    \label{eq:charge_control_Ib}
+\end{equation}
+where $Q$ denotes the total stored charge, $i_B$ is the base current supplying (or deflating) the charge and $\tau$ stands for the recombination time constant - i.e. $Q/\tau$ represents the ``recombination current'', proportional to amount of stored charge \cite{pierret}.
+
+All excess minority carriers charge is supplied by the base current and it is not necessary to partition $i_B$ into individual parts ($i_{pC}$ etc.) as it is not needed to identify individual portions of total stored charge.
+
+In steady state, $I_B$ is just sufficient to supply the recombined charge (proportional to total stored charge volume):
+\begin{equation}
+    I_B = \frac{Q}{\tau}
+    \label{eq:charge_control_steady}
+\end{equation}
+which matches all 3 modes in Tab. \ref{tab:rezimy}. $I_B = 0$ in cutoff mode so stored charge equals zero; $I_B > 0$ which signifies the forward bias of B-E junction in active and saturation mode further defined by collector bias voltage.
+
+Negative base current is not possible in steady state.
+
+
+\section{Methodology}
+\subsection{Negative Base Drive Transient Current Relation with Stored Charge}
+As stated before, negative base current is not possible in steady state. However, it is common to apply a negative transient base current during turn-off event to speed up the charge deflation from base and collector. Time integral of this current provides an information about the steady state charge $Q_{ss}$ stored within transistor right before the event.
+
+Integration of the ``discharging'' analogy to (\ref{eq:charge_control_Ib}) yields:
+\begin{equation}
+    \int i_{B-}(t) \dif t = Q_{ss} - \frac{1}{\tau} \int Q(t)\dif t
+    \label{eq:integral_ib}
+\end{equation}
+
+That is, the obtained steady-state charge projection $Q_{sst,m}$ (``m'' stands for ``measured'') is not necessarily equal to an actual stored charge $Q_{ss}$. The difference between those two is the portion of charge that already got recombined during deflation time.
+
+\begin{equation}
+    Q_{ss,m} = Q_{ss} - Q_{recomb}
+    \label{eq:Qssm_Qss}
+\end{equation}
+
+One of the objectives of proposed tests is to find such conditions that $Q_{recomb}$ is certainly negligible compared to total charge $Q_{ss}$, prior to other measurements.
+
+\subsection{Test Summary} \label{sec:summary}
+There are two quantities, the actual steady-state $Q_{ss}$ stored in the collector and its measured projection $Q_{ss,m}$. They are both dependent on varying test conditions like $I_{B+}$, $I_{B-}$, $I_C$, either directly ($Q_{ss}$, according to (\ref{eq:charge_control_steady}) and Fig. \ref{fig:rezimy2}) or indirectly ($Q_{ss,m}$) through the deflation time allowing slow recombination (\ref{eq:integral_ib}).
+
+The following experimental tests were proposed based on the analysis in section \ref{sec:rezimy2}. To be noted, all of the tests are based on steady-state stored charge quantification at varying conditions.
+\begin{itemize}
+
+    \item \textbf{$Q$ vs. $I_{B+}$} at constant $I_{B-}$, $I_C$.\\
+	\textbf{Linearly growing dependency with double slope} is expected as described in the analysis of Fig. \ref{fig:rezimy2}. Linearity is predicted also by (\ref{eq:charge_control_steady})\\
+	The purpose of the measurement is verification of provided analysis and verification of assumption that the amount of charge stored within base is negligible compared to charge stored within collector during saturation.
+
+    \item \textbf{$Q$ vs. $I_{B-}$} at constant $I_{B+}$, $I_C$.\\
+	\textbf{Constant dependency} is expected, because constant $I_{B}$ yields a constant $Q_{ss}$ according to (\ref{eq:charge_control_steady}).
+	However, the charge-deflation time for constant $Q_{ss}$ increases with decreasing $I_{B-}$, so the recombined charge portion becomes non-negligible and the resulting characteristic $Q_{ss,m}=f(I_{B-}$ should tend to zero at low $I_{B-}$ levels.\\
+	The purpose of this measurement is to find such conditions where recombination effect is negligible and $Q_{ss,m} = Q_{ss}$ is assured. In other words, to assure the measurement (reflected charge) credibility.
+
+    \item \textbf{$Q$ vs. $I_{C}$} at constant $I_{B+}$, $I_{B-}$.\\
+	\textbf{Linearly decreasing dependency} is expected in saturation as described in the analysis of Fig. \ref{fig:rezimy2}. The charge should remain approximately constant after transition from saturation to the active region, with slightly decreasing trend due to increasing collector voltage and consequent base width modulation (this mode is forced by a constant $I_{B+}$ and increasing $I_C$, so current gain $\beta$ needs to decrease)
+
+\end{itemize}
+
+\subsection{Test Bench}
+All testing was performed on test bench built for fast switching measurement of power semiconductor devices with minimized parasitic influences as described in \cite{diplomovka} and \cite{prochazka} in detail.
+
+The device under test - power BJT BUV48A - was driven by discrete base driver through a variable base resistor to provide a constant $I_{B+}$ during whole ``charging'' on-state period and constant $I_{B-}$ during most of the ``discharging'' turn-off event. Separated current path and base resistors were ensured for $I_{B+}$ and $I_{B-}$ via diodes.
+
+\section{Measurement and Interpretation of Results} \label{sec:results}
+
+The integration time and thus the deflated charge was divided into two parts:
+\begin{equation}
+    Q = Q_1 + Q_2
+    \label{eq:Q1_Q2}
+\end{equation}
+
+$Q_1$ represents the excess charge stored in collector until transition from saturation to an active region.
+%The boundary is determined by the increase of collector voltage $v_{CE}$ above $15 \un{V}$.
+The boundary is determined by the decrease of collector current below $90\un{\%}$ of its steady value $I_C$.
+
+$Q_2$ represents mainly the charge stored within base. It is expected to be constant at given $I_B$ according to (\ref{eq:charge_control_steady}).
+
+$Q_1$ and $Q_2$ can be considered with somewhat daring approximation as collector and base stored charge respectively.
+
+
+\subsection{$Q$ vs. $I_{B+}$}
+The measured characteristic on Fig. \ref{fig:QvsIbpos} exhibits the \textbf{linear dependency with double slope}, exactly as expected by the test proposal in section \ref{sec:summary}.
+%\myfigsc{QvsIbpos_tr1_prieb}{Transient waveforms at varying $I_{B+}$.}{\label{fig:QvsIbpos_tr1_prieb}}
+\myfigsc{QvsIbpos_tr3_prieb}{Transient waveforms at varying $I_{B+}$.}{\label{fig:QvsIbpos_prieb}}
+\myfigsc{QvsIbpos_tr1}{$Q=f(I_{B+})$ characteristic, test results. The boundary between active and saturation region is clearly apparent. Conditions: $I_{B-}=0.8\un{A}$, $I_C=10\un{A}$.}{\label{fig:QvsIbpos}}
+
+The great slope of characteristic in saturation region corresponds to charge storage within collector as illustrated in Fig. \ref{fig:rezimy2}.
+
+Linear dependency is valid in the active region as well, expressing the injection level dependency on $I_B$. However, the charge stored within base is small compared to collector, hence the small slope of the characteristic.
+Charge stored within the base ranges from zero to approx. $0.2\un{\mu C}$.
+
+The boundary between active and saturation region at given test conditions is clearly apparent. It can be verified looking at the base and collector current transient waveforms on Fig. \ref{fig:QvsIbpos_prieb}. Collector steady current is proportional to the base current in the active mode according to $I_C = \beta \cdot I_B$. $\beta = 4A / 0.1A = 40$ according to the picture.
+
+
+\subsection{Q vs $I_{B-}$}
+
+The measured characteristic on Fig. \ref{fig:QvsIbneg} fulfills the expectation of \textbf{constant value} at reasonably high $I_{B-}$ levels ($> 0.3 \un{A}$) and decreasing trend as $I_{B-}$ decreases.
+
+\myfigsc{QvsIbneg_prieb}{Transient waveforms at varying $I_{B-}$.}{\label{fig:QvsIbneg_prieb}}
+\myfigsc{QvsIbneg}{$Q=f(I_{B-})$ characteristic, test results. Conditions: $I_{B+}=0.2\un{A}$, $I_C=9\un{A}$.}{\label{fig:QvsIbneg}}
+
+An important observation arises when comparing $Q_1$ with $Q_2$ decreasing trend with increasing deflation time (decreasing $I_{B-}$). $Q_1$ remains constant while $Q_1$ drops below $I_{B-}<0.3\un{A}$. The explanation is the nature of recombination - it is proportional to total stored charge - equation (\ref{eq:charge_control_Ib}). As $Q_2$ is deflated after $Q_1$ deflation, the remaining amount of charge (equal to $Q_1$) is really small, but deflating current level $I_{B-}$ remains constant and thus the recombined charge proportion to deflated charge becomes minimal and recombination effect does not distort the measured charge any more.
+
+The practical outcome of this result is the knowledge of usable value of $I_{B-} > 0.3 \un{A}$ for further measurements at given conditions.
+
+\subsection{Q vs $I_{C}$}
+The measured characteristic on Fig. \ref{fig:QvsIc} exhibits the \textbf{linear dependency} with negative slope in saturation mode, i.e. until approaching the active region as expected by the test proposal in section \ref{sec:summary}.
+\myfigsc{QvsIc_prieb}{Transient waveforms at varying $I_{C}$.}{\label{fig:QvsIc_prieb}}
+\myfigsc{QvsIc}{$Q=f(I_{C})$ characteristic, test results. Transition from saturation to the active region is apparent. Conditions: $I_{B+}=0.3\un{A}$, $I_{B-}=0.4\un{A}$.}{\label{fig:QvsIc}}
+%-podla ocakavania z obr. \ref{fig:rezimy2} sa s rastucim Ic ulozeny naboj ZMENSUJE\\
+%-dokonca pekne linearne, cize v tomto merani sa podarilo podla planu eliminovat nepresnost merania sposobenu rekombinaciou. A zaroven to potvrdilo, ze hlavne javy v tranzistore su tie, ktore su ziadane a viditelne aj zo zjednodusenych predstav a modelov, nie nejake vedlajsie a parazitne.\\
+%-Dalej tiez celkom pekne vidno hranicu aktivneho a (kvazi)saturacneho rezimu. A naboj v aktivnom rezime - zodpovedajuci naboju iba v baze - velkostou suhlasi s tym, co vyslo z merania Q vs. Ib+
+\section{Conclusion and Future Work}
+The proposed method summarized in section \ref{sec:summary} was verified by multiple measurements listed in section \ref{sec:results}.
+All of the expected dependences outlined in the analysis in section \ref{sec:rezimy2} were clearly verified. That validates the possibility of using the excess charge deflated via base as full-featured indicator of any operation stage of power BJT.
+
+The method will be further used for identification of various stages and impacts on switching waveforms and further applied to IGBT switching analysis.
+
+%strucne zhrnutie, ze meranie naplno potvrdilo predpokladane zavislosti z teoretickej analyzy.\\
+%do buducna:\\
+%QvsIc pre viacere Ib\\
+%porovnat budenie cez R, L, (C), s antisat. diodou (aj ked neviem ci zrovna machrovat s tym, ze to este neni v uplnosti)
+
+
+%\section*{References}
+
+
+\section*{Acknowledgment}
+This research work has been carried out in the Centre for Research and
+Utilization of Renewable Energy (CVVOZE).  Authors gratefully acknowledge
+financial support from the Ministry of Education, Youth and Sports under
+institutional support and BUT specific research programme (project No.
+FEKT-S-20-6379).
+
+
+\begin{thebibliography}{00}
+	\bibitem{chenming} C. Hu and M. J. Model, "A model of power transistor turn-off dynamics," 1980 IEEE Power Electronics Specialists Conference, Atlanta, Georgia, USA, 1980, pp. 91-96.
+	\bibitem{baliga} B. J. Baliga, Fundamentals of Power Semiconductor Devices, New York: Springer. 2008.
+	\bibitem{pierret} R. F. Pierret, {Semiconductor Device Fundamentals}, Addison-Wesley Publishing Comany, 1996, ISBN 0-201-54393-1 
+	\bibitem{shockley} 
+	\bibitem{shockley_read} 
+	\bibitem{arafat} 
+	\bibitem{elani}
+	\bibitem{das_Noor} A. Das, S. L. Noor and M. Z. Rahman Khan, "Transient base charge modeling of IGBT and its carrier lifetime dependence," 2015 IEEE International WIE Conference on Electrical and Computer Engineering (WIECON-ECE), Dhaka, Bangladesh, 2015, pp. 206-209, doi: 10.1109/WIECON-ECE.2015.7443898.
+	\bibitem{das_khan} A. Das and M. Z. R. Khan, "Transient anode voltage modeling of IGBT and its base doping profile investigation," 2015 18th International Conference on Computer and Information Technology (ICCIT), Dhaka, Bangladesh, 2015, pp. 122-126, doi: 10.1109/ICCITechn.2015.7488054.
+	\bibitem{gummel} H. K. Gummel, H. K., ``A Charge Control Relation for Bipolar Transistors'', Bell Syst. Tech. J., vol. 49, 1970
+	\bibitem{sze} S. M. Sze and M. K. Lee, Semiconductor Devices: Physics and Technology, 3rd ed., New York: John Wiley \& Sons, Inc. 2012.
+	%\bibitem{prochazka2} P. Prochazka, I. Pazdera, J. Miklas and R. Cipin, "Analysis of Power Transistor Switching Process," 2019 International Conference on Electrical Drives \& Power Electronics (EDPE), The High Tatras, Slovakia, 2019, pp. 318-322.
+	%\bibitem{eeict2020} J. Miklas, ``Estimating the Power BJT Excess Charge Recombination Time Constant'', unpublished
+	\bibitem{diplomovka} J. Miklas, {Power Switching Transistors}, Brno: Brno University of Technology, Faculty of Electrical Engineering and Communication. 2016. Head of Diploma Thesis doc. Dr. Ing. Miroslav Patocka
+	\bibitem{prochazka} P. Prochazka, J. Miklas, I. Pazdera, M. Patocka, J. Knobloch, R. Cipin, ``Measurement of Power Transistors Dynamic Parameters'', Mechatronics 2017, pp.571-577, ISBN 978-3-319-65959-6
+
+
+%\bibitem{b1} G. Eason, B. Noble, and I. N. Sneddon, ``On certain integrals of Lipschitz-Hankel type involving products of Bessel functions,'' Phil. Trans. Roy. Soc. London, vol. A247, pp. 529--551, April 1955.
+%\bibitem{b2} J. Clerk Maxwell, A Treatise on Electricity and Magnetism, 3rd ed., vol. 2. Oxford: Clarendon, 1892, pp.68--73.
+%\bibitem{b3} I. S. Jacobs and C. P. Bean, ``Fine particles, thin films and exchange anisotropy,'' in Magnetism, vol. III, G. T. Rado and H. Suhl, Eds. New York: Academic, 1963, pp. 271--350.
+%\bibitem{b4} K. Elissa, ``Title of paper if known,'' unpublished.
+%\bibitem{b5} R. Nicole, ``Title of paper with only first word capitalized,'' J. Name Stand. Abbrev., in press.
+%\bibitem{b6} Y. Yorozu, M. Hirano, K. Oka, and Y. Tagawa, ``Electron spectroscopy studies on magneto-optical media and plastic substrate interface,'' IEEE Transl. J. Magn. Japan, vol. 2, pp. 740--741, August 1987 [Digests 9th Annual Conf. Magnetics Japan, p. 301, 1982].
+%\bibitem{b7} M. Young, The Technical Writer's Handbook. Mill Valley, CA: University Science, 1989.
+\end{thebibliography}
+
+
+\end{document}
