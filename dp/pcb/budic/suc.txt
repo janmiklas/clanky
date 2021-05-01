@@ -1,0 +1,45 @@
+prikazom column: column -s, -t < csvfile.csv | less -#2 -N -S
+
+refdes   device                    footprint                     value    symversion
+C1.      POLARIZED_CAPACITOR       NICHICON_WT_CAP_6p3_7p7       "10u     25V"         0.1
+C2.      POLARIZED_CAPACITOR       NICHICON_WT_CAP_6p3_7p7       "47u     15V"         0.1
+C3.      CAPACITOR                 1206.fp                       22u      0.1
+C4.      CAPACITOR                 1206.fp                       22u      0.1
+C5.      CAPACITOR                 1206.fp                       22u      0.1
+C6.      CAPACITOR                 1206.fp                       22u      0.1
+C7.      CAPACITOR                 1206.fp                       22u      0.1
+C8.      POLARIZED_CAPACITOR       RCY250P                       "1mF     25V"         0.1
+C9.      POLARIZED_CAPACITOR       RCY250P                       "1mF     25V"         0.1
+D1       DIODE                     SMD_DIODE 120 60.fp                    
+D2       DIODE                     SMD_DIODE 120 60.fp                    
+Das1     DIODE                     DIODE_LAY 800.fp                       
+J1       JUMPER                    JUMPER2.fp                             
+J2       JUMPER                    JUMPER2.fp                             
+J3                                 my_contact_pad_thru_hole.fp   0V       
+J4                                 my_contact_pad_thru_hole.fp            
+J5                                                               in+      
+J6                                                               in-      
+J7                                 my_contact_pad_thru_hole.fp   out_Er   
+J8                                 my_contact_pad_thru_hole.fp   out_B    
+J9       contact                   my_contact_pad_thru_hole.fp   out_C    
+J10                                my_contact_pad_thru_hole.fp            
+J11                                my_contact_pad_thru_hole.fp            
+Q1       NPN_TRANSISTOR            TO126W.fp                     BD439    
+Q2       PNP_TRANSISTOR            TO92.fp                       BC640    
+Q3       PNP_TRANSISTOR            TO92.fp                       BC640    
+Q4       NPN_TRANSISTOR            TO126W.fp                     BD439    
+R1       RESISTOR                  1206.fp                       3k3      
+R2       RESISTOR                  1206.fp                       220      
+R3       RESISTOR                  1206.fp                       33       
+R4       RESISTOR                  1206.fp                       33       
+R5       RESISTOR                  ACY400                        "4R7     4W"          
+R6       RESISTOR                  1206.fp                       1k       
+R7       RESISTOR                  ACY300                        "2k2     0.5W"        
+R8       RESISTOR                  1206.fp                       150      
+R9       RESISTOR                                                680      
+R10      RESISTOR                  0.125W_Carbon_Resistor                 
+R11      RESISTOR                  0.125W_Carbon_Resistor                 
+R12      RESISTOR                  1206.fp                       22k      
+U1       7805                      TO220W.fp                              
+U2       fiber_optic_receiver      my_1521_2521_opto_hlava.fp    2521     
+U3       fiber_optic_transmitter                                 1521     

@@ -1,0 +1,9 @@
+t=data_all(:,1);
+vc=data_all(:,2);
+ic=data_all(:,3);
+vb=data_all(:,4);
+ib=data_all(:,5);
+
+dt=t(2)-t(1)
+p=vc.*ic;
+en=cumsum(p*dt);

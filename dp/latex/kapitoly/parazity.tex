@@ -1,0 +1,115 @@
+\chapter{Vplyv parazitných prvkov na merateľné priebehy} \label{ch:parazity}
+
+\lettrine{P}{od} predpokladom vysloveným v kapitole \ref{ch:gce}, totiž že časový priebeh $g_{CE}(t)$ je pri zachovaných podmienkách ako spôsob budenia či veľkosť prúdu záťaže nezávislý na konkrétnom prevedení kolektorového obvodu, je možné priamočiaro analyzovať vplyv parazitným prvkov v obvode.
+Niektoré parazitné vplyvy sú jednoducho overiteľné meraním, a tieto sú viac menej vo všeobecnom povedomí technikov v tejto oblasti, niektoré je naopak overiť či kvantifikovať pomerne obtiažné - keďže deformujú nasnímané priebehy do podoby veľmi nápadne podobnej priebehom bezparazitným, ako bude ukázané v nasledujúcich statiach. Keď vylúčime nesprávny spôsob snímania priebehov (ako napr. zanedbávanie indukčností spojov, vývodov, atď.) jedná sa najmä o parazity samotnej zapúzdrenej súčiastky, nakoľko pri praktických meraniach prístup dovnútra púzdra nie je možný. Nepríjemnosťou je práve podobnosť s priebehmi bezparazitnými.
+
+V tejto kapitole budú ukázané priebehy s pomerne prehnanými hodnotami parazitných prvkov, a to vždy práve jedného, aby boli presne rozlíšené jednotlivé vplyvy, i keď v reálnej situácii by bol ich účinok kombinovaný. Uvedené obrázky možno tak použiť ako rýchlu referenciu pri analyzovaní skutočných nameraných priebehov a odhaľovaní parazitných vplyvov.
+
+
+\section{Jednotlivé prípady}
+
+
+\subsection{Indukčnosť sľučky medziobvod - tranzistor - dioda}
+Vplyv na priebehy je znázornený na Obr. \ref{fig:sim_L3}.
+\myfigschplotplottex{obr/schema_sim_L3ekvL4}{obr/plots/sim_off_L3}{obr/plots/sim_on_L3}{Vplyv parazitnej indukčnosti slučky medziobvod - tranzistor - dioda na vypínací (hore) a zapínací (dole) dej.}{\label{fig:sim_L3}}
+
+Indukčnosť medziobvodu, schématicky indukčnosť slučky medziobvod - tranzistor - dioda, je aplikačne veľmi typickým parazitným javom. Prejavuje sa pri vypínaní typickým prekmitom kolektorového napätia, pri zapínaní zase indukčným úbytkom. Dôvodom prekmitu / podkmitu je rýchla zmena prúdu pretekajúceho indukčnosťou. Z pohľadu meraných priebehov nezáleží na tom, či je indukčnosť dominantná pred alebo za uzlom pripojenia záťaže (Obr. \ref{fig:sim_L3} hore). Smer prúdu v oboch prípadoch je síce opačný, ale opačné je aj znamienko jeho časovej derivácie (kým jedným smerom narastá, druhým klesá).
+Pri menšom úsilí je tento vplyv jednoducho merateľný, pri väčšom úsilí je odstraniteľný (kapitola \ref{ch:meranie}).
+
+
+\subsection{Indukčnosť medzi meracími bodmi}
+Vplyv na priebehy je znázornený na Obr. \ref{fig:sim_L2}.
+\myfigschplotplottex{obr/schema_sim_L1ekvL2}{obr/plots/sim_off_L2}{obr/plots/sim_on_L2}{Vplyv parazitnej indukčnosti medzi meracími bodmi na vypínací (hore) a zapínací (dole) dej.}{\label{fig:sim_L2}}
+Prakticky sa jedná o indukčnosť vodivého úseku medzi meracími bodmi, teda indukčnosť vývodov tranzistorových elektród. V skutočnosti ide o ten istý jav, ako v predchadzajúcom prípade, ale je \uv{nepozorovaný}, keďže napätie v meracom bode je držané nulovou diodou. To však neznamená, že prekmit pri zapínaní nie je prítomný ani na tranzistore.
+Obmedzenie indukčnosti je možné zabezpečením čo najkratších vývodov tranzistora a čo najbližším umiestnením meracích bodov k čipu. 
+
+K bondovacím drátom vo vnútri púzdra prístu nie je možný, takže ich indukčnosť takmer nie  je možné identifikovať. Zdeformovavý trav priebehov je  prakticky nerozoznateľný od bezparazitného priebehu (pokiaľ bezparazitné meranie nie je k dispozícii), keďže k prepólovaniu diody (zlom v priebehoch) dochádza pri vypínaní v rovnakom bode, ako bez prítomnosti indukčnosti, a pri zapínaní zasa dôjde k prepólovaniu  pri plnom napätí (bez viditeľného úbytku).
+
+Inými slovami, úbytok na indukčnosti, ktorý síce nie je v meracom bode pozorovaný, spôsobí pri zachovanej vodivosti $g_{CE}$ zníženie prúdu $i=g_{CE} u_{CE}$ a tým pádom časový posun okamihu prepólovania diody, presne tak, ako v prípade merateľného podkmitu, avšak merané napätie je skreslené indukčnosťou do podoby pripomínajúcej zlom v bezparazitných priebehoch - zmena prúdu je od toho momentu nulová a tak napätie na indukčnosti skokovo klesá na nulovú hodnotu (Obr. \ref{fig:sim_L2} dole).
+
+
+\subsection{Kapacita záťaže}
+Vplyv na priebehy je znázornený na Obr. \ref{fig:sim_C5}.
+\myfigschplotplottex{obr/schema_sim_C1ekvC5}{obr/plots/sim_off_C5}{obr/plots/sim_on_C5}{Vplyv kapacity záťaže (paralelenej kapacity) na vypínací a zapínací dej.}{\label{fig:sim_C5}}
+
+Z pohľadu merania je jedno, či je kapacita \uv{pripojená} paralelne k záťaži, alebo k tranzistoru (v jednom prípade sa nabíja, av druhom vybíja, ale výsledný efekt je v prípade lineárnej kapacity rovnaký). 
+
+Ide v podstate o prípad známy z čias bipolárnych tranzistorov ako odľahčenie vypínacieho deja. Na prudkú zmenu napätia reaguje kapacita nabíjacím / vybíjacím prúdom, a keďže je zapojená paralelne k prvku, ktorý vedie prúd, jeho prúd sa zníži tak, aby ich súčet zodpovedal prúdu záťaže. v okamihu prepólovania nulovej diody sa stáva napätie $u_{CE}$ konštantným a kapacitný prúd je ďalej preto nulový (kapacita ostáva nabitá na aktuálnu hodnotu až do zapínacieho deja).
+
+Pri zapínacom deji je naopak prítomný prekmit v priebehu prúdu $i_C$.
+
+Prakticky je tento prípad typicky spôsobený parazitnou kapacitou záťaže (vinutia), alebo nulovej diody (tej kapacita je ale napäťovo závislá, čomu sa bližšie venuje stať \ref{sec:varikap}).
+
+\myfigschplotplottex{obr/schema_sim_C5nelin}{obr/plots/sim_off_C5nelin}{}{Vplyv napäťovo závislej kapacity varikapu na vypínací a zapínací dej.}{\label{fig:sim_C5nelin}}
+
+
+\subsection{Kapacita tranzistora $C_{CE}$} 
+\myfigschplotplottex{obr/schema_sim_C2}{obr/plots/sim_off_C2}{obr/plots/sim_on_C2}{Vplyv vnútornej kapacity $C_{CE}$ súčiastky na vypínací a zapínací dej.}{\label{fig:sim_C2}}
+Inú situáciu predstavuje \uv{vnútorná} výstupná kapacita zapúzdreného tranzistora, teda kapacita medzi kolektorom a emitorom. Odlišnosť spočíva v tom, že neexistuje možnosť, ako separovane merať prúd vodivosťou a paralelnou kapacitou. Ich súčet nutne zodpovedá prúdu záťaže, takže nie je možné pozorovať (pri vypínaní) zníženie prúdu tranzistorom, i keď v skutočnosti prítomné je, a znovu tak, ako v predchádzajúcom prípade spôsobuje tiež zníženie okamžitého napätia $u_{CE} = \frac{i_C}{g_{CE}}$ na nezmenenej vodivosti. Zlom vo vypínacom deji sa časovo posunie, ale tvarovo sa priebehy ponášajú na priebehy bezpartitné - v okamihu kedy sa napätie stáva konštantným skokovo zaniká prúd diodou - Obr. \ref{fig:sim_L2}.
+
+Prakticky možno hovoriť buď o rôznych parazitných kapacitách izolovaných častí v púzdre (najmä u výkonových moduloch (\cite{lutz}, \cite{khanna}), v jednom diskrétnom púzdre vplyv ukazuje byť zanedbateľným) a o kapacite samotného polovodičového prechodu (stať \ref{sec:varikap}).
+
+%\myfigschplotplottex{obr/schema_sim_C2nelin}{obr/plots/sim_off_C2nelin}{}{<++>}{\label{fig:sim_C2nelin}}
+
+
+
+
+\section{Kapacita záverne pólovaného prechodu PN} \label{sec:varikap}
+Samotný PN prechod báza-kolektor či prechod nulovej diody vykazuje v závernom smere\footnote{behom spínacích dejov je prechod báza kolektor aj prechod nulovej diody jednak väčšinu času pólovaný záverne, jednak v priepustnom smere všeobecne nie sú umožnené veľké zmeny napätia} kapacitu. Nejedná sa o klasický platňový kondenzátor vyplnený dielektrikom, ale výsledný efekt nabíjacieho resp. vybíjacieho prúdu pri zmene priloženého napätia je obdobný. Tento prúd nie je prúdom nosičov urýchľovaných elektrickým poľom v polovodiči, čiže drift, pojem úzko spätý s predstavou vodivosti. Jeho pôvodom je rozširovanie vyprázdnenej oblasti priestorového náboja (nabitých donorov, prípadne akceptorov) a teda vyprázdňovanie pôvodne neutrálnej oblasti od nosičov náboja pri zväčšovaní záverného napätia a naopak.
+
+\myfigtex{obr/pn_kapacita}{Ku kapacite PN prechodu}{\label{fig:pn_kapacita}}
+
+Matematicky možno slovne popísanú situáciu vyjadriť kratšie; nasledovne:
+\begin{equation}
+    \dxdt{U}{t} \rightarrow \dxdt{W}{t} \approx \dxdt{Q}{t} = i(t)
+    \label{eq:dU->dW->dQ}
+\end{equation}
+
+Pri predpoklade $p^+n$ prechodu a pre jednoduchosť využijúc tzv. \textit{depletičnú aproximáciu} je množstvo náboja chýbajúce k neutralizácii náboja ionov vo vyprázdnenej oblasti úmerné šírke tejto oblasti:
+\begin{equation}
+    Q = q N_D W_D
+    \label{eq:Q--qNW}
+\end{equation}
+kde $q$ je náboj jedného nosiča, $N_D$ je koncentrácia donorovej prímesi.
+Preto:
+\begin{equation}
+    i(t) = \dxdt{Q}{t} = q N_D \dxdt{W(U(t))}{t} = \underbrace{q N_D \dxdt{W}{U}}_{C(U)}\dxdt{U}{t} 
+    \label{eq:dQdt--qN.dWdU.dUdt}
+\end{equation}
+čo je známa forma rovnice prúdu kondenzátora.
+
+
+Makroskopická šírka vyprázdnenej (depletičnej) vrstvy $W_D$ (Obr. \ref{fig:pn_kapacita}) je závislá na absolútnej veľkosti záverného napätia (na offsete), preto je kapacita (spôsobená malými zmenami $dW$ resp. $dU$ v pomere k $W_D$ resp. $U_0$) prechodu tiež silne napäťovo závislá.
+Keďže závislosť šírky vyprázdnenej oblasti - úmernej množstvu vyprázdneného náboja - od napätia je nelineárna, je nelineárnou aj napäťová závislosť kapacity. 
+Pre vyjadrenie tejto závislosti sa nezaobídeme bez vzťahu známeho z fyziky polovodičov (\cite{lutz}, \cite{baliga}) - pre najjednoduchší prípad skokového prechodu:
+\begin{equation}
+    W_D = \sqrt{\frac{2 \epsilon (U_{bi} + U)}{q N_D}}
+    \label{eq:Wd--fU}
+\end{equation}
+kde $\epsilon$ je permitivita polovodiča, $U_{bi}$ je vnútorné napätie prechodu (\textit{built-in voltage}) a $U$ je aplikované záverné napätie. Pre priepustné pólovanie vzťah neplatí.
+
+Derivovaním (\ref{eq:Wd--fU}) podľa napätia a dosadením do (\ref{eq:dQdt--qN.dWdU.dUdt}) vznikne:
+\begin{equation}
+    i(t) = \underbrace{\sqrt{\frac{\epsilon q N_D}{U_{bi} + U}}}_{C(U)} \cdot \dxdt{U}{t}
+    \label{eq:i--C(U)dUdt}
+\end{equation}
+Z toho pre jednoduchosť možno vyjadriť približný vzťah:
+\begin{equation}
+    C(U) = C_0 \frac{1}{\sqrt{1+U}}
+    \label{eq:C(U)=C0.1/sqrt(1+U)}
+\end{equation}
+
+\myfigtex{obr/varikap_CV_krivka}{$C-V$ krivka varikapu.}{\label{fig:varikap_CV_krivka}}
+
+Graficky je takáto $C-V$ krivka vynesená na Obr. \ref{fig:varikap_CV_krivka}. Jedná sa o závislosť typickú pre varikap.
+
+
+\subsection{Možný vplyv kapacity PN-prechodu na priebehy}
+Z podstaty spínacích priebehov pri indukčnej záťaži plynie, že k veľkým hodnotám $\dxdt{u}{t}$ na tranzistore dochádza pri veľkej absolútnej hodnote $u_CE$, kedy je kapacita varikapu malá. Pri malých hodnotách napätia sú malé i hodnoty $\dxdt{u}{t}$ a napriek prípadnej veľkej hodnote kapacity prechodu je už jej účinok takmer nulový.
+
+V prípade kapacity nulovej diody je situácia opačná. I tu je však celkový vplyv menší, než u napäťovo nezávislej kapacity (pre ilustráciu je možné porovnať obrázky vypínacích priebehov ovplyvnených napäťovo nezávislou kapacitou a napäťovo závislou podľa (\ref{eq:C(U)=C0.1/sqrt(1+U)}) s rovnakou hodnotou $C_0$ - Obr. \ref{fig:sim_C5} a Obr. \ref{fig:sim_C5nelin}.
+
+Prakticky znateľne výraznejším sa ukazuje byť vplyv kapacity záťaže, a ten je pri meraniach možné obmedziť.
+
+
+

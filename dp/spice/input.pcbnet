@@ -1,0 +1,11 @@
+ext15       Va_1-ext3   
+nepar       Va_1-v.p   L_1-l.2   
+int13       R1-1   Va_1-v.m   
+int12       C_6-c.2   L_4-l.1   my_patocka::_Rd_concrete_1-A   
+nc          L_2-l.1   L_3-l.2   
+int5        C_6-c.1   I_1-i.p   V_1-v.p   my_patocka::_Rd_concrete_1-K   \
+              C_5-c.1   
+int11       C_4-c.1   C_3-c.1   I_1-i.m   L_4-l.2   L_3-l.1   C_5-c.2   
+int8        C_4-c.2   C_1-c.1   L_2-l.2   Rce_1-C   C_2-c.1   
+ne          Rce_1-E   L_1-l.1   C_2-c.2   
+0           C_3-c.2   C_1-c.2   R1-2   V_1-v.m   

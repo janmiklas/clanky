@@ -1,0 +1,56 @@
+\part*{Appendix}
+\section{Current Transformer Design Guidelines (double-pulse)}
+\begin{itemize}
+    \item Current transformer is unable to transfer continuous current, nor will be optimal for universal use, however the correct design yields an excellent yet inexpensive current sensor for \textit{high frequency} double-pulse test
+	\newpage
+    \item \textbf{Task:}
+	\begin{itemize}
+	    \item sum of on-times: $T_{max} = T_{on,1}+T_{on_2}$
+	    \item max. current: $I_{max} = i(T_{max})$
+	    \item DC-bus voltage: $V_{DC}$
+	    \item ferrite core cross-sectional area: $A$
+	    \item max. flux density (ferrite core): $B_{max}$
+	    \item secondary turns: $N_2 = ?$
+	\end{itemize}
+\end{itemize}
+
+\myfig{tr_model}{Current transformer equivalent circuit.}{tr_model}
+
+Magnetic flux linkage:
+\begin{equation}
+    \Psi_2(t) = \overbrace{\Psi_0}^{=0} + \int v_2(t) \dif t
+    \label{eq:Psi2}
+\end{equation}
+
+\begin{equation}
+    \Psi_2 = N_2 B A
+    \label{eq:Psi2=N2.B.A}
+\end{equation}
+
+\begin{equation}
+    v_2(t) = \overbrace{R_2}^{R_{Cu}+R_{shunt}} \cdot i_2(t) = R_2 \cdot \frac{V_{DC}}{L_{coil}}\cdot t
+    \label{eq:v2=R2.i2}
+\end{equation}
+$L_{coil}$ - double-pulse tester load coil.
+
+Substituting (\ref{eq:v2=R2.i2}) into (\ref{eq:Psi2}) and combining with (\ref{eq:Psi2=N2.B.A}) yields:
+\begin{equation}
+    \Psi_{2,max} = \frac{R_2 V_{DC} T_{max}^2}{2 L_{coil} B_{max} N_2} = N_2 B_{max} A
+    \label{eq:Psi2max}
+\end{equation}
+
+\begin{equation}
+    \boxed{N_2 \geq \sqrt{\frac{V_{DC} T_{max}^2 R_2}{2 L_{coil} B_{max}A}}}
+    \label{eq:N2}
+\end{equation}
+\textbf{note:}
+\begin{itemize}
+    \item $R_2 ++ \rightarrow$ limited by $B_{max}$
+    \item $R_2 -- \rightarrow$ limited by shunt parasitic inductance impact
+\end{itemize}
+
+\textbf{Resulting transformation ratio:}
+\begin{equation}
+    v_{out} = R_{shunt} \cdot \frac{i_1}{N_2} \implies \boxed{\frac{v_{out}}{i_1}\left[ \frac{V}{A} \right] = \frac{R_{shunt}}{N_2}}
+    \label{eq:tr_ratio}
+\end{equation}

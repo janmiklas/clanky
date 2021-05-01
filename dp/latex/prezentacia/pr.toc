@@ -1,0 +1,13 @@
+\select@language {slovak}
+\contentsline {section}{\numberline {1}Vyt\IeC {\'y}\IeC {\v c}en\IeC {\'e} ciele}{3}{section.1}
+\contentsline {section}{\numberline {2}Meranie}{4}{section.2}
+\contentsline {subsection}{\numberline {2.1}Met\IeC {\'o}da - double-shot}{4}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Meracie pracovisko}{5}{subsection.2.2}
+\contentsline {section}{\numberline {3}Model $g_{CE}(t)$}{6}{section.3}
+\contentsline {subsection}{\numberline {3.1}Aproxim\IeC {\'a}cia $g_{CE}(t)$ analytickou funkciou}{7}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Vplyv parazitn\IeC {\'y}ch prvkov - induk\IeC {\v c}nos\IeC {\v t}}{8}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Vplyv parazitn\IeC {\'y}ch prvkov - kapacita}{9}{subsection.3.3}
+\contentsline {section}{\numberline {4}V\IeC {\'y}sledky meran\IeC {\'\i } a simul\IeC {\'a}cii}{10}{section.4}
+\contentsline {section}{Z\IeC {\'a}ver}{18}{section*.10}
+\contentsline {section}{\numberline {A}Obvodov\IeC {\'a} sch\IeC {\'e}ma budi\IeC {\v c}a v\IeC {\'y}konov\IeC {\'y}ch tranzistorov}{20}{appendix.A}
+\contentsline {section}{\numberline {B}Obvodov\IeC {\'a} sch\IeC {\'e}ma budi\IeC {\v c}a gener\IeC {\'a}tora impulzov}{21}{appendix.B}

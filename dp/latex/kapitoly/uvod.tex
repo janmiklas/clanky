@@ -1,0 +1,16 @@
+\chapter*{Úvod} \label{ch:uvod} \addcontentsline{toc}{chapter}{Úvod}
+\markboth{\MakeUppercase{Úvod}}{\MakeUppercase{Úvod}} % aby to aj v hlavicke strany pisalo uvod a nie nieco predchadzajuce, napr. zoznam obrazkov
+
+
+\lettrine{S}{pínacie} straty tvoria podstatnú časť celkových strát v spínacích polovodičových prvkoch pracujúcich pri vysokých frekvenciách. Ich analýza je preto prirodzene potrebná z hľadiska aplikačného ako aj pri vývoji súčiastok.
+
+Analytické dynamické modely tranzistorov používané v bežných obvodových simuláciách, či už na základe \uv{charge control} prístupu (BJT, \cite{gummel-poon}, \cite{pierret}) alebo iné nie je možné použiť pre výkonové spínacie tranzistory. Behom spínania totiž prechádza tranzistor viacerými odlišnými režimami, ktorých hranice navyše nie sú ostro určené (podrobnejšie popisované napr. v \cite{baliga}), nehovoriac o skutočnej priestorovej komplexnosti polovodičových štruktúr oproti základným analytickým predstavám.
+
+Pre jednotlivé typy spínacích tranzistorov existujú pomerne dôveryhodné ekvivalentné modely, ako napr. známy Hefnerov model \cite{hefner} IGBT tranzistora, ich použitie resp. zostavenie je však nie celkom priamočiare, čo môže byť zvlášť pre aplikačných inžinierov, ktorých zameraním nie sú obvodové simulácie či charakterizácia súčiastok, faktorom rozhodujúcim o samotnom použití alebo nepoužití simulátora.
+
+Vedúci tejto práce so spolupracovníkmi \cite{valsa-patocka-petru} navrhli v časoch bipolárnych tranzistorov jednoduchú analýzu zmeraných spínacích priebehov pomocou predstavy časovo premennej vodivosti tranzistora $g_{CE}$. Táto predstava je natoľko základná, že nie je obmedzená na jeden konkrétny typ súčiastky, ale dá sa použiť (snáď s istými upresneniami) pre ľubovoľnú spínaciu súčiastku, teda aj moderné rýchle unipolárne tranzistory.
+
+Konkrétnym spracovaním zmeraných priebehov a priebehu vodivosti $g_{CE}$ sa venuje podstatná časť tejto práce.
+
+Samotné hodnoverné meranie prepínacích strát sa ostáva pri trende čoraz extrémnejších parametrov (rýchlosť, veľkosť prúdu) stále technickou výzvou.
+Cieľom diplomovej práce je zostavenie meracieho pracoviska, hodnoverné zmeranie spínacích priebehov vybraných súčiastok a následné vytvorenie jednoduchého, ale široko platného simulačného modelu spínacích dejov konkrétnych súčiastok.

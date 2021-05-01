@@ -1,0 +1,146 @@
+\chapter{Obvodové schémy, zoznam súčiastok a DPS} \label{ch:priloha_schemy}
+
+\newpage
+\section{Budič výkonových tranzistorov} \label{sec:append_budic}
+
+\hspace{-1.8cm}\includegraphics[width=1.2\textwidth]{schema_budic2}
+
+
+\subsection{DPS}
+DPS a rozmiestnenie súčiastok(1:1). Zľava: top assembly, bottom, bottom assembly:\vspace{0pt}
+
+\includegraphics{pcb_budic_top_ass}
+\includegraphics{pcb_budic_bot}
+\includegraphics{pcb_budic_bot_ass}
+
+\newpage
+\subsection{Zoznam súčiastok}
+\small
+\begin{verbatim}
+
+refdes   device                    footprint                     value    
+
+C1       POLARIZED_CAPACITOR       NICHICON_WT_CAP_6p3_7p7       10u/25V
+C2       POLARIZED_CAPACITOR       NICHICON_WT_CAP_6p3_7p7       47u/15V
+C3       CAPACITOR                 1206.fp                       22u
+C4       CAPACITOR                 1206.fp                       22u
+C5       CAPACITOR                 1206.fp                       22u
+C6       CAPACITOR                 1206.fp                       22u
+C7       CAPACITOR                 1206.fp                       22u
+C8       POLARIZED_CAPACITOR       RCY250P                       1mF/25V
+C9       POLARIZED_CAPACITOR       RCY250P                       1mF/25V
+D1       DIODE                     minimelf                      1N4148
+D2       DIODE                     minimelf                      1N4148
+Das1     DIODE                     DIODE_LAY 800.fp              [1000V]
+J1       JUMPER                    JUMPER2.fp                             
+J2       JUMPER                    JUMPER2.fp                             
+Q1       NPN_TRANSISTOR            TO126W.fp                     BD439    
+Q2       PNP_TRANSISTOR            TO92.fp                       BC640    
+Q3       PNP_TRANSISTOR            TO92.fp                       BC640    
+Q4       NPN_TRANSISTOR            TO126W.fp                     BD439    
+R1       RESISTOR                  1206.fp                       3k3      
+R2       RESISTOR                  1206.fp                       220      
+R3       RESISTOR                  1206.fp                       33       
+R4       RESISTOR                  1206.fp                       33       
+R5       RESISTOR                  ACY400                        "4R7/4W"          
+R6       RESISTOR                  1206.fp                       1k       
+R7       RESISTOR                  ACY300                        "2k2/0.5W"        
+R8       RESISTOR                  1206.fp                       150
+R9       RESISTOR                                                680
+R10      RESISTOR                  0.125W_Carbon_Resistor                 
+R11      RESISTOR                  0.125W_Carbon_Resistor                 
+R12      RESISTOR                  1206.fp                       22k      
+U1       7805                      TO220W.fp                              
+U2       fiber_optic_receiver                                    2521     
+U3       fiber_optic_transmitter                                 1521     
+\end{verbatim}
+\normalsize
+\newpage
+\section{Napájací obvod budiča} \label{sec:append_nap}
+\includegraphics[width=.8\textwidth]{schema_nap}
+
+\subsection{DPS}
+DPS a rozmiestnenie súčiastok. Zľava: top assembly, bottom, bottom assembly:\vspace{5pt}
+
+\includegraphics{pcb_nap_top_ass}
+\includegraphics{pcb_nap_bot}
+\includegraphics{pcb_nap_bot_ass}
+
+\newpage
+\subsection{Zoznam súčiastok}
+\small
+\hspace{2cm}
+\begin{verbatim}
+refdes   device                         footprint            value    
+
+C1       POLARIZED_CAPACITOR            RCY250P              1mF/25V
+C2       POLARIZED_CAPACITOR            RCY250P              1mF/25V
+C3       CAPACITOR                      1206                 22u      
+C4       CAPACITOR                      1206                 22u      
+C5       POLARIZED_CAPACITOR            RCY250P              1mF/25V
+C6       POLARIZED_CAPACITOR            RCY250P              1mF/25V
+C7       CAPACITOR                      1206                 22u      
+C8       CAPACITOR                      1206                 22u      
+D1       DIODE                          melf                 1N4007   
+D2       DIODE                          melf                 1N4007   
+D3       DIODE                          melf                 1N4007   
+D4       DIODE                          melf                 1N4007   
+R1       RESISTOR                       1206                 240      
+R2       RESISTOR                       1206                 1k5      
+R3       VARIABLE_RESISTOR              trimmer_lezaty_5mm   1k2      
+R4       RESISTOR                       1206                 240      
+R5       RESISTOR                       1206                 500      
+R6       VARIABLE_RESISTOR              trimmer_lezaty_5mm   2k2      
+U1       adjustable_voltage_regulator   TO220W               LM317    
+U2       adjustable_voltage_regulator   TO220W               LM337    
+\end{verbatim}
+\normalsize
+
+
+
+
+\newpage
+\section{Generátor impulzov} \label{sec:append_gen}
+
+\subsection{Schéma zapojenia}
+\hspace{-1.0cm}\includegraphics[width=1.25\textwidth]{schema_gen}
+
+\newpage
+\subsection{DPS}
+DPS a rozmiestnenie súčiastok (1:1). Zľava: top assembly, bottom:\vspace{5pt}
+
+\includegraphics{pcb_gen_top_ass}
+\includegraphics{pcb_gen_bot}
+
+%\newpage
+%\subsection{Zoznam súčiastok}
+%\small
+%\hspace{2cm}
+%\begin{verbatim}
+%\end{verbatim}
+\normalsize
+
+
+
+\newpage
+\section{Medziobvod} \label{sec:append_medziobvod}
+
+\subsection{Schéma zapojenia}
+\vspace{10pt}
+\hspace{-1.0cm}\includegraphics[width=1.1\textwidth]{schema_medziobvod_90}
+
+\newpage
+\subsection{DPS}
+DPS a rozmiestnenie súčiastok (zmenšené). V poradí: top, bottom, bottom assembly:\vspace{5pt}
+\centering
+\includegraphics[width=\textwidth]{pcb_medziobvod_top}
+\includegraphics[width=\textwidth]{pcb_medziobvod_bot}
+\includegraphics[width=\textwidth]{pcb_medziobvod_bot_ass}
+
+%\newpage
+%\subsection{Zoznam súčiastok}
+%\small
+%\hspace{2cm}
+%\begin{verbatim}
+%\end{verbatim}
+\normalsize

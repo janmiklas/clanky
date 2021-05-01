@@ -1,0 +1,112 @@
+\chapter{Výsledky meraní a simulácie} \label{ch:vysledky}
+
+\section{Použité súčiastky a prístroje}
+
+Priebehy spínacích dejov boli zmerané na nasledovných spínacích súčiastkach:
+\begin{itemize}
+    \item BJT: BUX48A
+    \item IGBT: G50N60HS
+\end{itemize}
+V oboch prípadoch bola použitá nulová dioda typu
+\begin{itemize}
+    \item IDP45E60
+\end{itemize}
+
+V usporiadaní podľa Obr. \ref{fig:schema_pracovisko} bol na merania použitý batériovo napájaný 4-kanálový $500\un{MHz}$ osciloskop \textit{Agilent DSO6054A} (sériové číslo MY48200002).
+
+Bočník bol pre potlačenie vplyvu jeho parazitnej indukčnosti volený o veľkej hodnote $R_b = 1\un{\Omega}$, a takisto pre zníženie indukčnosti je konštruovaný tesným paralelným spojením 10 kusov SMD rezistorov.
+
+Bipolárny tranzistor bol budený v zapojení s indukčnosťou $8\un{\mu H}$ v sérii s prechodom báza-emitor. Jedná sa o odporučené zapojenie z hľadiska obmedzenia rozširovacieho javu.
+
+Tranzistor IGBT bol budený cez odpor $R_G = 5 \un{\Omega}$, čo je výrobcom odporučená katalógová hodnota. Odpor $R_G$ bol zapojený medzi emitorom (tj. meracou zemou) a zápornou budiacou svorkou, čím sa z neho stáva zároveň bočník snímajúci nabíjací prúd $i_G$.
+
+
+\newpage
+\section{Simulátor a model $g_{CE}$} \label{sec:simulator}
+
+V SPICE 3 (i skorších verziách) je možné definovať premenlivý odpor (\textit{behavioral resistor}), ako aj zdroje, syntaxou:
+\begin{verbatim}
+RXXXX n+ n- r = 'expression'
+\end{verbatim}
+kde \texttt{'expression'} je výraz závislý na konštantách alebo napätiach v obvodových uzloch (v novších verziách SPICE je možné použiť programom definované premenné ako čas, teplota a podobne; v prípade že simulátor takúto možnosť neposkytuje, je možné vytvoriť jednotkový kondenzátor nabíjaný jednotkovým prúdom - potom napätie na ňom zodpovedá času).
+
+V tejto práci je premenná vodivosť modelovaná podobným spôsobom - v prostredí \textit{Octave} sa vypočítajú parametre vodivosti a zapíše sa na disk súbor obsahujúci SPICE model časovo závislého zdroja napätia s napätím rovným $g_{CE}(t)$:
+\begin{verbatim}
+Bgce ngce 0 v = 'expression'
+\end{verbatim}
+kde \texttt{expression} je výraz (\ref{eq:krivka_subintervaly_gong1g2goff}) zapísaný pomocou SPICE syntaxe ternary operátora. Tento súbor je zahrnutý do simulačného netlistu pomocou príkazu \texttt{.include} a vodivosť je modelovaná premenlivým odporom:
+\begin{verbatim}
+Rce ne nc r = '1/v(ngce)'
+\end{verbatim}
+
+Príklad simulačného netlistu a zodpovedajúca obvodová schéma sú priložené v Dodatku \ref{ch:priloha_sim}.
+
+\newpage
+\section{Zmerané priebehy BJT} \label{sec:vysl_BJT}
+
+\subsection{Vypínací dej}
+
+\myfigtex{obr/plots/bjt_300_10_off}{Vypínací dej BJT - $300\un{V}$, $10\un{A}$}{\label{fig:plot_bjt_300_10_off}}
+\myfigtex{obr/plots/sim_par_bezpar_bjt_300_10_off}{Detail simulácie vypínacieho deja BJT bez parazitných prvkov a s parazitnými prvkami.}{\label{fig:plot_bjt_300_10_off_detail}}
+\myfigtex{obr/schema_sim_par_R1C1L3}{Príklad zahrnutia pozorovaných parazitných vplyvov}{\label{fig:schema_sim_par_R1C1L3}}
+
+\myfigtex{obr/plots/bjt_300_08_off}{Vypínací dej BJT - $300\un{V}$, $8\un{A}$}{\label{fig:plot_bjt_300_10_off}}
+
+\myfigtex{obr/plots/bjt_300_06_off}{Vypínací dej BJT - $300\un{V}$, $6\un{A}$}{\label{fig:plot_bjt_300_10_off}}
+
+\myfigtex{obr/plots/bjt_300_04_off}{Vypínací dej BJT - $300\un{V}$, $4\un{A}$}{\label{fig:plot_bjt_300_10_off}}
+
+\FloatBarrier
+
+
+\subsection{Zapínací dej}
+
+Na Obr. \ref{fig:plot_bjt_300_10_on} sú uvedené zmerané priebehy zapínacieho deja. Rekonštruovaná vodivosť $g_{CE}(t)$ nespĺňa predpoklad hladkého priebehu. V počiatočnej fáze deja, v dobe prudkého nárastu prúdu je vodivosť evidentne znížená oproti hladkému pokračovaniu priebehu vo zvyšných fázach deja. Prvé vysvetlenie by viedlo k Obr. \ref{fig:sim_L2} v kapitole \ref{ch:parazity}. Indukčnosť spojov elektród deformuje merateľný priebeh zapínacieho deja práve spôsobom, kedy je v dobe veľkých hodnôt $\dxdt{i}{t}$ merané väčšie napätie, než je skutočné napätie na čipe (kde je v skutočnosti prítomný podkmit), čo sa prejaví na zmenšenej hodnote podielu meraných hodnôt $\frac{i_C}{u_{CE}}$. Je však jednoducho vyčísliteľné, že aby došlo k tak výraznému poklesu vodivosti (nemerateľnému podkmitu napätia), musela by byť indukčnosť prívodov v rádoch $\mu H$, čo s určitosťou nie je.
+
+Vysvetlením je skôr iný účinok tejto indukčnosti (a indukovaného napätia na nej). Keďže riadiaca zem budiča je k tranzistoru pripojená v na silový emitorový vývod, napätie indukované zmenou silového prúdu na úseku medzi bodom pripojenia a emitorom čipu má za následok stav, kedy je skutočné emitorové napätie na vyššej úrovni, ako riadiaca zem (tá ostane neovplyvnená, kým potenciál emitoru je zvýšený). Keďže budiaci obvod ostáva bez zmeny, medzi emitorom čipu a bázou je zmenšené napätie. To ale priviera tranzistor - čo sa prejaví jeho zmenšenou vodivosťou a následne tiež spomalením deja.
+
+\myfigtex{obr/plots/bjt_300_10_on}{Zapínací dej BJT - $300\un{V}$, $10\un{A}$}{\label{fig:plot_bjt_300_10_on}}
+
+\myfigtex{obr/plots/sim_par_bezpar_bjt_300_10_on}{Detail simulácie zapínacieho deja BJT bez parazitných prvkov a s parazitnými prvkami.}{\label{fig:plot_bjt_300_10_on_detail}}
+
+\myfigtex{obr/plots/bjt_zap_ube}{Priebehy zapínacieho deja vrátane bázového napätia s indukčným prekmitom v dobe veľkých hodnôt $\dxdt{i}{t}$.}{\label{fig:bjt_zap_ube}}
+
+
+%\myfigtex{obr/plots/bjt_300_08_on}{Zapínací dej BJT - $300\un{V}$, $8\un{A}$}{\label{fig:plot_bjt_300_10_on}}
+
+%\myfigtex{obr/plots/bjt_300_06_on}{Zapínací dej BJT - $300\un{V}$, $6\un{A}$}{\label{fig:plot_bjt_300_10_on}}
+
+%\myfigtex{obr/plots/bjt_300_04_on}{Zapínací dej BJT - $300\un{V}$, $4\un{A}$}{\label{fig:plot_bjt_300_10_on}}
+
+\subsection{(Ne)závislosť časového priebehu $g_{CE}(t)$ na napätí medziobvodu}
+\myfigtex{obr/plots/bjt_porov_300V_150V_off}{Priebehy vypínania pri rôznych hodnotách $U_d$. }{\label{fig:bjt_porov_300V_150V}}
+Merania na bipolárnom tranzistore (Obr. \ref{fig:bjt_porov_300V_150V} potvrdili, že časový priebeh $g_{CE}(t)$ a teda ani celková vypínacia doba sa s napätím nemení. Rozdielné doby $t_d$ a $t_f$ sú dané okamihom prepólovania nulovej diody.
+
+
+\subsection{Závislosť spínacích časov na prúde}
+
+Priebeh vodivosti a teda aj spínacích časov je závislý na vypínanom prúde (ako plynie aj zo stručnej analýzy v kapitole \ref{ch:gce}). Zmeraná závislosť vypínacieho času na veľkosti prúdu je vynesená graficky na Obr. \ref{fig:bjt_tfi}.
+
+\myfigtex{obr/plots/bjt_tfi}{Závislosť vypínacej doby na vypínanom prúde}{\label{fig:bjt_tfi}}
+
+
+\newpage
+\section{Zmerané piebehy IGBT} \label{sec:vysl_IGBT}
+
+Zmerané boli aj základné spínacie priebehy na tranzistore IGBT. 
+
+Zapínací (a v menej očividnej miere aj vypínací) dej je znovu ovplyvnený indukovaným napätím na parazitnej indukčnosti medzi riadiacim emitorom a emitorom čipu. 
+
+
+\myfigtex{obr/plots/igbt_300_40_1_off}{Vypínací dej IGBT - $300\un{V}$, $40\un{A}$, $R_G = 5 \un{\Omega}$.}{\label{fig:plot_igbt_300_40_1_off}}
+
+\myfigtex{obr/plots/igbt_300_40_1_on}{Zapínací dej IGBT - $300\un{V}$, $40\un{A}$, $R_G = 5 \un{\Omega}$.}{\label{fig:plot_igbt_300_40_1_on}}
+
+Konkrétny tvar krivky $g_{CE}(t)$ na obrázkoch v počiatku vypínacieho resp. na konci zapínacieho deja nie celkom presne zodpovedá podielu $frac{i_C}{u_{CE}}$, avšak v týchto oblastiach je vplyv  konkrétneho tvaru krivky na výsledné priebehy malý. Plne tak postačuje aproximácia odvodená v kapitole \ref{ch:krivka}, i keď sú samozrejme možné aj iné, snáď výstižnejšie aproximácie.
+
+Podstatnou je však výstižnosť modelu. Jednou z možností jej overenia je aj zaradenie parazitných prvkov resp. odporu bočníka (ktorý popísaným spôsobom úbytkom skresľuje priebeh kolektorového napätia) do obvodu. Po zaradení odporu $1\un{\Omega}$, indukčnosti cca. $50\un{nH}$ (ako sa dá približne spočítať aj z veľkosti vypínacieho prekmitu) a kapacity cca $100\un{pF}$ do obvodu na Obr. \ref{fig:schema_sim_par_R1C1L3} dostaneme priebehy na Obr. \ref{fig:plot_igbt_300_40_1_off_par} a Obr. \ref{fig:plot_igbt_300_40_1_on_par}. Tie sú v dobrom súlade s meranými priebehmi (\uv{prekmit} prúdu pri zapínaní simulovaný nie je, pretože je použitá dioda s ideálnou charakteristikou).
+
+\myfigtex{obr/plots/igbt_300_40_1_off_par}{Vypínací dej IGBT - $300\un{V}$, $40\un{A}$, $R_G = 5 \un{\Omega}$.}{\label{fig:plot_igbt_300_40_1_off_par}}
+
+\myfigtex{obr/plots/igbt_300_40_1_on_par}{Zapínací dej IGBT - $300\un{V}$, $40\un{A}$, $R_G = 5 \un{\Omega}$.}{\label{fig:plot_igbt_300_40_1_on_par}}
+

@@ -1,0 +1,54 @@
+function ret = fill_columns(varargin)	% argumentmi su jednotlive struktury (wafre)
+	- vyplni hodnoty viacerych (lubovolny pocet) waferov (varargin) do jednej struktury ret s prvkami .wafer, .angle, .dose, .FSIenergy, .BSIanneal, .Eoff, .Eon,  .EoffmJ, .EonmJ, .Vpeak, .didt_on_Aus, .didt_off_Aus, .Toff, .Ton, .T12, .T23, .T34, .T45, .T56, .T67, .T78, .T89, .T910, .BV
+
+
+
+function iv_wafer_data = iv_read_wafer(str_wafer, str_vc, str_ic, Kic, Kvc)
+	- vracia strukturu s vektormi nameranych dat .vv, .ii, .tt
+	- vstupne argumenty:
+		str_wafer - (nutne) - retazec urcujuci spolocnu cast ASCII (.csv) suborov s nameranymi datami priebehov, napr."w21"
+		str_vc - (nutne) - retazec urcujuci unikatnu cast nazvu ASCII (.csv) suboru s nameranymi datami priebehu vc, napr. "Ch1"
+		str_ic - (nutne) - retazec urcujuci unikatnu cast nazvu ASCII (.csv) suboru s nameranymi datami priebehu ic, napr. "Ch2"
+		Kic - (volitelne) - konstanta (prevod) snimaca prudu, napr. prudoveho transf.; default Kic = 1
+		Kvc - (volitelne) - konstanta (prevod) snimaca prudu, napr. prudoveho transf.; default Kvc = 1; pokial chce byt pouzity tento argument, musi byt pouzity aj Kic
+
+
+
+function ret = trig_vc(vc, VCth1, VCth2)
+
+
+
+
+function ret = sorted_cells(data_cells, sorting_row)
+	- vracia cell vector (tj vektor s prvkami, ktore mozu byt roznej dlzky (poctom podprvkov)) s bunkami zoradenymi podla vybraneho vektora (riadku). Tento sorting_row musi byt vektor s jednoprkovymi prvkami, aby sa dali triedit, napr. data_cells.dose
+
+
+
+
+function ret = sorted_columns(data_columns, sorting_row)
+	- podobne ako sorted_cells, ale vstupom (aj vystupom) nie je cell vector, ale obycajny viacrozmerny vektor, ktory vyzaduje rovnaky pocet podprvkov
+
+
+
+function ret = sw_eval_wafer(measured, trigd_n)
+	- "analyzuje" namerane priebehy (tj. vystup niektorej z funkcii sw_read...) na zaklade bodov vo vektore trigd_n (tj. vystup funkcie sw_trig_casy_off_on) a vracia vypocitane hodnoty: .Eoff, .Eon,  .EoffmJ, .EonmJ, .Vpeak, .didt_on_Aus, .didt_off_Aus, .Toff, .Ton, .T12, .T23, .T34, .T45, .T56, .T67, .T78, .T89, .T910
+
+
+
+function sw_wafer_data = sw_read_wafer(str_wafer, str_vg, str_vc, str_ic, Kic, Kvc)
+	- vracia strukturu s vektormi nameranych dat .str_wafer, .t, .tus, .dt, .vg, .vc, .ic, .p, .en
+	- vyzaduje namerane ASCII (.csv) data vo forme samostatneho suboru pre kazdy merany kanal (vg, vc, ic)
+	- vstupne argumenty:
+		str_wafer - (nutne) - retazec urcujuci spolocnu cast ASCII (.csv) suborov s nameranymi datami priebehov, napr."w21"
+		str_vg - (nutne) - retazec urcujuci unikatnu cast nazvu ASCII (.csv) suboru s nameranymi datami priebehu vg, napr. "Ch2"
+		str_vc - (nutne) - retazec urcujuci unikatnu cast nazvu ASCII (.csv) suboru s nameranymi datami priebehu vc, napr. "Ch3"
+		str_ic - (nutne) - retazec urcujuci unikatnu cast nazvu ASCII (.csv) suboru s nameranymi datami priebehu ic, napr. "Ch4"
+		Kic - (volitelne) - konstanta (prevod) snimaca prudu, napr. prudoveho transf.; default Kic = 1
+		Kvc - (volitelne) - konstanta (prevod) snimaca prudu, napr. prudoveho transf.; default Kvc = 1; pokial chce byt pouzity tento argument, musi byt pouzity aj Kic
+
+
+
+
+
+function ret = sw_trig_casy_off_on(measured, Vdc, Il, Vdrvpos, Vdrvneg)
+	- vratcia vektory (pocet zodpovedajuci poctu priebehov/merani ulozenych v strukture .measured) s desiatimi bodmi zodpovedajucimi na casovej osi casom t1, t2, ..., t10 podla definicie v prezentacii

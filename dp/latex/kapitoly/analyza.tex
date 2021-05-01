@@ -1,0 +1,52 @@
+\section{Stručná analýza spínacích dejov v tranzistoroch} \label{sec:analyza}
+
+
+
+Bez toho, aby sme zachádzali do zdĺhavej kvantitatívnej analýzy fyzikálnych dejov v tranzistore je možné aspoň v základných črtách naznačiť charakter týchto dejov.
+
+\subsection{Bipolárny tranzistor}
+
+Vo vysokonapäťových súčiastkach je nutné na udržanie záverného napätia (vyprázdnenou oblasťou prechodu) konštruovať slabo dotovanú tzv. driftovú oblasť. Býva dotovaná prímesami typu N, oblasť typu P je optimalizovaná naopak pre dobré vedenie prúdu v zapnutom stave.
+Zjednodušená jednorozmerná štruktúra tranzistora (reálne podobná prierezu pod emitorom) je na Obr. \ref{fig:BJT_struktura_1D}.
+
+\myfigtex{obr/BJT_struktura_1D}{Jednorozmerná štruktúra výkonového BJT.}{\label{fig:BJT_struktura_1D}}
+
+V dôsledku odporu N-drift vrstvy vzniká vo výstupných charakteristikách tzv. kvázi-saturačná oblasť - Obr. \ref{fig:BJT_iv}, ktorá znázorňuje zvýšený úbytok $U_{CE,sat}$ v zapnutom stave.
+
+\myfigtex{obr/BJT_iv}{Výstupné charakteristiky výkonového BJT.}{\label{fig:BJT_iv}}
+
+%\subsection{Zapnutý stav - saturačná oblasť}
+
+Tranzistor pracuje v saturačnej oblasti v situácii, keď oba prechody, báza-emitor aj báza-kolektor, sú pólované priepustne. Prúdové zosilenie tranzistora je menšie než v aktívnej oblasti (\textit{forward-active mode}). Kolektorový prúd je totiž určený difúziou elektrónov v oblasti bázy, pričom difúzia akéhokoľvek druhu je úmerná zmene koncentrácie na jednotku dĺžky, teda $\dxdt{n}{x}$. Priebeh koncentrácie nosičov v báze možno približne určiť superpozíciou koncentrácií v režime aktívnom (\textit{forward-active}) a inverznom aktívnom (\textit{reverse-active}), ktoré sa vyznačujú tým, že jeden z prechodov je v priepustnom a druhý v závernom stave (tj. s nulovou koncentráciou minoritných nosičov na rozhraní bázy a danej oblasti) - Obr. \ref{fig:BJT_sat_koncentracie_baza}. Výsledkom ich superpozície je síce väčšie množstvo náboja v báze, ale s menším gradientom, a na dosiahnutie rovnakého kolektorového prúdu je nutné tranzistor budiť väčším bázovým prúdom (prebudiť). 
+
+\myfigtex{obr/BJT_sat_koncentracie_baza}{Koncentrácia náboja v báze v saturačnom režime BJT ako superpozícia koncentrácii aktívneho a inverzného režimu. Označenia \uv{F} a \uv{R} znamenajú priepustné (\textit{forward}) a záverné (\textit{reverse}) pôlovanie daného prechodu.}{\label{fig:BJT_sat_koncentracie_baza}}
+
+Dôsledkom je však zároveň väčšia koncentrácia dier v oblasti kolektora, čím sa pri uvažovaní zachovania nábojovej neutrality zvyšuje vodivosť tejto oblasti (\textit{conductivity modulation}, \cite{shockley}) a znižuje napätie na hodnotu $U_{CE,sat}$.
+
+Z hľadiska zamerania tejto práce je dôležitý poznatok, že napätie $u_{CE}$ je určené podstatnou mierou vodivosťou kolektorovej oblasti, a tá je modulovateľná  injekciou dier.
+
+Medzi saturačným a aktívnym režimom je nutný prechodný stav, ktorému sa hovorí - ako bolo spomenuté - kvázi-saturačný režim, teda stav, kedy už dochádza k k modulácii vodivosti driftovej oblasti, ale šírka modulovanej oblasti je menšia než celá šírka oblasti. Pre ilustráciu týchto troch režimov sú na Obr. \ref{fig:BJT_koncentracie_vsetky_rezimy} zobrazené približné koncentrácie voľných nosičov v tranzistore v jednotlivých režimoch pri rovnakom kolektorovom prúde $I_C$. Odvodenie lineárneho priebehu koncentrácie v driftovej oblasti je možné (napr.\cite{lutz}), nejedná sa iba o odhad.
+
+\myfigtex{obr/BJT_koncentracie_vsetky_rezimy}{Tri režimy BJT pri rovnakom prúde $I_C$. Označenia \uv{F} a \uv{R} znamenajú priepustné (\textit{forward}) a záverné (\textit{reverse}) pôlovanie daného prechodu.}{\label{fig:BJT_koncentracie_vsetky_rezimy}}
+
+Hromadenie náboja v driftovej oblasti je pomerne zdĺhavé (čo zodpovedá \uv{priehybu} časového priebehu vodivosti $g_{CE}$ a teda spomaleniu prudkosti zapínacieho deja v jeho konečnej fáze (trajektória pracovného bodu na Obr. \ref{fig:BJT_iv_indukc} vstupuje do kvázisaturačnej oblasti v záverečnej fáze deja) a podobne tak pomalé je i vyprázdňovanie náboja z oblasti pri vypínaní, čomu zodpovedá spomalenie prudkosti vypínacieho deja v jeho počiatočných fázach (aby bolo možné záverné pólovanie prechodu báza-kolektor, musí byť dosiahnutá koncentrácia nosičov na tomto prechode nulová).
+\myfigtex{obr/BJT_iv_indukc}{Trajektória pracovného bodu počas spínania indukčnej záťaže.}{\label{fig:BJT_iv_indukc}}
+
+Nakoľko je reč o minoritných dierach v oblasti kolektoru (typu N), je zrejmé, že hromadenie či vyprázdňovanie je hlavnou mierou určené dierovým prúdom bázy (typ P). Veľkosťou bázového prúdu je teda možné značne urýchliť spínacie deje. Podobným mechanizmom, ako hromadenie resp. odsávanie náboja z kolektorovej oblasti je nutné nahromadiť resp. vyprázdniť náboj (minoritné elektróny) aj z bázy; aj tu platí, že bázovým prúdom je možné dej značne urýchliť.
+
+V aktívnej oblast tranzistora je možná analýza pomocou \textit{charge control} princípov známych z analýzy signálových tranzistorov.
+
+V reálnej súčiastke a aplikácii je celá situácia komplikovanejšia. Geometria tranzistora je nie je zhodná s jednorozmerným modelom, skutočná šírka bázy sa počas dejov môže meniť, rekombinácia je prítomná aj v báze (i keď nie dominantná) atď. Nebude preto prekvapujúce, že v časovom priebehu vodivosti $g_{CE}$ nie sú rozoznateľné nejaké ostré zmeny, naopak bude pomerne presne aproximovateľná hladkou krivkou.
+
+
+
+\subsection{Unipolárne tranzistory}
+U unipolárnych súčiastkach je riadiaca elektróda oddelená od emitora (resp. \textit{source}) izolačnou vrstvou oxidu. Táto dielektrická vrstva spolu s vodivým hradlom a emitorom vytvára kapacitu $C_{GE}$ (resp. $C_{GS}$. Pre vytvorenie inverznej vrstvy (kanálu) v súčiastke - tj. pre zapnutie tranzistora - je nutné nabíť  kapacitu $C_{GS}$ na hodnotu prahového napätia (u výkonových tranzistorov okolo $5\un{V}$. Po vytvorení vodivého kanálu začne narastať prúd tranzistorom, v závislosti na ešte stále narastajúcom napätí $u_{GS}$. Prepočítavacím pomerom je transkonduktancia unipolárnej súčiastky. Po tom, ako prúd dosiahne plnú hodnotu prúdu záťaže, ostáva konštantný, a tak je (prepočítané cez transkonduktanciu) konštantné aj napätie $u_{GS}$ - vzniká typické plató v priebehu $u_{GS}$. Ďalšia prítomná kapacita - $C_{GD}$ je vybíjaná prúdom do hradla a tým klesá aj napätie $u_{DS}$ (napätie $u_{GS}$ je v tejto fáze konštantné, čo značí, že do kapacity $C_{GS}$ už nevteká nijaký prúd). Napätie $u_{GS}$ sa nakoniec ustáli na hodnote kladného budiaceho napätia (obe kapacity sa nabijú na ustálené hodnoty).
+
+Veľmi obdobne prebieha tiež vypínací dej.
+
+Z popisu je zrejmé, že rýchlosť  spínacích dejov (a teda tvar časového priebehu vodivosti $g_{CE}$) je silne závislá na veľkosti nabíjacieho odporu $R_G$. 
+
+U unipolárnych tranzistorov (MOSFET) nedochádza k nijakému hromadeniu náboja alebo rekombinácii, preto sú tieto súčiastky omnoho rýchlejšie, než bipolárne (avšak za cenu, že v nutne prítomnej driftovej oblasti nie je možné modulovať vodivosť injektovaním minoritných nosičov - charakteristika tranzistoru MOSFET v zapnutom stave je $R_{DS,on}$, a nie saturačné napätie nezávislé na prúde).
+
+Spínacie deje v tranzistoroch IGBT sú kombináciou unipolárnych (rýchle otvorenie kanálu) a bipolárnych dejov (pomalé hromadenie resp. rekombinácia minoritných nosičov (nie je tu prítomný ani odsávací bázový prúd)). Prakticky je možnosť ovplyvniť rýchlosť spínania IGBT jedine veľkosťou nabíjacieho prúdu $R_G$.

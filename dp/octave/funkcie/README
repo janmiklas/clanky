@@ -1,0 +1,6 @@
+funkcie:
+
+
+read_all(Kvc, Kic, Kvb, Kib, file_vc, file_ic, file_vb, file_ib)
+	retval: [t, vc, ic, vb, ib]
+

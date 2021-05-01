@@ -1,0 +1,719 @@
+%!PS-Adobe-3.0 EPSF-3.0
+%%Title: double_shot.ps
+%%Creator: XCircuit v3.8 rev78
+%%CreationDate: Tue Apr 19 19:02:48 2016
+%%Pages: 1
+%%BoundingBox: 68 68 989 793
+%%DocumentNeededResources: font Helvetica Times-Roman Symbol 
+%%EndComments
+%%BeginProlog
+%
+%  PostScript prolog for output from xcircuit
+%  Version: 3.8
+%
+%  Electrical circuit (and otherwise general) drawing program
+%
+%  Written by Tim Edwards 8/5/93--11/1/10  (tim.edwards@multigig.com)
+%  The Johns Hopkins University (1993-2004)
+%  MultiGiG, Inc. (2004-2012)
+%
+%%BeginResource: procset XCIRCproc 3.8 0
+%
+% supporting definitions --- these are the primary xcircuit types.
+
+/XCIRCsave save def
+/topmat matrix currentmatrix def
+
+/fontslant { /slant exch def [1 0 slant 1 0 0] 
+    exch findfont exch makefont dup length dict /ndict exch def
+    { 1 index /FID ne { ndict 3 1 roll put } { pop pop } ifelse } forall
+    ndict definefont pop} def
+/ul { dup type /stringtype eq showflag 1 eq and { gsave 
+   currentpoint topmat setmatrix 0 0 moveto 2 index stringwidth pop (_)
+   false charpath flattenpath pathbbox grestore exch pop 1 index
+   sub setlinewidth exch pop currentpoint 3 -1 roll add moveto 0
+   rlineto stroke moveto } if } def
+/ol { dup type /stringtype eq showflag 1 eq and { gsave gsave
+   currentpoint topmat setmatrix 2 index stringwidth pop 3 index
+   true charpath flattenpath pathbbox grestore exch pop
+   exch pop topmat setmatrix (_) true charpath pathbbox grestore
+   exch pop 1 index sub setlinewidth exch pop currentpoint
+   exch 4 1 roll exch sub add moveto pop 0 rlineto stroke
+   moveto } if } def
+/stW { gsave currentpoint newpath moveto true charpath flattenpath
+	pathbbox pop exch pop sub grestore } def
+/Ts {mark Tabs aload pop counttomark 1 add array astore /Tabs exch def Tabs
+	0 currentpoint pop put} def
+/Tbn {mark Tabs aload pop counttomark dup 2 add 1 roll cleartomark 1 sub} def
+/Tb { 0 1 Tbn {Tabs exch get dup currentpoint pop lt
+	{currentpoint exch pop moveto exit} {pop} ifelse } for } def
+/Tf { Tbn -1 0 {Tabs exch get dup currentpoint pop gt
+	{currentpoint exch pop moveto exit} {pop} ifelse } for } def
+/qS { (aa) stW (a a) stW sub 4 div 0 Kn } def
+/hS { qS qS } def
+/pspc 0 def
+/cf0 { scalefont setfont } bind def
+/Kn { dup kY add /kY exch def rmoveto } bind def
+/ss { /fscale fscale 0.67 mul def currentfont 0.67 cf0 0 fscale0 fscale mul
+	0.33 mul neg Kn} def
+/Ss { /fscale fscale 0.67 mul def currentfont 0.67 cf0 0 fscale0 fscale mul
+	0.67 mul Kn } def
+/ns { 0 kY neg Kn /kY 0 def /fscale 1.0 def xfont0 1.0 cf0 } def
+/MR { /twidth exch def } def
+/CR { ns 0 /Bline Bline fscale0 neg add def Bline moveto } def
+/cf { dup type /realtype ne {1.0} if exch findfont exch kY 0 eq
+	{ 40 mul dup /fscale0 exch def cf0 /xfont0 currentfont def}
+	{fscale0 mul fscale mul cf0} ifelse } def
+/ctmk { counttomark dup 2 add -1 roll pop } bind def
+/label { gsave translate 0 0 moveto dup scale neg
+	/rotval exch def /twidth 100000 def /just exch def just 384 and
+	0 gt {/mshow {pop} def} {/mshow {show} def} ifelse just 16 and 0
+	gt {gsave rotval rotate 0 1 dtransform gsave pagemat setmatrix
+	idtransform exch grestore 1 0 dtransform gsave pagemat setmatrix
+	idtransform exch grestore dup abs 1e-9 lt {pop mul 0 gt} {3 1 roll
+	pop pop 0 lt} ifelse grestore {-1 /rotval rotval neg def /just just
+	dup 3 and 1 ne {3 xor} if def} {1} ifelse exch -1e-9 lt {-1 /rotval
+	rotval neg def /just just dup 12 and 4 ne {12 xor} if def} {1}
+	ifelse scale } if /showflag 0 def /fspc pspc def /Bline 0 def /Tabs
+	0 array def /fscale 1.0 def /kY 0 def gsave dup 1 add copy dup
+	1 0 dtransform exch atan rotate {exch dup type /stringtype eq {gsave
+        dup gsave newpath 0 0 moveto true charpath flattenpath pathbbox pop
+	exch pop exch pop grestore currentpoint pop add twidth
+	ge {grestore CR exch 1 add dup 2 add {CR} exch 1 roll exch} {grestore}
+	ifelse true charpath flattenpath} {dup type /arraytype eq {exec} {12
+	string cvs true charpath flattenpath} ifelse} ifelse} repeat exch pop
+	pathbbox grestore 3 -1 roll pop 3 1 roll just 1 and 0 gt {just 2 and
+	0 gt {exch pop neg fspc sub} {exch sub 0.5 mul neg} ifelse} {pop neg
+	fspc add} ifelse exch Bline exch just 4 and 0 gt {just 8 and 0 gt
+	{exch pop neg fspc sub} {add 0.5 mul neg} ifelse} {pop neg fspc add}
+	ifelse rotval rotate Kn currentpoint translate /showflag 1 def /Bline
+	0 def /Tabs 0 array def /fscale 1.0 def /kY 0 def {dup type
+	/stringtype eq {mshow} {dup type /arraytype eq {exec} {12 string cvs
+	mshow} ifelse} ifelse} repeat grestore endclip} def
+/pinlabel { 4 index 32 and 0 ne hlevel 0 eq or { /pspc 10 def label
+	/pspc 0 def } { pop pop pop pop pop {pop} repeat } ifelse } def
+/pinglobal { pinlabel } def
+/infolabel { pinlabel } def
+/graphic { gsave 4 index cvx exec /DataSource get resetfile translate 0 0
+	moveto neg rotate dup scale cvx exec image grestore endclip} def
+
+/scb { setrgbcolor } bind def  /sce { defColor aload pop scb } bind def
+/cRedef {/defColor currentcolor 3 array astore def} def
+/begingate {dup type /dicttype ne {1 dict} if begin	% default params
+	dup type /dicttype ne {1 dict} if begin		% instanced params
+	/hlevel hlevel 1 add def /defColor currentcolor sce 3 array astore
+	def gsave sce translate 0 0 moveto neg rotate dup type /nametype
+	eq not { dup abs currentlinewidth exch div setlinewidth } { pop }
+	ifelse dup abs scale clipped 1 and 1 eq {/clipped clipped 1 add def}
+	if} bind def
+/endgate { /hlevel hlevel 1 sub def grestore defColor aload pop cRedef
+	scb end end endclip} bind def
+
+/hlevel 0 def
+/endclip {clipped 1 and 1 eq {grestore /clipped clipped 1 sub def} if} def
+/tmpa [1 0 0 1 0 0] def
+/gar {8 8 true tmpa {<c0 c0 00 00 0c 0c 00 00>} imagemask} bind
+{8 8 true tmpa {<30 70 60 02 03 07 06 20>} imagemask} bind
+{8 8 true tmpa {<0c 1e 1e 0c c0 e1 e1 c0>} imagemask} bind
+{8 8 true tmpa {<0f 0f 0f 0f f0 f0 f0 f0>} imagemask} bind
+{8 8 true tmpa {<3f f3 e1 e1 f3 3f 1e 1e>} imagemask} bind
+{8 8 true tmpa {<df cf 8f 9f fd fc f8 f9>} imagemask} bind
+{8 8 true tmpa {<ff 3f 3f ff ff f3 f3 ff>} imagemask} bind 7 array astore def
+/ppaint { gsave clip tmpa dup setmatrix pathbbox neg exch neg 4 2 roll
+  neg 4 -1 roll 2 copy gt {exch} if 8 div ceiling 8 mul 4 2 roll neg 2 copy
+  gt {exch} if 8 div ceiling 8 mul 3 -1 roll -8 5 -1 roll
+  { 3 index exch 5 exch put dup -8 3 index { 3 index
+  exch 4 exch put 3 index exec } for } for pop pop pop pop grestore } bind def
+/setstyles {
+  currentlinewidth mul setlinewidth /style exch def style 2048 and 0 gt
+  clipped 1 and 0 eq and {clip newpath /clipped clipped 1 add def} {
+  style 1 and 0 gt not {closepath} if
+  style 1024 and 0 gt {2 setlinecap 0 setlinejoin} if
+  style 2 and 0 gt {currentlinewidth 4 mul dup 2 array astore 0 setdash} if
+  style 4 and 0 gt {0.5 currentlinewidth 4 mul 2 array astore 0 setdash} if
+  gsave style 16 and 0 gt { style 224 and -5 bitshift style 256 and 0 gt {
+  7 exch sub 8 div dup 1 exch sub currentrgbcolor 3 array astore
+  {3 copy mul add 4 1 roll pop} forall pop pop setrgbcolor eofill}
+  {dup 7 lt {gar exch get ppaint} {pop eofill} ifelse} ifelse}
+  {style 256 and 0 gt {1 setgray eofill} if} ifelse grestore style 8 and 0 gt 
+  style 512 eq or {newpath} {stroke} ifelse grestore endclip} ifelse} def     
+
+/addtoy {exch dup dup 2 mul 3 add 1 roll -1 1 { 4 1 roll dup 4 1 roll add
+	4 -1 roll 2 mul 1 add index 2 mul 2 add 2 roll} for pop} def
+/addtoy1 {1 exch addtoy pop} def
+/addtoy3 {3 exch addtoy pop} def
+/addtoy4 {4 exch addtoy pop} def
+/addtox {exch dup dup 2 mul 3 add 1 roll -1 1 { 4 1 roll dup 4 1 roll 3 -1 roll
+	add exch 4 -1 roll 2 mul 1 add index 2 mul 2 add 2 roll} for pop} def
+/addtox1 {1 exch addtox pop} def
+/addtox3 {3 exch addtox pop} def
+/addtox4 {4 exch addtox pop} def
+/polygon { gsave /num exch def moveto num 1 sub {lineto} repeat setstyles } def
+/xcarc   { gsave newpath arc setstyles } def
+/elb { matrix currentmatrix 7 -1 roll 7 -1 roll translate 5 1 roll 4 -1 roll
+	3 index div 1 scale } def
+/ele { 0 4 1 roll 0 4 1 roll } bind def
+/ellipse { gsave elb newpath ele arc setmatrix setstyles } def
+/pellip  { elb ele arc setmatrix } def
+/nellip  { elb ele arcn setmatrix } def
+/spline  { gsave moveto curveto setstyles } def
+/polyc   { {lineto} repeat } bind def
+/beginpath { gsave moveto } bind def
+/endpath { setstyles } bind def
+/bop	 { 1 setlinecap 2 setlinejoin 6 setmiterlimit 0 0 0 scb cRedef
+	/clipped 0 def} def
+/psinsertion {/PSobj save def /showpage {} def /setpagedevice {pop} def bop
+	rotate translate dup scale} def
+/end_insert {PSobj restore} def
+/setpagemat {/pagemat matrix currentmatrix def} def
+/inchscale  {setpagemat 0.375 mul dup scale} def
+/cmscale    {setpagemat 0.35433071 mul dup scale} def
+
+%%EndResource
+%%EndProlog
+
+% XCircuit output starts here.
+
+%%BeginSetup
+
+/::my_Resistor {
+<</@class (R) /@value (10k) /@units () /@index (?) /p_jst 20 /p_rot 0 /p_xps 32 /p_yps 
+-16 /p_xps1 32 /p_yps1 16 >> begingate
+1 1.000 0 64 0 36 2 polygon
+1 1.000 0 -64 0 -36 2 polygon
+1 1.000 0 -36 14 -30 -14 -18 14 -6 -14 6 14 18 -14 30 0 36 8 polygon
+1.000 0.000 0.000 scb
+(1) {/Times-Roman cf} 2 9 0 1.000 0 64 pinlabel
+(2) {/Times-Roman cf} 2 13 0 1.000 0 -64 pinlabel
+0.180 0.545 0.341 scb
+mark @units @value ( %p1 %p2 ) @index @class (spice:) {/Times-Roman cf} ctmk 4 
+0 1.000 -208 -160 infolabel
+mark @index @class (pcb:) {/Times-Roman cf} ctmk 20 0 1.000 -208 -256 infolabel
+(sim:r %p1 %p2) {/Times-Roman cf} 2 4 0 1.000 -208 -208 infolabel
+0.647 0.165 0.165 scb
+mark {/Symbol cf} @units {hS} @value {/Helvetica cf} ctmk p_jst p_rot 0.700 
+p_xps p_yps label
+0.000 0.000 1.000 scb
+mark @index @class {/Helvetica cf} ctmk p_jst p_rot 0.700 p_xps1 p_yps1 label
+endgate
+} def
+
+/::invert_my {
+<</@class (U) /@index (?) /@value (40106) /@pkg (DIP14) /@vss (GND) /@vdd (VDD) /@part 
+(1) /@pin_in (1) /@pin_out (2) >> begingate
+0 1.000 -32 -40 -32 40 40 0 3 polygon
+1 1.000 48 0 8 0.000 360.000 xcarc
+1 1.000 -32 0 -48 0 2 polygon
+1 1.000 56 0 64 0 2 polygon
+1.000 0.000 0.000 scb
+mark @pin_out {/Helvetica cf} ctmk 32 0 0.700 64 0 pinlabel
+mark @pin_in {/Helvetica cf} ctmk 35 0 0.700 -48 0 pinlabel
+0.000 0.000 1.000 scb
+mark @index @class {/Helvetica cf} ctmk 48 0 0.700 -16 64 label
+sce
+mark @part (-) @value {/Helvetica cf} ctmk 48 0 0.500 -16 32 label
+0.180 0.545 0.341 scb
+mark @vss ( 7=) @vdd ( 14=) @index @class (pcb:) {/Helvetica cf} ctmk 16 0 
+0.700 -48 -64 infolabel
+sce
+1 1.000 -4 -12 -4 12 -20 12 3 polygon
+1 1.000 -12 12 -12 -12 4 -12 3 polygon
+endgate
+} def
+
+/::my_Resistor_variable {
+<</p_yps1 16 /p_xps1 32 /p_yps -16 /p_xps 32 /p_rot 0 /p_jst 20 /@index (?) /@units 
+() /@value (10k) /@class (R) >> begingate
+1 1.000 0 64 0 36 2 polygon
+1 1.000 0 -64 0 -36 2 polygon
+1 1.000 0 -36 14 -30 -14 -18 14 -6 -14 6 14 18 -14 30 0 36 8 polygon
+1.000 0.000 0.000 scb
+(1) {/Times-Roman cf} 2 9 0 1.000 0 64 pinlabel
+(3) {/Times-Roman cf} 2 13 0 1.000 0 -64 pinlabel
+0.180 0.545 0.341 scb
+mark @units @value ( %p1 %p2 ) @index @class (spice:) {/Times-Roman cf} ctmk 4 
+0 1.000 -208 -160 infolabel
+mark @index @class (pcb:) {/Times-Roman cf} ctmk 20 0 1.000 -208 -256 infolabel
+(sim:r %p1 %p2) {/Times-Roman cf} 2 4 0 1.000 -208 -208 infolabel
+0.647 0.165 0.165 scb
+mark {/Symbol cf} @units {hS} @value {/Helvetica cf} ctmk p_jst p_rot 0.700 
+p_xps p_yps label
+0.000 0.000 1.000 scb
+mark @index @class {/Helvetica cf} ctmk p_jst p_rot 0.700 p_xps1 p_yps1 label
+1.000 0.000 0.000 scb
+(2) {/Times-Roman cf} 2 7 0 1.000 -64 0 pinlabel
+sce
+1 1.000 -16 0 -64 0 2 polygon
+1 1.000 -16 0 -32 0 -32 8 -16 0 spline
+1 1.000 -16 0 -32 0 -32 -8 -16 0 spline
+endgate
+} def
+
+/::my_switch {
+<</p_yps1 0 /p_xps1 16 /p_yps -16 /p_xps 32 /p_rot 0 /p_jst 20 /@index (?) /@class 
+(S) >> begingate
+1.000 0.000 0.000 scb
+(1) {/Times-Roman cf} 2 9 0 1.000 0 32 pinlabel
+(2) {/Times-Roman cf} 2 13 0 1.000 0 -32 pinlabel
+0.180 0.545 0.341 scb
+mark @index @class (pcb:) {/Times-Roman cf} ctmk 20 0 1.000 -208 -192 infolabel
+(sim:s %p1 %p2) {/Times-Roman cf} 2 4 0 1.000 -208 -144 infolabel
+0.000 0.000 1.000 scb
+mark @index {/Helvetica cf} @class {/Helvetica cf} ctmk p_jst p_rot 0.700 
+p_xps1 p_yps1 label
+sce
+1 1.000 -16 -32 -16 32 2 polygon
+1 1.000 -48 0 -16 0 2 polygon
+1 1.000 0 28 4 0.000 360.000 xcarc
+1 1.000 0 -28 4 0.000 360.000 xcarc
+endgate
+} def
+
+/analog::vdd {
+% trivial
+begingate
+1 1.000 0 0 0 32 2 polygon
+1 1.000 -32 32 32 32 2 polygon
+(Vdd) {/Times-Roman cf} 2 17 0 0.900 0 38 label
+0.933 0.604 0.000 scb
+(VDD) {/Times-Roman cf} 2 13 0 1.000 0 0 pinglobal
+endgate
+} def
+
+/analog::gnd {
+% trivial
+begingate
+1 1.000 0 0 0 -32 2 polygon
+1 1.000 -32 -32 32 -32 2 polygon
+1 1.000 -18 -46 18 -46 2 polygon
+1 1.000 -4 -60 4 -60 2 polygon
+0.933 0.604 0.000 scb
+(GND) {/Times-Roman cf} 2 1 0 1.000 0 0 pinglobal
+endgate
+} def
+
+/generic::dot {
+% trivial
+begingate
+248 1.000 0 0 6 0.000 360.000 xcarc
+1.000 0.000 0.000 scb
+(x) {/Times-Roman cf} 2 29 0 1.000 0 0 pinlabel
+endgate
+} def
+
+/::my_Capacitor {
+<</p_yps1 16 /p_xps1 48 /p_yps -16 /p_xps 48 /@class (C) /@value (1.0) /@units 
+(p) /@index (?) /p_jst 20 /p_rot 0 >> begingate
+1 1.000 0 -64 0 -6 2 polygon
+1 1.000 0 64 0 6 2 polygon
+1 1.000 -32 6 32 6 2 polygon
+1.000 0.000 0.000 scb
+(1) {/Times-Roman cf} 2 9 0 1.000 0 64 pinlabel
+(2) {/Times-Roman cf} 2 13 0 1.000 0 -64 pinlabel
+0.180 0.545 0.341 scb
+mark @units @value ( %p1 %p2 ) @index @class (spice:) {/Times-Roman cf} ctmk 4 
+0 1.000 -208 -160 infolabel
+(sim:e %p1 %p2) {/Times-Roman cf} 2 4 0 1.000 -208 -208 infolabel
+0.647 0.165 0.165 scb
+mark @units {hS} @value {/Helvetica cf} ctmk p_jst p_rot 0.700 p_xps p_yps 
+label
+0.180 0.545 0.341 scb
+mark @index @class (pcb:) {/Times-Roman cf} ctmk 20 0 1.000 -208 -256 infolabel
+0.000 0.000 1.000 scb
+mark @index @class {/Helvetica cf} ctmk 20 p_rot 0.700 p_xps1 p_yps1 label
+sce
+1 1.000 -32 -6 32 -6 2 polygon
+endgate
+} def
+
+/::my_diode {
+<</@class (D) /@index (?) >> begingate
+248 1.000 -18 -16 0 16 18 -16 3 polygon
+1 1.000 0 -48 0 -16 2 polygon
+1 1.000 0 48 0 16 2 polygon
+1 1.000 -18 16 18 16 2 polygon
+1.000 0.000 0.000 scb
+(1) {/Times-Roman cf} 2 9 360 1.000 -1 49 pinlabel
+(2) {/Times-Roman cf} 2 13 360 1.000 -1 -47 pinlabel
+sce
+mark @index @class {0.000 0.000 1.000 scb} {/Helvetica 0.700 cf} 
+{/Helvetica 0.700 cf} ctmk 16 90 1.000 32 16 label
+0.180 0.545 0.341 scb
+mark @index @class (pcb:) {/Helvetica cf} ctmk 16 0 1.000 -8 -120 infolabel
+endgate
+} def
+
+/generic::arrowhead {
+% nonetwork
+begingate
+8 -28 beginpath
+3 -18 3 -15 0 0 curveto
+-3 -15 -3 -18 -8 -28 curveto
+-2 -26 2 -26 8 -28 curveto
+249 
+1.000 endpath
+endgate
+} def
+
+/::my_npn {
+<</@pin_C (3) /@pin_E (2) /@pin_B (1) /@value (BCXXX) /@index (?) /@class (Q) >> 
+begingate
+1 1.000 -48 0 -64 0 2 polygon
+1 1.000 -48 48 -48 -48 2 polygon
+1 1.000 0 48 -48 22 2 polygon
+1 1.000 0 48 0 64 2 polygon
+1 1.000 0 -48 -48 -22 2 polygon
+1 1.000 0 -48 0 -64 2 polygon
+1.000 120 0 -48 generic::arrowhead
+1.000 0.000 0.000 scb
+mark @pin_C {/Helvetica cf} ctmk 40 0 0.700 0 64 pinlabel
+mark @pin_B {/Helvetica cf} ctmk 35 0 0.700 -64 0 pinlabel
+mark @pin_E {/Helvetica cf} ctmk 44 0 0.700 0 -64 pinlabel
+0.180 0.545 0.341 scb
+(spice:Q%i %pC %pB %pE npn) {/Times-Roman cf} 2 4 0 1.000 -244 -139 infolabel
+(sim:b %pB %pE %pC) {/Times-Roman cf} 2 4 0 1.000 -244 -187 infolabel
+0.000 0.000 1.000 scb
+mark @index @class {/Helvetica cf} ctmk 16 0 0.700 16 16 label
+0.647 0.165 0.165 scb
+mark @value {/Helvetica cf} ctmk 16 0 0.700 16 -16 label
+0.180 0.545 0.341 scb
+mark @index @class (pcb:) {/Times-Roman cf} ctmk 4 0 1.000 -244 -235 infolabel
+endgate
+} def
+
+/::_my_pnp {
+<</@class (Q) /@index (?) /@value (BCXXX) /@pin_B (1) /@pin_E (2) /@pin_C (3) >> 
+begingate
+1 1.000 -48 0 -64 0 2 polygon
+1 1.000 -48 48 -48 -48 2 polygon
+1 1.000 0 48 -48 22 2 polygon
+1 1.000 0 48 0 64 2 polygon
+1 1.000 0 -48 -48 -22 2 polygon
+1 1.000 0 -48 0 -64 2 polygon
+1.000 0.000 0.000 scb
+mark @pin_C {/Helvetica cf} ctmk 44 0 0.700 0 -64 pinlabel
+mark @pin_B {/Helvetica cf} ctmk 35 0 0.700 -64 0 pinlabel
+mark @pin_E {/Helvetica cf} ctmk 32 0 0.700 0 64 pinlabel
+0.180 0.545 0.341 scb
+(spice:Q%i %pC %pB %pE npn) {/Times-Roman cf} 2 4 0 1.000 -244 -139 infolabel
+(sim:b %pB %pE %pC) {/Times-Roman cf} 2 4 0 1.000 -244 -187 infolabel
+0.000 0.000 1.000 scb
+mark @index @class {/Helvetica cf} ctmk 16 0 0.700 16 16 label
+0.647 0.165 0.165 scb
+mark @value {/Helvetica cf} ctmk 16 0 0.700 16 -16 label
+0.180 0.545 0.341 scb
+mark @index @class (pcb:) {/Times-Roman cf} ctmk 4 0 1.000 -244 -235 infolabel
+sce
+1.000 240 -48 22 generic::arrowhead
+endgate
+} def
+
+/::my_jumper {
+<</@class (J) /@index (?) /p_jst 20 /p_rot 0 /p_xps1 -48 /p_yps1 96 >> begingate
+1.000 0.000 0.000 scb
+(1) {/Times-Roman cf} 2 9 0 1.000 0 32 pinlabel
+(2) {/Times-Roman cf} 2 13 0 1.000 0 -32 pinlabel
+0.180 0.545 0.341 scb
+mark @index @class (pcb:) {/Times-Roman cf} ctmk 20 0 1.000 -208 -192 infolabel
+(sim:s %p1 %p2) {/Times-Roman cf} 2 4 0 1.000 -208 -144 infolabel
+0.000 0.000 1.000 scb
+mark @index {/Helvetica cf} @class {/Helvetica cf} ctmk p_jst p_rot 0.700 
+p_xps1 p_yps1 label
+sce
+1 1.000 -32 32 16 0.000 360.000 xcarc
+1 1.000 -32 -32 16 0.000 360.000 xcarc
+0 1.000 0 -64 0 64 -64 64 -64 -64 4 polygon
+endgate
+} def
+
+/::my_polarized {
+<</@index (?) /@value (100u) /@class (C) >> begingate
+1 1.000 0 -64 0 -6 2 polygon
+1 1.000 0 64 0 6 2 polygon
+1 1.000 -32 6 32 6 2 polygon
+1 1.000 0 -80 74 66.000 114.000 xcarc
+1.000 0.000 0.000 scb
+(1) {/Times-Roman cf} 2 9 0 1.000 0 64 pinlabel
+(2) {/Times-Roman cf} 2 13 0 1.000 0 -64 pinlabel
+0.180 0.545 0.341 scb
+(spice:C%i %pt %pb 1.0P) {/Times-Roman cf} 2 0 0 1.000 -208 -160 infolabel
+(sim:e %pt %pb %pb) {/Times-Roman cf} 2 0 0 1.000 -208 -208 infolabel
+mark @index @class (pcb:) {/Times-Roman cf} ctmk 0 0 1.000 -208 -256 infolabel
+sce
+mark @index @class {0.000 0.000 1.000 scb} {/Helvetica 0.700 cf} ctmk 16 0 
+1.000 48 16 label
+mark @value {0.933 0.604 0.000 scb} {/Helvetica 0.700 cf} ctmk 16 0 1.000 48 
+-16 label
+endgate
+} def
+
+/quadparts::quadnand {
+<</@vdd (VDD) /@gnd (GND) /@part (1) (lindex {1 2 3 4} 0) pop /@pinA (1) 
+(lindex {0 1 5 8 12} @part) pop /@pinB (2) (lindex {0 2 6 9 13} @part) pop /@pinO 
+(3) (lindex {0 3 4 10 11} @part) pop /@index (?) /@pkg (DIP14) >> begingate
+1 1.000 0 -48 -64 -48 -64 48 0 48 4 polygon
+1 1.000 56 0 8 0.000 360.000 xcarc
+1 1.000 0 0 48 -90.000 90.000 xcarc
+0.180 0.545 0.341 scb
+mark @vdd ( 14=) @gnd ( 7=) @index (pcb:U) {/Helvetica cf} ctmk 20 0 1.000 -80 
+-96 infolabel
+sce
+mark @part (7400-) {/Helvetica cf} ctmk 21 0 0.500 0 0 label
+1.000 0.000 0.000 scb
+mark @pinO {/Times-Roman cf} ctmk 32 0 0.700 64 0 pinlabel
+mark @pinA {/Times-Roman cf} ctmk 35 0 0.700 -64 32 pinlabel
+mark @pinB {/Times-Roman cf} ctmk 47 0 0.700 -64 -32 pinlabel
+0.000 0.000 1.000 scb
+mark @index (U) {/Times-Roman cf} ctmk 16 0 0.700 -64 64 label
+endgate
+} def
+
+
+%%EndSetup
+
+%%Page: double_shot 1
+%%PageOrientation: Portrait
+/pgsave save def bop
+0.8000 inchscale
+2.6000 setlinewidth 1295 2731 translate
+
+1.000 0 -448 -256 <</@index (7) /p_yps1 16 /p_xps1 32 /p_yps -16 /p_xps 32 
+/p_rot 0 /p_jst 20 /@units () /@value (10k) /@class (R) >> ::my_Resistor
+1.000 270 -320 -352 <</@index (6) /p_yps1 16 /p_xps1 32 /p_yps -16 /p_xps 32 
+/p_rot 0 /p_jst 20 /@units () /@value (10k) /@class (R) >> ::my_Resistor
+1.000 0 -80 -352 <</@index (4) >> ::invert_my
+1.000 270 96 -352 <</@index (5) /p_yps1 16 /p_xps1 32 /p_yps -16 /p_xps 32 
+/p_rot 0 /p_jst 20 /@units () /@value (10k) /@class (R) >> ::my_Resistor
+1.000 270 736 -384 <</@index (4) /p_yps1 16 /p_xps1 32 /p_yps -16 /p_xps 32 
+/p_rot 0 /p_jst 20 /@units () /@value (10k) /@class (R) >> ::my_Resistor
+1.000 0 32 -1408 <</@index (1) >> ::my_Resistor
+1.000 0 32 -1568 <</@index (v1) >> ::my_Resistor_variable
+1.000 0 560 -384 <</@index (4) /@part (2) /@pin_out (4) /@pin_in (3) >> ::invert_my
+1.000 0 400 -1344 <</@index (4) /@pin_in (5) /@pin_out (6) /@part (3) >> ::invert_my
+1.000 0 -448 -416 <</@index (1) /@class (S) /p_jst 20 /p_rot 0 /p_xps 32 /p_yps 
+-16 /p_xps1 16 /p_yps1 0 >> ::my_switch
+1.000 0 -448 -160 analog::vdd
+1.000 0 -192 -160 analog::vdd
+1.000 0 -448 -544 analog::gnd
+1.000 0 192 -544 analog::gnd
+1.000 0 832 -576 analog::gnd
+1.000 0 32 -1664 analog::gnd
+1 1.000 -448 -160 -448 -192 2 polygon
+1 1.000 -448 -320 -448 -384 2 polygon
+1 1.000 -448 -448 -448 -544 2 polygon
+1 1.000 -384 -352 -448 -352 2 polygon
+1.000 0 -448 -352 generic::dot
+1.000 0 -192 -256 <</@index (10) /p_rot 0 /p_jst 20 /@units (p) /@value (1.0) 
+/@class (C) /p_xps 48 /p_yps -16 /p_xps1 48 /p_yps1 16 >> ::my_Capacitor
+1 1.000 -256 -352 -128 -352 2 polygon
+1 1.000 -192 -320 -192 -352 2 polygon
+1.000 0 -192 -352 generic::dot
+1 1.000 -16 -352 32 -352 2 polygon
+1.000 0 192 -448 <</@index (9) /p_rot 0 /p_jst 20 /@units (p) /@value (1.0) 
+/@class (C) /p_xps 48 /p_yps -16 /p_xps1 48 /p_yps1 16 >> ::my_Capacitor
+1 1.000 160 -352 320 -352 2 polygon
+1 1.000 192 -384 192 -352 2 polygon
+1.000 0 192 -352 generic::dot
+1 1.000 192 -512 192 -544 2 polygon
+1 1.000 448 -384 512 -384 2 polygon
+1 1.000 624 -384 672 -384 2 polygon
+1.000 0 832 -480 <</@index (8) /p_rot 0 /p_jst 20 /@units (p) /@value (1.0) 
+/@class (C) /p_xps 48 /p_yps -16 /p_xps1 48 /p_yps1 16 >> ::my_Capacitor
+1 1.000 800 -384 1024 -384 2 polygon
+1 1.000 832 -416 832 -384 2 polygon
+1.000 0 832 -384 generic::dot
+1 1.000 832 -544 832 -576 2 polygon
+1.000 270 -64 -1312 <</@index (1) >> ::my_Capacitor
+1 1.000 0 -1312 160 -1312 2 polygon
+1 1.000 32 -1344 32 -1312 2 polygon
+1.000 0 32 -1312 generic::dot
+1 1.000 -128 -1312 -144 -1312 2 polygon
+1 1.000 32 -1472 32 -1504 2 polygon
+1 1.000 32 -1632 32 -1664 2 polygon
+1 1.000 -192 -192 -192 -160 2 polygon
+1 1.000 -32 -1568 -32 -1632 32 -1632 3 polygon
+1.000 0 32 -1632 generic::dot
+1 1.000 288 -1344 352 -1344 2 polygon
+1 1.000 -272 -1280 -320 -1280 -320 -1152 320 -1152 320 -1344 5 polygon
+1.000 0 320 -1344 generic::dot
+1.000 0 864 -1408 <</@index (2) >> ::my_Resistor
+1.000 0 864 -1568 <</@index (v2) >> ::my_Resistor_variable
+1.000 0 1232 -1344 <</@index (4) /@pin_out (8) /@pin_in (9) /@part (4) >> ::invert_my
+1.000 0 864 -1664 analog::gnd
+1 1.000 464 -1344 560 -1344 2 polygon
+1.000 270 768 -1312 <</@index (2) >> ::my_Capacitor
+1 1.000 832 -1312 992 -1312 2 polygon
+1 1.000 864 -1344 864 -1312 2 polygon
+1.000 0 864 -1312 generic::dot
+1 1.000 704 -1312 688 -1312 2 polygon
+1 1.000 864 -1472 864 -1504 2 polygon
+1 1.000 864 -1632 864 -1664 2 polygon
+1 1.000 800 -1568 800 -1632 864 -1632 3 polygon
+1.000 0 864 -1632 generic::dot
+1 1.000 1120 -1344 1184 -1344 2 polygon
+1 1.000 560 -1280 512 -1280 512 -1152 1152 -1152 1152 -1344 5 polygon
+1.000 0 1152 -1344 generic::dot
+1.000 0 1696 -1408 <</@index (3) >> ::my_Resistor
+1.000 0 1696 -1568 <</@index (v3) >> ::my_Resistor_variable
+1.000 0 1696 -1664 analog::gnd
+1 1.000 1296 -1344 1392 -1344 2 polygon
+1.000 270 1600 -1312 <</@index (3) >> ::my_Capacitor
+1 1.000 1664 -1312 1824 -1312 2 polygon
+1 1.000 1696 -1344 1696 -1312 2 polygon
+1.000 0 1696 -1312 generic::dot
+1 1.000 1696 -1472 1696 -1504 2 polygon
+1 1.000 1696 -1632 1696 -1664 2 polygon
+1 1.000 1632 -1568 1632 -1632 1696 -1632 3 polygon
+1.000 0 1696 -1632 generic::dot
+1 1.000 1952 -1344 1984 -1344 2 polygon
+1 1.000 1392 -1280 1344 -1280 1344 -1152 1984 -1152 1984 -1344 5 polygon
+1.000 0 -576 -896 <</@index (8) >> ::my_Resistor
+1.000 0 -672 -896 <</@index (1) /@class (D) >> ::my_diode
+1.000 0 -576 -1056 <</@index (7) /p_rot 0 /p_jst 20 /@units (p) /@value (1.0) 
+/@class (C) /p_xps 48 /p_yps -16 /p_xps1 48 /p_yps1 16 >> ::my_Capacitor
+1.000 0 -576 -1152 analog::gnd
+1.000 0 -576 -800 analog::vdd
+1 1.000 -576 -832 -576 -800 2 polygon
+1.000 0 -576 -816 generic::dot
+1 1.000 -576 -816 -672 -816 -672 -848 3 polygon
+1 1.000 -672 -944 -672 -976 -576 -976 3 polygon
+1 1.000 -576 -960 -576 -992 2 polygon
+1.000 0 -576 -976 generic::dot
+1 1.000 -576 -1120 -576 -1152 2 polygon
+1 1.000 1792 -1776 1792 -1376 1824 -1376 3 polygon
+1 1.000 992 -1376 960 -1376 960 -1776 3 polygon
+1.000 0 960 -1776 generic::dot
+1 1.000 160 -1376 128 -1376 128 -1776 3 polygon
+1.000 0 128 -1776 generic::dot
+1.000 270 720 -768 <</@index (6) /p_rot 0 /p_jst 20 /@units (p) /@value (1.0) 
+/@class (C) /p_xps 48 /p_yps -16 /p_xps1 48 /p_yps1 16 >> ::my_Capacitor
+1 1.000 1152 -416 1216 -416 1216 -1056 -384 -1056 -384 -1344 -272 -1344 6 
+polygon
+1 1.000 -576 -976 -448 -976 -448 -1776 1792 -1776 4 polygon
+1.000 0 -448 -976 generic::dot
+1 1.000 -448 -976 -448 -640 960 -640 960 -448 1024 -448 5 polygon
+1.000 0 816 -864 <</@index (9) >> ::my_Resistor
+1.000 0 816 -960 analog::gnd
+1 1.000 816 -960 816 -928 2 polygon
+1.000 0 912 -768 <</@index (4) /@pin_out (10) /@pin_in (11) /@part (5) >> ::invert_my
+1 1.000 816 -800 816 -768 2 polygon
+1.000 0 816 -768 generic::dot
+1 1.000 176 -1104 208 -1104 208 -1136 240 -1136 240 -1104 288 -1104 6 polygon
+1.000 0 960 -2112 <</@value (BC547) /@pin_B (2) /@pin_E (3) /@index (2) /@pin_C 
+(1) >> ::my_npn
+1.000 0 960 -2304 <</@pin_B (2) /@pin_E (3) /@index (1) /@pin_C (1) >> ::_my_pnp
+1 1.000 896 -2112 864 -2112 832 -2112 832 -2304 896 -2304 5 polygon
+1 1.000 800 -2208 832 -2208 2 polygon
+1.000 0 832 -2208 generic::dot
+1 1.000 960 -2176 960 -2240 2 polygon
+1.000 0 960 -2432 analog::gnd
+1.000 0 960 -1984 analog::vdd
+1 1.000 960 -1984 960 -2048 2 polygon
+1 1.000 960 -2368 960 -2432 2 polygon
+1.000 0 960 -2208 generic::dot
+-1.000 0 1184 -2240 <</@index (2) >> ::my_jumper
+1 1.000 960 -2208 1184 -2208 2 polygon
+1.000 0 1152 -2432 analog::gnd
+1 1.000 1152 -2432 1152 -2272 1184 -2272 3 polygon
+1.000 0 -960 -912 <</@index (1) >> ::my_jumper
+1 1.000 512 -736 480 -736 480 -656 992 -656 4 polygon
+1 1.000 320 -1344 320 -2240 672 -2240 3 polygon
+1 1.000 672 -2176 576 -2176 576 -1888 1984 -1888 1984 -1344 5 polygon
+1.000 0 1984 -1344 generic::dot
+1.000 0 -864 -912 <</@index (5) /@class (C) /@value (100u) >> ::my_polarized
+1.000 0 -864 -1024 analog::gnd
+1.000 0 -864 -800 analog::vdd
+1 1.000 -960 -880 -928 -880 -928 -832 -864 -832 4 polygon
+1 1.000 -864 -800 -864 -848 2 polygon
+1.000 0 -864 -832 generic::dot
+1 1.000 -864 -976 -864 -1024 2 polygon
+1 1.000 -960 -944 -928 -944 -928 -992 -864 -992 4 polygon
+1.000 0 -864 -992 generic::dot
+1.000 0 -1024 -1536 analog::gnd
+1.000 0 -1024 -1312 analog::vdd
+1.000 0 -1024 -1424 <</@index (4) /p_rot 0 /p_jst 20 /@class (C) /p_xps 48 
+/p_yps -16 /p_xps1 48 /p_yps1 16 /@value (10u) /@units () >> ::my_Capacitor
+1 1.000 -1024 -1360 -1024 -1312 2 polygon
+1 1.000 -1024 -1488 -1024 -1536 2 polygon
+1.000 0 -864 -1424 <</@index (13) /@units () /@value (10u) >> ::my_Capacitor
+1.000 0 -864 -1536 analog::gnd
+1.000 0 -864 -1312 analog::vdd
+1 1.000 -864 -1360 -864 -1312 2 polygon
+1 1.000 -864 -1488 -864 -1536 2 polygon
+1.000 0 -704 -1424 <</@index (12) /@value (10u) /@units () >> ::my_Capacitor
+1.000 0 -704 -1536 analog::gnd
+1.000 0 -704 -1312 analog::vdd
+1 1.000 -704 -1360 -704 -1312 2 polygon
+1 1.000 -704 -1488 -704 -1536 2 polygon
+1.000 0 -544 -1424 <</@index (11) /@units () /@value (10u) >> ::my_Capacitor
+1.000 0 -544 -1536 analog::gnd
+1.000 0 -544 -1312 analog::vdd
+1 1.000 -544 -1360 -544 -1312 2 polygon
+1 1.000 -544 -1488 -544 -1536 2 polygon
+1.000 0 1088 -416 <</@pinB (2) /@pinA (1) /@pinO (3) /@part (1) /@index (1) >> quadparts::quadnand
+1.000 0 384 -384 <</@pinB (6) /@pinA (5) /@pinO (4) /@index (1) /@part (2) 
+(lindex {1 2 3 4} 1) pop >> quadparts::quadnand
+1.000 0 -208 -1312 <</@pinB (9) /@pinA (8) /@pinO (10) /@index (1) /@part (3) 
+(lindex {1 2 3 4} 2) pop >> quadparts::quadnand
+1.000 0 224 -1344 <</@pinB (13) /@pinA (12) /@pinO (11) /@index (1) /@part (4) 
+(lindex {1 2 3 4} 3) pop >> quadparts::quadnand
+1.000 0 624 -1312 <</@pinB (2) /@pinA (1) /@pinO (3) /@part (1) /@index (2) >> quadparts::quadnand
+1.000 0 1056 -1344 <</@pinB (6) /@pinA (5) /@pinO (4) /@index (2) /@part (2) 
+(lindex {1 2 3 4} 1) pop >> quadparts::quadnand
+1.000 0 1456 -1312 <</@pinB (9) /@pinA (8) /@pinO (10) /@index (2) /@part (3) 
+(lindex {1 2 3 4} 2) pop >> quadparts::quadnand
+1.000 0 1888 -1344 <</@pinB (13) /@pinA (12) /@pinO (11) /@index (2) /@part (4) 
+(lindex {1 2 3 4} 3) pop >> quadparts::quadnand
+1.000 0 576 -768 <</@pinB (2) /@pinA (1) /@pinO (3) /@part (1) /@index (3) >> quadparts::quadnand
+-1.000 180 736 -2208 <</@pinB (6) /@pinA (5) /@pinO (4) /@index (3) /@part (2) 
+(lindex {1 2 3 4} 1) pop >> quadparts::quadnand
+1 1.000 -384 -416 -368 -416 -368 -448 -352 -448 4 polygon
+1 1.000 0 -288 16 -288 16 -256 32 -256 4 polygon
+1 1.000 640 -288 656 -288 656 -256 672 -256 4 polygon
+1 1.000 1008 -608 1024 -592 1024 -640 3 polygon
+1 1.000 1152 -288 1168 -288 1168 -320 1184 -320 4 polygon
+1 1.000 -416 -944 -400 -928 -400 -976 3 polygon
+1 1.000 160 -1472 176 -1456 176 -1504 3 polygon
+1 1.000 336 -1232 352 -1216 352 -1264 3 polygon
+1.000 0 1168 -272 generic::dot
+1 1.000 224 -1216 240 -1216 240 -1248 272 -1248 272 -1216 288 -1216 6 polygon
+1 1.000 400 -1248 416 -1248 416 -1216 448 -1216 448 -1248 464 -1248 6 polygon
+1.000 0 448 -1200 generic::dot
+1.000 0 480 -1344 generic::dot
+1 1.000 656 -768 640 -768 2 polygon
+1 1.000 864 -768 784 -768 2 polygon
+1 1.000 1536 -1312 1520 -1312 2 polygon
+1 1.000 992 -656 992 -768 976 -768 3 polygon
+1.000 0 480 -656 generic::dot
+1 1.000 480 -656 288 -656 288 -416 320 -416 4 polygon
+1 1.000 512 -800 320 -800 320 -1152 3 polygon
+1.000 0 320 -1152 generic::dot
+1.000 0 1440 -512 <</@part (3) (lindex {1 2 3 4} 2) pop /@index (3) /@pinO (10) 
+/@pinA (8) /@pinB (9) >> quadparts::quadnand
+1.000 0 1440 -672 <</@part (4) (lindex {1 2 3 4} 3) pop /@index (3) /@pinO (11) 
+/@pinA (12) /@pinB (13) >> quadparts::quadnand
+1 1.000 1376 -480 1344 -480 1344 -544 1376 -544 4 polygon
+1 1.000 1376 -640 1344 -640 1344 -704 1376 -704 4 polygon
+1 1.000 1344 -544 1344 -640 2 polygon
+1.000 0 1424 -832 <</@part (6) /@pin_in (13) /@pin_out (12) /@index (4) >> ::invert_my
+1 1.000 1376 -832 1360 -832 1344 -832 1344 -704 4 polygon
+1.000 0 1344 -912 analog::gnd
+1 1.000 1344 -912 1344 -832 2 polygon
+1.000 0 1344 -832 generic::dot
+1.000 0 1344 -704 generic::dot
+1.000 0 1344 -640 generic::dot
+1.000 0 1344 -544 generic::dot
+1 1.000 1504 -512 1568 -512 2 polygon
+1 1.000 1552 -496 1584 -528 2 polygon
+1 1.000 1552 -528 1584 -496 2 polygon
+1 1.000 1504 -672 1568 -672 2 polygon
+1 1.000 1552 -656 1584 -688 2 polygon
+1 1.000 1552 -688 1584 -656 2 polygon
+1 1.000 1488 -832 1552 -832 2 polygon
+1 1.000 1536 -816 1568 -848 2 polygon
+1 1.000 1536 -848 1568 -816 2 polygon
+pgsave restore showpage
+
+%%Trailer
+XCIRCsave restore
+%%EOF

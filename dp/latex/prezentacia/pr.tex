@@ -1,0 +1,301 @@
+%\documentclass[a4paper, twoside, 12pt]{report}
+%\documentclass[a5paper, 12pt, landscape]{article}
+\documentclass[oneside]{article}
+%\usepackage[paperwidth=400pt, paperheight=300pt, margin=40pt]{geometry}
+\usepackage[paperwidth=400pt, paperheight=300pt, textwidth=360pt, textheight=280pt, top=15pt]{geometry}
+%\usepackage[pdftex]{graphicx}
+\usepackage{graphicx}
+\graphicspath{{../obr/}{../obr/plots}}
+\DeclareGraphicsExtensions{.ps, .eps}
+\usepackage[slovak]{babel}
+\usepackage[utf8]{inputenc} 
+%\usepackage[T1]{fontenc}
+
+\usepackage{amsmath}
+
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily\footnotesize, breaklines=true}
+
+%\usepackage[hidelinks]{hyperref}
+\usepackage[breaklinks]{hyperref}
+
+\usepackage{color} % kvoli epslatex obrazkom z octave
+
+\usepackage{lettrine}
+
+\usepackage{microtype}
+%\usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true,factor=1100,stretch=10,shrink=10]{microtype}
+% activate={true,nocompatibility} - activate protrusion and expansion
+% final - enable microtype; use ``draft'' to disable
+% tracking=true, kerning=true, spacing=true - activate these techniques
+% factor=1100 - add 10% to the protrusion amount (default is 1000)
+% stretch=10, shrink=10 - reduce stretchability/shrinkability (default is 20/20)
+
+%\usepackage[section]{placeins}
+%\usepackage{placeins}
+
+%\usepackage{boisik}
+%\usepackage{baskervald}
+\usepackage{fourier}
+%\usepackage{baskervald}
+%\usepackage[charter]{mathdesign}
+\usepackage{Baskervaldx}	% funguje aj smallcaps: \textsc 
+%\usepackage[lining]{ebgaramond}	% lining - cisla nie oldstyle
+%\usepackage{concmath}
+%\usepackage[charter]{mathdesign}
+
+%\usepackage[lf]{Baskervaldx} % lining figures
+%\usepackage[bigdelims,vvarbb]{newtxmath} % math italic letters from Nimbus Roman
+%\usepackage[cal=boondoxo]{mathalfa} % mathcal from STIX, unslanted a bit
+%\renewcommand*\oldstylenums[1]{\textosf{#1}}
+
+%\usepackage[urw-garamond]{mathdesign}
+%\usepackage[T1]{fontenc}
+
+%\pagestyle{headings}
+
+%% velkost fontu pod obrazkom mensia, vratane ``Obr. X:''
+%\renewcommand{\figurename}{sjls} % toto nefunguje pri pouzivani babel
+\addto\captionsslovak{\renewcommand{\figurename}{\small Obr.}}
+%\renewcommand{\thefigure}{\small \arabic{figure}}
+%\renewcommand{\thefigure}{\small \arabic{chapter}.\arabic{figure}}
+\renewcommand{\thefigure}{\small \thechapter.\arabic{figure}}
+
+
+\newcommand{\dif}{\, \mathrm{d}}	% diferencia (na derivacie)
+\newcommand{\difp}{\partial}		% parc. diferencia 
+\newcommand{\dxdt}[2]{\frac{\mathrm{d} #1}{\mathrm{d} #2}}
+\newcommand{\dxdtp}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\un}[1]{\, \mathrm{#1}}	% jednotky velicin, v math mode
+\newcommand{\E}[1]{\cdot 10^{#1}}
+\newcommand{\degree}{^\circ}
+\newcommand{\diameter}{\emptyset}
+\newcommand{\cpx}{\widehat}		% komplexne fazory
+\newcommand{\Ohm}{\Omega}
+
+
+\newcounter{myasscount}
+\renewcommand{\themyasscount}{\alph{myasscount}}
+%\setcounter{myasscount}{1}
+\newenvironment{myass}
+{
+
+	\refstepcounter{myasscount}
+	\par
+	\vspace{6pt}
+	%\indent	% netreba, ked predchadza \par
+	\begin{tabular}{p{.22\textwidth}  p{.68\textwidth} }
+	\textbf{Predpoklad (\themyasscount)}	&
+}
+{
+	\end{tabular}
+	\par 
+	\vspace{6pt}
+}
+
+\newcommand{\myfig}[3]
+{
+    \begin{figure}[!ht]
+	\centering
+	\includegraphics{#1}
+	\caption{#2}
+	%\label{fig:#3}
+	#3
+    \end{figure}
+}
+
+\newcommand{\myfigtex}[3]
+{
+    \begin{figure}[!ht]
+	\centering
+	\input{#1}
+	\caption{#2}
+	%\label{fig:#3}
+	#3
+    \end{figure}
+}
+
+
+\input{../xcircuit_latex_labels.tex}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\author{Ján Mikláš,\\vedúci práce: doc. Dr. Ing. Miroslav Patočka}
+\date{Jún 2016}
+\title{\vspace{60pt}Výkonové spínacie tranzistory}
+\maketitle
+
+%\setcounter{page}{7}
+
+\newpage
+\tableofcontents
+
+\newpage
+\section{Vytýčené ciele}
+\begin{itemize}
+    \item Dôveryhodné meranie spínacích priebehov na tranzistorovom spínači
+    \item Model $g_{CE}(t)$ - zostavenie, overenie, simulácie
+\end{itemize}
+
+{\centering \includegraphics[scale=.8]{obr/tranzistorovy_spinac} \par}
+
+\newpage
+{\centering \section{Meranie} \label{sec:meranie} \par}
+
+%\newpage
+\subsection{Metóda - double-shot}
+{\centering
+	\begin{tabular}{p{.4\textwidth}  p{.6\textwidth} }
+	\vspace{-5.5cm} \includegraphics[scale=.8]{obr/tranzistorovy_spinac}
+	&
+    	\includegraphics[scale=.6]{obr/priebehy_doubleshot} \newline
+    \end{tabular}
+}
+
+\subsection{Meracie pracovisko}
+
+{\centering \includegraphics[height=.9\textheight]{schema_pracovisko} \par }
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+{\centering \section{Model $g_{CE}(t)$} \label{sec:model} }
+
+{\centering \input{../obr/BJT_iv_indukc} \par}
+
+\begin{itemize}
+    \item predpokl. priebeh nezávislý na kolektorovom obvode (trajektórii prac. bodu)
+    \item nezávislý na $U_d$
+    \item závislý na $I_L$, $i_B(t)$, \ldots
+\end{itemize}
+
+
+\subsection{Aproximácia $g_{CE}(t)$ analytickou funkciou}
+\begin{equation}
+	\begin{array}{c | c c c}
+		t & t_0 & t_1 & t_2 \\
+		\hline
+		g(t) & G_0 & G_1 & G_2
+	\end{array}
+	\label{eq:tab_predpis_t012}
+\end{equation}
+
+\begin{figure}[ht!]
+	\centering
+	\input{../obr/krivka_vyp_t012}
+	\caption{príklad krivky pre vypínací dej}
+	\label{fig:krivka_vyp_t012}
+\end{figure}
+
+\begin{equation}
+	g_{CE}(t) = 
+	\left\{
+	\begin{array}{l l}
+		G_0;	& t<t_0 \\
+		g_1(t);	& t_0 \leq t < t_1 \\
+		g_2(t);	& t_1 \leq t < t_2 \\
+		G_2;		& t \geq t_2
+	\end{array}
+	\right.
+\end{equation}
+
+\begin{itemize}
+    \item funkcie $g_i(t)$ definované vhodnou aproximáciou a okrajovými podmienkami ($g_i(t_{i-1}) = G_{i-1}$; $g_i(t_i) = G_i$; hladkosť: $g'_i(t_i) = g'_{i+1}(t_i)$)
+\end{itemize}
+
+
+\subsection{Vplyv parazitných prvkov - indukčnosť} \label{subsec:parazity}
+{ \centering
+\includegraphics[height=.85\textheight]{obr/Lpar_prekmit}
+\hspace{36pt}
+\includegraphics[height=.85\textheight]{obr/Lpar_bez_prekmitu}
+\par }
+
+\subsection{Vplyv parazitných prvkov - kapacita} \label{subsec:parazity}
+{ \centering
+\includegraphics[height=.85\textheight]{obr/Cpar_prekmit}
+\hspace{36pt}
+\includegraphics[height=.85\textheight]{obr/Cpar_bez_prekmitu}
+\par }
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newpage
+{\centering \section{Výsledky meraní a simulácii} }
+
+
+\centering
+
+\subsubsection*{Nezávislosť $t_{off}$ ($g_{CE}$) na napätí $U_d$}
+\input{../obr/plots/bjt_porov_300V_150V_off}
+
+\subsubsection*{Závislosť $t_{off}$, ($g_{CE}$) na prúde $I_L$}
+\input{../obr/plots/bjt_tfi}
+
+\subsubsection*{Vypínací dej - BJT, $300\un{V}$, $10\un{A}$}
+\input{../obr/plots/bjt_300_10_off}
+
+\subsubsection*{Zapínací dej - BJT, $300\un{V}$, $10\un{A}$}
+%\input{../obr/plots/bjt_300_10_on}
+\input{../obr/plots/bjt_zap_ube}
+\begin{itemize}
+    \item priebeh $g_{CE}(t)$ sa vymyká predstave hladkej krivky bez inflexných bodov
+\end{itemize}
+
+\newpage
+\subsubsection*{BJT - Prechod z aktívnej do saturačnej oblasti}
+{\centering \vspace{24pt} \includegraphics[width=\textwidth]{obr/oblasti} \par }
+
+\newpage
+\subsubsection*{Závislosť napätia $U_{CE,hran}$ v čase \uv{zlomu} na prúde $I_L$}
+\begin{itemize}
+    \item predpokladaná hranica medzi kvázi-saturačnou a aktívnou oblasťou (záverným a priepustným pólovaním prechodu báza - kolektor)
+\end{itemize}
+\includegraphics[height=.8\textheight]{obr/hranica_kvazisat_mozno}
+
+
+\subsubsection*{Vypínací dej - IGBT, $300\un{V}$, $40\un{A}$}
+\input{../obr/plots/igbt_300_40_1_off_par}
+
+\subsubsection*{Zapínací dej - IGBT, $300\un{V}$, $40\un{A}$}
+\input{../obr/plots/igbt_300_40_1_on_par}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\section*{Záver} \label{sec:zaver} \addcontentsline{toc}{section}{Záver}
+\begin{itemize}
+    \item Dôveryhodnosť merania (snímané priebehy, parazitné vplyvy)
+    \item Použiteľnosť modela
+\end{itemize}
+
+
+\section*{}
+\newpage
+\centering
+\newpage
+\vspace{60pt}
+Ďakujem za pozornosť
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\appendix
+
+\section{Obvodová schéma budiča výkonových tranzistorov}
+\hspace{-1.8cm}\includegraphics[height=.8\textheight]{../obr/schema_budic2}
+
+\section{Obvodová schéma budiča generátora impulzov}
+\hspace{-1.8cm}\includegraphics[height=.8\textheight]{../obr/schema_gen}
+
+
+\label{LastPage}
+\end{document}

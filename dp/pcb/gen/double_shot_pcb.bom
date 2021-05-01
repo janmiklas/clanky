@@ -1,0 +1,13 @@
+# PcbBOM Version 1.0
+# Date: Thu 26 May 2016 03:43:14 PM GMT UTC
+# Author: janik
+# Title: (unknown) - PCB BOM
+# Quantity, Description, Value, RefDes
+# --------------------------------------------
+4,"Dual in-line package, narrow (300 mil)","DIP14",U4 U2 U1 U3 
+2,"Header connector, DIP pin numbering","HEADER2_1",J1 J2 
+14,"(unknown)","(unknown)",R6 R2 R3 R8 Rv2 R7 Rv1 Rv3 S1 C12 R1 R9 R5 R4 
+2,"Transistor","TO92",Q1 Q2 
+11,"SMD Cap","(unknown)",C2 C3 C4 C13 C7 C11 C10 C6 C1 C9 C8 
+1,"diode","300",D1 
+1,"Bottom lead non-polar circular component (typically capacitor)","RCY300",C5 

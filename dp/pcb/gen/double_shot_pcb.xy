@@ -1,0 +1,42 @@
+# PcbXY Version 1.0
+# Date: Thu 26 May 2016 03:43:14 PM GMT UTC
+# Author: janik
+# Title: (unknown) - PCB X-Y
+# RefDes, Description, Value, X, Y, rotation, top/bottom
+# X,Y in mm.  rotation in degrees.
+# --------------------------------------------
+U4,"Dual in-line package, narrow (300 mil)","DIP14",24.00,40.13,90,top
+J1,"Header connector, DIP pin numbering","HEADER2_1",10.03,47.75,0,top
+R6,"(unknown)","(unknown)",8.00,41.40,90,top
+J2,"Header connector, DIP pin numbering","HEADER2_1",54.74,48.77,270,top
+Q1,"Transistor","TO92",49.66,50.04,90,top
+Q2,"Transistor","TO92",49.66,55.12,90,top
+C2,"SMD Cap","(unknown)",39.50,34.67,270,top
+R2,"(unknown)","(unknown)",39.50,26.42,270,top
+R3,"(unknown)","(unknown)",56.13,25.53,270,top
+C3,"SMD Cap","(unknown)",52.32,33.53,90,top
+D1,"diode","300",37.72,20.57,90,top
+R8,"(unknown)","(unknown)",34.67,20.57,90,top
+C4,"SMD Cap","(unknown)",34.29,40.13,270,top
+C13,"SMD Cap","(unknown)",44.58,52.58,270,top
+C7,"SMD Cap","(unknown)",45.97,18.67,270,top
+C11,"SMD Cap","(unknown)",12.70,24.89,90,top
+Rv2,"(unknown)","(unknown)",31.62,8.38,180,top
+R7,"(unknown)","(unknown)",10.03,41.40,270,top
+C5,"Bottom lead non-polar circular component (typically capacitor)","RCY300",16.64,55.63,270,top
+Rv1,"(unknown)","(unknown)",14.86,8.38,180,top
+Rv3,"(unknown)","(unknown)",48.39,8.38,180,top
+S1,"(unknown)","(unknown)",9.78,32.51,270,top
+C12,"(unknown)","(unknown)",47.94,43.81,180,top
+R1,"(unknown)","(unknown)",23.11,9.40,270,top
+C10,"SMD Cap","(unknown)",12.32,41.27,270,top
+R9,"(unknown)","(unknown)",18.03,46.99,180,top
+C6,"SMD Cap","(unknown)",27.18,46.99,180,top
+U2,"Dual in-line package, narrow (300 mil)","DIP14",46.10,33.53,0,top
+U1,"Dual in-line package, narrow (300 mil)","DIP14",24.26,23.62,270,top
+C1,"SMD Cap","(unknown)",24.77,17.27,0,top
+C9,"SMD Cap","(unknown)",30.10,33.53,0,top
+R5,"(unknown)","(unknown)",22.10,33.53,0,top
+C8,"SMD Cap","(unknown)",32.64,30.23,0,top
+R4,"(unknown)","(unknown)",24.07,30.10,0,top
+U3,"Dual in-line package, narrow (300 mil)","DIP14",34.16,53.85,90,top

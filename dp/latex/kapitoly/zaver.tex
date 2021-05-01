@@ -1,0 +1,18 @@
+\chapter*{Záver} \label{ch_zaver} \addcontentsline{toc}{chapter}{Záver}
+\markboth{\MakeUppercase{Záver}}{\MakeUppercase{Záver}} % aby to aj v hlavicke strany pisalo zaver a nie nieco predchádzajuce, napr. zoznam obrazkov
+
+
+\lettrine{V}{ rámci} práce sa podarilo vytvoriť meracie pracovisko na presné oscilografické zaznamenanie spínacích dejov; otestované bolo na meraniach bipolárnych a IGBT tranzistorov. Analýza nameraných priebehov naznačuje, že prítomné parazitné vplyvy nie sú významným spôsobom zapríčinené nesprávnym spôsobom snímania.
+
+Ako snímač prúdu je po viacerých pokusoch (s prúdovým transformátorom, Rogowského cievkou aj drahými komerčnými snímačmi) osvedčený SMD bočník s pomerne veľkou hodnotou odporu ($1\un{\Omega}$). Problémy so šírkou snímaného pásma pri proporcionálnej súčiastke akou je odpor nie sú a derivačný charakter spôsobený parazitnou indukčnosťou je potlačený práve veľkou hodnotou odporu. Príliš veľkú hodnotu však voliť nemožno, a to nie len kvôli úbytku napätia, ale aj pre tlmenie, ktorým by mohol skresľovať kmitavé javy v meranom obvode.
+
+Z meraní vyplynula potreba oddeleného silového emitorového kontaktu od riadiaceho. Dôvodom je indukčnosť prívodu a ňou indukované napätie pri veľkých zmenách prúdu (tj. pri spínaní), ktoré spôsobuje rozdiel medzi potenciálom riadiacej (meracej) zeme a skutočným potenciálom emitora na čipe. Dôsledkom toho je nie len skreslený meraný údaj, ale hlavne možné spomalenie spínacieho deja, ako bolo popísané v kapitole \ref{ch:vysledky}. Tento jav býva pozorovaný najmä pri veľkých mnohočipových výkonových moduloch \cite{khanna}. Pozorovaný bol však v tejto práci aj u diskrétnych jednočipových súčiastkach. Manipuláciou s geometrickým usporiadaním resp. dĺžkou prívodov bolo možné ovplyvňovať spínacie deje z pohľadu času rádovo aj o $30\%$. Aj pri úplnom skrátení vývodov z púzdra sú ale elektródy čipu kontaktované s vývodmi pomocou bondovacích drátov, ktorých indukčnosť (ako sa ukázalo) rozhodne nemožno zanedbať. To ilustruje nevhodnosť klasických trojvývodových súčiastok pre rýchle aplikácie.
+
+Parazitné javy (ako bolo ilustrované v kapitole \ref{ch:parazity}) majú za následok väčšie či menšie skreslenie skutočného prúdu a napätia na čipe. To však znamená, že nie všetká energia $\int u_{CE}(t) i_C(t) \dif t$ počas jedného prechodného deja je skutočnou stratovou energiou. Vo všeobecnosti ale možno usúdiť, že množstvo energie, ktoré by sa akumulovalo v parazitnom prvku počas jedného z dejov (čím by sa stalo meranie pesimistickým), sa zase uvoľní a zmarí na teplo počas druhého z dejov, čím súčiastke naopak \uv{prihorší}. Výslednú stratovú bilanciu teda možno považovať viac-menej za neskreslenú aj na pri nedokonalých meraniach.
+Navyše, správnym návrhom aplikácie alebo merania je možné najpodstatnejšie parazitné vplyvy odstrániť.
+
+V neposledom rade je súčasťou práce vytvorený \uv{dvojpólový} simulačný model aproximujúci časovú zmenu vodivosti tranzistora $g_{CE}$. Svojou jednoduchosťou oprosťuje simulácie od potrebného veľkého výpočtového výkonu (a dlhých časov simulácií), ako aj od problémov s konvergenciou výpočtov. Zostavenie modelu je veľmi priamočiare; vychádza priamo zo zmeraných priebehov.
+
+Idealizované priebehy produkované takýmto modelom je veľmi jednoducho možné korigovať pridaním parazitných prvkov. Na obrázkoch v stati \ref{sec:vysl_IGBT} zreteľne vidno, že pridané obvodové prvky korigujú idealizované priebehy presne podľa očakávania.
+
+% zhodnotit, ze sa da simulovat, a ze pridanie parazit (kond.) koriguje priebehy podla ocakavania

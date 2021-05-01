@@ -1,0 +1,1188 @@
+%!PS-Adobe-3.0 EPSF-3.0
+%%Title: glps_renderer figure
+%%Creator: GL2PS 1.3.8, (C) 1999-2012 C. Geuzaine
+%%For: Octave
+%%CreationDate: Tue Jun  7 19:24:41 2016
+%%LanguageLevel: 3
+%%DocumentData: Clean7Bit
+%%Pages: 1
+%%BoundingBox: 0 0 574 212
+%%EndComments
+%%BeginProlog
+/gl2psdict 64 dict def gl2psdict begin
+0 setlinecap 0 setlinejoin
+/tryPS3shading false def % set to false to force subdivision
+/rThreshold 0.064 def % red component subdivision threshold
+/gThreshold 0.034 def % green component subdivision threshold
+/bThreshold 0.1 def % blue component subdivision threshold
+/BD { bind def } bind def
+/C  { setrgbcolor } BD
+/G  { 0.082 mul exch 0.6094 mul add exch 0.3086 mul add neg 1.0 add setgray } BD
+/W  { setlinewidth } BD
+/FC { findfont exch /SH exch def SH scalefont setfont } BD
+/SW { dup stringwidth pop } BD
+/S  { FC moveto show } BD
+/SBC{ FC moveto SW -2 div 0 rmoveto show } BD
+/SBR{ FC moveto SW neg 0 rmoveto show } BD
+/SCL{ FC moveto 0 SH -2 div rmoveto show } BD
+/SCC{ FC moveto SW -2 div SH -2 div rmoveto show } BD
+/SCR{ FC moveto SW neg SH -2 div rmoveto show } BD
+/STL{ FC moveto 0 SH neg rmoveto show } BD
+/STC{ FC moveto SW -2 div SH neg rmoveto show } BD
+/STR{ FC moveto SW neg SH neg rmoveto show } BD
+/FCT { FC translate 0 0 } BD
+/SR  { gsave FCT moveto rotate show grestore } BD
+/SBCR{ gsave FCT moveto rotate SW -2 div 0 rmoveto show grestore } BD
+/SBRR{ gsave FCT moveto rotate SW neg 0 rmoveto show grestore } BD
+/SCLR{ gsave FCT moveto rotate 0 SH -2 div rmoveto show grestore} BD
+/SCCR{ gsave FCT moveto rotate SW -2 div SH -2 div rmoveto show grestore} BD
+/SCRR{ gsave FCT moveto rotate SW neg SH -2 div rmoveto show grestore} BD
+/STLR{ gsave FCT moveto rotate 0 SH neg rmoveto show grestore } BD
+/STCR{ gsave FCT moveto rotate SW -2 div SH neg rmoveto show grestore } BD
+/STRR{ gsave FCT moveto rotate SW neg SH neg rmoveto show grestore } BD
+/P  { newpath 0.0 360.0 arc closepath fill } BD
+/LS { newpath moveto } BD
+/L  { lineto } BD
+/LE { lineto stroke } BD
+/T  { newpath moveto lineto lineto closepath fill } BD
+/STshfill {
+      /b1 exch def /g1 exch def /r1 exch def /y1 exch def /x1 exch def
+      /b2 exch def /g2 exch def /r2 exch def /y2 exch def /x2 exch def
+      /b3 exch def /g3 exch def /r3 exch def /y3 exch def /x3 exch def
+      gsave << /ShadingType 4 /ColorSpace [/DeviceRGB]
+      /DataSource [ 0 x1 y1 r1 g1 b1 0 x2 y2 r2 g2 b2 0 x3 y3 r3 g3 b3 ] >>
+      shfill grestore } BD
+/Tm { 3 -1 roll 8 -1 roll 13 -1 roll add add 3 div
+      3 -1 roll 7 -1 roll 11 -1 roll add add 3 div
+      3 -1 roll 6 -1 roll 9 -1 roll add add 3 div C T } BD
+/STsplit {
+      4 index 15 index add 0.5 mul
+      4 index 15 index add 0.5 mul
+      4 index 15 index add 0.5 mul
+      4 index 15 index add 0.5 mul
+      4 index 15 index add 0.5 mul
+      5 copy 5 copy 25 15 roll
+      9 index 30 index add 0.5 mul
+      9 index 30 index add 0.5 mul
+      9 index 30 index add 0.5 mul
+      9 index 30 index add 0.5 mul
+      9 index 30 index add 0.5 mul
+      5 copy 5 copy 35 5 roll 25 5 roll 15 5 roll
+      4 index 10 index add 0.5 mul
+      4 index 10 index add 0.5 mul
+      4 index 10 index add 0.5 mul
+      4 index 10 index add 0.5 mul
+      4 index 10 index add 0.5 mul
+      5 copy 5 copy 40 5 roll 25 5 roll 15 5 roll 25 5 roll
+      STnoshfill STnoshfill STnoshfill STnoshfill } BD
+/STnoshfill {
+      2 index 8 index sub abs rThreshold gt
+      { STsplit }
+      { 1 index 7 index sub abs gThreshold gt
+        { STsplit }
+        { dup 6 index sub abs bThreshold gt
+          { STsplit }
+          { 2 index 13 index sub abs rThreshold gt
+            { STsplit }
+            { 1 index 12 index sub abs gThreshold gt
+              { STsplit }
+              { dup 11 index sub abs bThreshold gt
+                { STsplit }
+                { 7 index 13 index sub abs rThreshold gt
+                  { STsplit }
+                  { 6 index 12 index sub abs gThreshold gt
+                    { STsplit }
+                    { 5 index 11 index sub abs bThreshold gt
+                      { STsplit }
+                      { Tm }
+                      ifelse }
+                    ifelse }
+                  ifelse }
+                ifelse }
+              ifelse }
+            ifelse }
+          ifelse }
+        ifelse }
+      ifelse } BD
+tryPS3shading
+{ /shfill where
+  { /ST { STshfill } BD }
+  { /ST { STnoshfill } BD }
+  ifelse }
+{ /ST { STnoshfill } BD }
+ifelse
+end
+%%EndProlog
+%%BeginSetup
+/DeviceRGB setcolorspace
+gl2psdict begin
+%%EndSetup
+%%Page: 1 1
+%%BeginPageSetup
+%%EndPageSetup
+mark
+gsave
+1.0 1.0 scale
+1 1 1 C
+91.2608 156.8 574 0 91.2608 0 T
+91.2608 156.8 574 156.8 574 0 T
+0.5 W
+[0 4 4 4 4 0] 0 setdash
+0 0 0 C
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+-nan -nan LS
+-nan -nan LE
+[16 0] 0 setdash
+91.2608 156.8 LS
+574 156.8 LE
+91.2608 0 LS
+91.2608 156.8 LE
+[0 3 1 3 1 3 1 3 1 0] 0 setdash
+102.362 0 LS
+102.362 156.8 LE
+124.568 0 LS
+124.568 156.8 LE
+146.776 0 LS
+146.776 156.8 LE
+168.982 0 LS
+168.982 156.8 LE
+191.187 0 LS
+191.187 156.8 LE
+213.393 0 LS
+213.393 156.8 LE
+235.599 0 LS
+235.599 156.8 LE
+257.807 0 LS
+257.807 156.8 LE
+280.012 0 LS
+280.012 156.8 LE
+302.218 0 LS
+302.218 156.8 LE
+324.424 0 LS
+324.424 156.8 LE
+346.629 0 LS
+346.629 156.8 LE
+368.837 0 LS
+368.837 156.8 LE
+391.043 0 LS
+391.043 156.8 LE
+413.249 0 LS
+413.249 156.8 LE
+435.454 0 LS
+435.454 156.8 LE
+457.66 0 LS
+457.66 156.8 LE
+479.868 0 LS
+479.868 156.8 LE
+502.074 0 LS
+502.074 156.8 LE
+524.279 0 LS
+524.279 156.8 LE
+546.485 0 LS
+546.485 156.8 LE
+568.691 0 LS
+568.691 156.8 LE
+[16 0] 0 setdash
+102.362 156.8 LS
+102.362 150.803 LE
+124.568 156.8 LS
+124.568 150.803 LE
+146.776 156.8 LS
+146.776 150.803 LE
+168.982 156.8 LS
+168.982 150.803 LE
+191.187 156.8 LS
+191.187 150.803 LE
+213.393 156.8 LS
+213.393 150.803 LE
+235.599 156.8 LS
+235.599 150.803 LE
+257.807 156.8 LS
+257.807 150.803 LE
+280.012 156.8 LS
+280.012 150.803 LE
+302.218 156.8 LS
+302.218 150.803 LE
+324.424 156.8 LS
+324.424 150.803 LE
+346.629 156.8 LS
+346.629 150.803 LE
+368.837 156.8 LS
+368.837 150.803 LE
+391.043 156.8 LS
+391.043 150.803 LE
+413.249 156.8 LS
+413.249 150.803 LE
+435.454 156.8 LS
+435.454 150.803 LE
+457.66 156.8 LS
+457.66 150.803 LE
+479.868 156.8 LS
+479.868 150.803 LE
+502.074 156.8 LS
+502.074 150.803 LE
+524.279 156.8 LS
+524.279 150.803 LE
+546.485 156.8 LS
+546.485 150.803 LE
+568.691 156.8 LS
+568.691 150.803 LE
+[0 3 1 3 1 3 1 3 1 0] 0 setdash
+91.2608 41.4462 LS
+574 41.4462 LE
+91.2608 99.1231 LS
+574 99.1231 LE
+91.2608 156.8 LS
+574 156.8 LE
+[16 0] 0 setdash
+91.2608 41.4462 LS
+97.2582 41.4462 LE
+91.2608 99.1231 LS
+97.2582 99.1231 LE
+91.2608 156.8 LS
+97.2582 156.8 LE
+[0 4 4 4 4 0] 0 setdash
+338.707 0 LS
+339.014 62.7305 L
+339.22 0 LE
+340.303 0 LS
+340.344 157.4 LE
+341.157 157.4 LS
+341.168 0 LE
+537.212 -1.67964e+31 LS
+537.212 106 LE
+537.756 1.67964e+31 LS
+537.756 106 LE
+539.933 106 LS
+539.933 106 LE
+543.742 106 LS
+543.742 106 LE
+552.446 106 LS
+552.446 106 LE
+559.517 4.19909e+30 LS
+559.517 106 LE
+173.12 0 LS
+173.622 25.4815 L
+174.166 55.7088 L
+174.71 88.5169 L
+175.255 123.844 L
+175.739 157.4 LE
+314.085 157.4 LS
+314.531 131.31 L
+315.076 99.7417 L
+315.619 68.413 L
+316.163 37.3326 L
+316.707 6.50835 L
+316.823 0 LE
+341.45 0 LS
+341.455 157.4 LE
+478.723 106 LS
+478.723 106 LE
+481.987 106 LS
+481.987 106 LE
+483.076 106 LS
+483.076 106 LE
+489.604 106 LS
+489.604 -4.00457e+24 LE
+496.133 106 LS
+496.133 106 LE
+[] 0 setdash
+490.754 121.802 LS
+530.972 121.802 LE
+[0 4 4 4 4 0] 0 setdash
+490.754 71.4837 LS
+530.972 71.4837 LE
+grestore
+showpage
+cleartomark
+%%PageTrailer
+%%Trailer
+end
+%%EOF

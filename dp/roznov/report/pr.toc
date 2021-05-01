@@ -1,0 +1,11 @@
+\contentsline {section}{\numberline {1}Motivation}{3}{section.1}
+\contentsline {section}{\numberline {2}Packaging}{4}{section.2}
+\contentsline {section}{\numberline {3}Measurements}{6}{section.3}
+\contentsline {subsection}{\numberline {3.1}Switching - Double-pulse Test}{6}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}IV-curves}{7}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}BV test}{7}{subsection.3.3}
+\contentsline {section}{\numberline {4}Strucured Processing of Measured Data}{8}{section.4}
+\contentsline {subsection}{\numberline {4.1}Data processing flowchart}{8}{subsection.4.1}
+\contentsline {section}{\numberline {5}Measurements Results }{11}{section.5}
+\contentsline {subsection}{\numberline {5.1}Switching}{11}{subsection.5.1}
+\contentsline {section}{\numberline {A}Current Transformer Design Guidelines (double-pulse)}{18}{appendix.A}

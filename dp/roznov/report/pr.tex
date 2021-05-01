@@ -1,0 +1,136 @@
+%\documentclass[a4paper, 12pt]{report}
+\documentclass[]{article}
+\usepackage[paperwidth=400pt, paperheight=300pt, margin=40pt]{geometry}
+
+\usepackage[utf8]{inputenc} 
+
+\usepackage[pdftex]{graphicx}
+\graphicspath{{obr/}}
+\DeclareGraphicsExtensions{.pdf, .jpg}
+
+%\usepackage[slovak]{babel}
+
+\usepackage{amsmath}
+
+\usepackage[breaklinks]{hyperref}
+
+\usepackage{lettrine}
+
+\usepackage{microtype}
+
+\usepackage{placeins}
+
+\usepackage{fourier}
+\usepackage{Baskervaldx}	% funguje aj smallcaps: \textsc 
+
+\pagestyle{headings}
+
+%% velkost fontu pod obrazkom mensia, vratane ``Obr. X:''
+%\renewcommand{\figurename}{sjls} % toto nefunguje pri pouzivani babel
+%\addto\captionsslovak{\renewcommand{\figurename}{\small Obr.}}
+%\addto\captions{\renewcommand{\figurename}{\small Obr.}}
+\renewcommand{\figurename}{\small{Figure}} % toto nefunguje pri pouzivani babel
+\renewcommand{\thefigure}{\small \arabic{figure}}
+
+
+\newcommand{\dif}{\, \mathrm{d}}	% diferencia (na derivacie)
+\newcommand{\difp}{\partial}		% parc. diferencia 
+\newcommand{\dxdt}[2]{\frac{\mathrm{d} #1}{\mathrm{d} #2}}
+\newcommand{\dxdtp}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\un}[1]{\, \mathrm{#1}}	% jednotky velicin, v math mode
+\newcommand{\E}[1]{\cdot 10^{#1}}
+\newcommand{\degree}{^\circ}
+\newcommand{\diameter}{\emptyset}
+\newcommand{\cpx}{\widehat}		% komplexne fazory
+\newcommand{\Ohm}{\Omega}
+
+
+\newcounter{myasscount}
+\renewcommand{\themyasscount}{\alph{myasscount}}
+%\setcounter{myasscount}{1}
+\newenvironment{myass}
+{
+
+	\refstepcounter{myasscount}
+	\par
+	\vspace{6pt}
+	%\indent	% netreba, ked predchadza \par
+	\begin{tabular}{p{.22\textwidth}  p{.68\textwidth} }
+	\textbf{Predpoklad (\themyasscount)}	&
+}
+{
+	\end{tabular}
+	\par 
+	\vspace{6pt}
+}
+
+\newcommand{\myfig}[3]
+{
+    \begin{figure}[!ht]
+	\centering
+	\includegraphics{#1}
+	\caption{#2}
+	\label{fig:#3}
+    \end{figure}
+}
+
+\newcommand{\myfigd}[2]
+{
+    \begin{figure}[!htb]
+	\centering
+	\hspace{1.5mm}\includegraphics[height=.4\textheight]{./obr/plots_stat/#1}
+	\hspace{11.5mm}\includegraphics[height=.4\textheight]{./obr/plots_stat/#1}\\\vspace{5mm}
+	\includegraphics[height=.4\textheight]{./obr/plots_stat/bar}
+	\hspace{10mm}\includegraphics[height=.4\textheight]{./obr/plots_stat/bar}
+	\caption{$600\un{V}$, $40\un{A}$, $25\un{\degree C}$}
+	%\label{fig:#3}
+    \end{figure}
+}
+
+
+\begin{document}
+
+\author{Ján Mikláš}
+\date{Rožnov p. Radhoštěm, May 2016}
+\title{\vspace{1cm} \textsc{Characterization of ``Handmade-packaged'' IGBT Chips}\\\rule{.5\textwidth}{1pt}\\Internship Report}
+
+
+\maketitle
+
+\newpage
+\tableofcontents
+
+\newpage
+\input{./kapitoly/motivation}
+
+\newpage
+\input{./kapitoly/packaging}
+
+\newpage
+\input{./kapitoly/measurements}
+
+\newpage
+\input{./kapitoly/data_processing}
+
+\newpage
+\input{./kapitoly/results}
+\FloatBarrier
+
+\newpage
+%\input{./kapitoly/conclusion}
+
+
+\newpage
+\appendix
+\newpage
+\input{./kapitoly/append_current_trans}
+%\newpage
+%\input{./kapitoly/append_octave}
+
+
+\section*{}
+
+%\centering
+%\vspace{60pt}
+%ďzp
+\end{document}
